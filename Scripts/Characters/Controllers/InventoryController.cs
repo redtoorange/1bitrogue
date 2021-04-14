@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using GameboyRoguelike.Scripts.Characters.Player;
 using GameboyRoguelike.Scripts.Items;
+using GameboyRoguelike.Scripts.Managers;
 using Godot;
 
 namespace GameboyRoguelike.Scripts.Characters.Controllers
@@ -8,6 +10,7 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
     {
         private ArmorController armorController;
         private WeaponController weaponController;
+        private GroundItemController groundItemController;
 
         private List<Item> managedItems;
 
@@ -19,23 +22,51 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
             {
                 if (GetChild(i) is Item item)
                 {
-                    managedItems.Add(item);
+                    AddItem(item);
                 }
             }
         }
 
-        public void Init(ArmorController armorController, WeaponController weaponController)
+        public void Init(ArmorController armorController, WeaponController weaponController,
+            GroundItemController groundItemController)
         {
             this.armorController = armorController;
             this.weaponController = weaponController;
+            this.groundItemController = groundItemController;
         }
 
-        public void AddItem(Item itemToAdd)
+        /// <summary>
+        /// Attempt to add an item to the inventory
+        /// </summary>
+        /// <param name="itemToAdd"></param>
+        /// <returns>true if item was added, false otherwise</returns>
+        public bool AddItem(Item itemToAdd)
         {
+            if (!managedItems.Contains(itemToAdd))
+            {
+                itemToAdd.SetSpriteEnabled(false);
+                itemToAdd.SetCollisionEnabled(false);
+                
+                ItemManager.S.RemoveChild(itemToAdd);
+                AddChild(itemToAdd);
+                managedItems.Add(itemToAdd);
+                return true;
+            }
+
+            return false;
         }
 
         public void RemoveItem(Item itemToRemove)
         {
+            if (managedItems.Contains(itemToRemove))
+            {
+                managedItems.Remove(itemToRemove);
+                RemoveChild(itemToRemove);
+                ItemManager.S.AddChild(itemToRemove);
+                
+                itemToRemove.SetSpriteEnabled(true);
+                itemToRemove.SetCollisionEnabled(false);
+            }
         }
 
         public List<Item> GetItems() => managedItems;

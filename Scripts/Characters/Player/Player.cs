@@ -1,5 +1,4 @@
 using GameboyRoguelike.Scripts.Characters.Controllers;
-using Godot;
 
 namespace GameboyRoguelike.Scripts.Characters.Player
 {
@@ -9,10 +8,12 @@ namespace GameboyRoguelike.Scripts.Characters.Player
         private ManaController manaController;
         private PlayerMovementController movementController;
         private InventoryController inventoryController;
+        private GroundItemController groundItemController;
 
         public PlayerMovementController GetMovementController() => movementController;
         public HealthController GetHealthController() => healthController;
         public ManaController GetManaController() => manaController;
+        public GroundItemController GetGroundItemController() => groundItemController;
 
         public override void _Ready()
         {
@@ -22,6 +23,7 @@ namespace GameboyRoguelike.Scripts.Characters.Player
             manaController = GetNode<ManaController>("ManaController");
             movementController = GetNode<PlayerMovementController>("MovementController");
             inventoryController = GetNode<InventoryController>("InventoryController");
+            groundItemController = GetNode<GroundItemController>("GroundItemController");
 
             movementController.Init(
                 this,
@@ -31,7 +33,11 @@ namespace GameboyRoguelike.Scripts.Characters.Player
             );
             inventoryController.Init(
                 GetArmorController(),
-                GetWeaponController()
+                GetWeaponController(),
+                groundItemController
+            );
+            groundItemController.Init(
+                inventoryController
             );
 
             healthController.Connect(nameof(HealthController.OnDeath), this, nameof(PlayerDied));
