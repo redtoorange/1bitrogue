@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Map/Objects/BedroomChest.cs" type="Script" id=1]
-[ext_resource path="res://TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=2]
+[ext_resource path="res://UI/Fonts/Kenney_Pixel.tres" type="DynamicFont" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -103,6 +104,7 @@ margin_left = -24.0
 margin_top = -32.0
 margin_right = 27.0
 margin_bottom = -18.0
+custom_fonts/font = ExtResource( 3 )
 text = "Locked"
 align = 1
 valign = 1
@@ -116,6 +118,7 @@ margin_left = -32.0
 margin_top = -8.0
 margin_right = 28.0
 margin_bottom = 6.0
+custom_fonts/font = ExtResource( 3 )
 text = "Unlocked"
 align = 1
 valign = 1

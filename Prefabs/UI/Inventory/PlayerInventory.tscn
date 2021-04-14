@@ -5,9 +5,9 @@
 [ext_resource path="res://Prefabs/UI/Inventory/Armor/ChestSlot.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/UI/Inventory/Weapons/OffHandSlot.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/UI/Inventory/Armor/HeadSlot.tscn" type="PackedScene" id=5]
-[ext_resource path="res://TileSheets/1bit/Modified/Menu.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/TileSheets/1bit/Modified/Menu.png" type="Texture" id=6]
 [ext_resource path="res://Prefabs/UI/Inventory/EmptySlot.tscn" type="PackedScene" id=7]
-[ext_resource path="res://TileSheets/BlackSquare.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/BlackSquare.png" type="Texture" id=8]
 [ext_resource path="res://Scripts/UI/Inventory/PlayerInventory.cs" type="Script" id=9]
 [ext_resource path="res://Prefabs/UI/Inventory/ItemInventoryTile.tscn" type="PackedScene" id=10]
 

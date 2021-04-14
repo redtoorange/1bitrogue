@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Characters/Controllers/HealthController.cs" type="Script" id=2]
 [ext_resource path="res://Scripts/Characters/Enemies/Enemy.cs" type="Script" id=3]
 [ext_resource path="res://Scripts/Characters/Controllers/MovementController.cs" type="Script" id=4]
-[ext_resource path="res://TileSheets/1bit/Modified/ProgressBarFill.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/TileSheets/1bit/Modified/ProgressBarFill.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/UI/HealthBar.cs" type="Script" id=6]
 
 [node name="Goblin" instance=ExtResource( 1 )]

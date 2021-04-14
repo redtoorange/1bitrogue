@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Prefabs/Items/Item.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Items/Armor/TestArmor.tres" type="Resource" id=2]
+[ext_resource path="res://Data/Items/Armor/TestArmor.tres" type="Resource" id=2]
 [ext_resource path="res://Scripts/Items/Armor.cs" type="Script" id=3]
 
 [node name="Armor" instance=ExtResource( 1 )]

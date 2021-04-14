@@ -1,0 +1,8 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=2]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/colored_transparent_packed.png-f79de06f9dd64d49256bda13bb365d61.stex"
+
+[resource]
+atlas = SubResource( 1 )
+region = Rect2( 512, 0, 16, 16 )

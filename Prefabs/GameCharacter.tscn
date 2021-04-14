@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Characters/GameCharacter.cs" type="Script" id=2]
 [ext_resource path="res://Scripts/Characters/Controllers/ArmorController.cs" type="Script" id=3]
 [ext_resource path="res://Scripts/Characters/Controllers/WeaponController.cs" type="Script" id=4]

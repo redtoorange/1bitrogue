@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Map/Objects/Door.tscn" type="PackedScene" id=2]
-[ext_resource path="res://TileSheets/1bit/Tiles/1BitTileSet.tres" type="TileSet" id=3]
+[ext_resource path="res://Sprites/TileSheets/1bit/Tiles/1BitTileSet.tres" type="TileSet" id=3]
 [ext_resource path="res://Prefabs/Map/Objects/Chest.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/Map/Objects/Bed.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/Map/Objects/Bookcase.tscn" type="PackedScene" id=6]
@@ -65,6 +65,7 @@ collision_mask = 0
 position = Vector2( 72, 88 )
 collision_layer = 8
 collision_mask = 0
+isLocked = true
 
 [node name="Bookcase" parent="House/MapObjectController" instance=ExtResource( 6 )]
 position = Vector2( 24, 40 )

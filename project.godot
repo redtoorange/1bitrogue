@@ -12,8 +12,8 @@ config_version=4
 
 config/name="Gameboy Roguelike"
 run/main_scene="res://Scenes/Main.tscn"
-boot_splash/image="res://TileSheets/1bit/Modified/ProgressBarFill.png"
-config/icon="res://icon.png"
+boot_splash/image="res://Sprites/TileSheets/1bit/Modified/ProgressBarFill.png"
+config/icon="res://Sprites/icon.png"
 
 [autoload]
 

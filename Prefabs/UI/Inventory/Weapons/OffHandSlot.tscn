@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Prefabs/UI/Inventory/Weapons/MainHandSlot.tscn" type="PackedScene" id=1]
-[ext_resource path="res://TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
 resource_local_to_scene = true
