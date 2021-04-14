@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://TileSheets/1bit/Atlas/UIBackground.tres" type="Texture" id=1]
+[ext_resource path="res://Scripts/UI/ManaBar.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/UI/HealthBar.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/UI/PlayerUI.cs" type="Script" id=4]
+[ext_resource path="res://TileSheets/1bit/Modified/ProgressBarFill.png" type="Texture" id=5]
+[ext_resource path="res://TileSheets/1bit/Modified/ProgressBarOutline.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/UI/MainUI.cs" type="Script" id=7]
+[ext_resource path="res://Scripts/UI/ChestUI.cs" type="Script" id=8]
+
+[node name="MainHUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+playerUiPath = NodePath("PlayerUI")
+
+[node name="PlayerUI" type="Control" parent="."]
+margin_right = 64.0
+margin_bottom = 40.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+healthBarPath = NodePath("HealthBar")
+manaBarPath = NodePath("ManaBar")
+
+[node name="HealthBar" type="TextureProgress" parent="PlayerUI"]
+margin_right = 48.0
+margin_bottom = 16.0
+value = 50.0
+texture_under = ExtResource( 1 )
+texture_over = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+tint_under = Color( 1, 1, 1, 0 )
+tint_over = Color( 1, 0, 0, 1 )
+tint_progress = Color( 1, 0, 0, 1 )
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ManaBar" type="TextureProgress" parent="PlayerUI"]
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 32.0
+value = 50.0
+texture_under = ExtResource( 1 )
+texture_over = ExtResource( 6 )
+texture_progress = ExtResource( 5 )
+tint_under = Color( 1, 1, 1, 0 )
+tint_over = Color( 0, 0.0862745, 1, 1 )
+tint_progress = Color( 0.00784314, 0, 1, 1 )
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Chest UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+windowDialogPath = NodePath("WindowDialog")
+
+[node name="WindowDialog" type="WindowDialog" parent="Chest UI"]
+margin_left = 24.0
+margin_top = 40.0
+margin_right = 152.0
+margin_bottom = 120.0
+window_title = "Chest"
+__meta__ = {
+"_edit_use_anchors_": false
+}

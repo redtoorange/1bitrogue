@@ -1,0 +1,120 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Map/Objects/Door.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TileSheets/1bit/Tiles/1BitTileSet.tres" type="TileSet" id=3]
+[ext_resource path="res://Prefabs/Map/Objects/Chest.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Prefabs/Map/Objects/Bed.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Prefabs/Map/Objects/Bookcase.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/MainHUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/MainGame.cs" type="Script" id=8]
+[ext_resource path="res://Prefabs/GameCharacter.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Prefabs/Goblin.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Prefabs/Items/Item.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Prefabs/Items/Weapon.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Prefabs/Items/Armor.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scripts/Managers/NPCManager.cs" type="Script" id=14]
+[ext_resource path="res://Scripts/Managers/EnemyManager.cs" type="Script" id=15]
+[ext_resource path="res://Scripts/Managers/ItemManager.cs" type="Script" id=16]
+[ext_resource path="res://Prefabs/UI/PlayerInventory.tscn" type="PackedScene" id=17]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 8 )
+playerPath = NodePath("CharacterController/Player")
+mainHUDPath = NodePath("UI/MainHUD")
+
+[node name="House" type="Node2D" parent="."]
+
+[node name="Walls" type="TileMap" parent="House"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 65536, 0, 1114122, 65537, 0, 1114122, 65538, 0, 1114124, 65539, 0, 1114122, 65540, 0, 1114122, 65541, 0, 1114122, 65542, 0, 1114122, 65543, 0, 1114124, 65544, 0, 1114122, 65545, 0, 1114122, 131072, 0, 1114124, 131081, 0, 1114122, 196608, 0, 1114122, 196613, 0, 1114122, 196617, 0, 1114124, 262144, 0, 1114122, 262149, 0, 1114122, 262153, 0, 1114122, 327680, 0, 1114124, 327685, 0, 1114122, 327689, 0, 1114122, 393216, 0, 1114122, 393217, 0, 1114122, 393218, 0, 1114124, 393219, 0, 1114122, 393220, 0, 1114122, 393221, 0, 1114122, 393222, 0, 1114122, 393224, 0, 1114122, 393225, 0, 1114122 )
+
+[node name="Floor" type="TileMap" parent="House"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 0
+format = 1
+tile_data = PoolIntArray( 131076, 0, 3, 131078, 0, 1, 327687, 0, 3, 458759, 0, 4 )
+
+[node name="Doodads" type="TileMap" parent="House"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 2
+format = 1
+tile_data = PoolIntArray( 131080, 0, 524290, 196616, 0, 524289, 327686, 0, 983045, 458757, 0, 65540, 458761, 0, 65540 )
+
+[node name="MapObjectController" type="Node2D" parent="House"]
+
+[node name="Door" parent="House/MapObjectController" instance=ExtResource( 2 )]
+collision_layer = 12
+collision_mask = 0
+
+[node name="Door2" parent="House/MapObjectController" instance=ExtResource( 2 )]
+position = Vector2( 120, 104 )
+collision_layer = 12
+collision_mask = 0
+
+[node name="Bed" parent="House/MapObjectController" instance=ExtResource( 5 )]
+position = Vector2( 24, 88 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="Chest" parent="House/MapObjectController" instance=ExtResource( 4 )]
+position = Vector2( 72, 88 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="Bookcase" parent="House/MapObjectController" instance=ExtResource( 6 )]
+position = Vector2( 24, 40 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="ItemManager" type="Node2D" parent="House"]
+script = ExtResource( 16 )
+
+[node name="Armor" parent="House/ItemManager" instance=ExtResource( 13 )]
+position = Vector2( 112, 48 )
+
+[node name="Item" parent="House/ItemManager" instance=ExtResource( 11 )]
+position = Vector2( 112, 32 )
+
+[node name="Weapon" parent="House/ItemManager" instance=ExtResource( 12 )]
+position = Vector2( 112, 64 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MainHUD" parent="UI" instance=ExtResource( 7 )]
+
+[node name="PlayerInventory" parent="UI" instance=ExtResource( 17 )]
+
+[node name="CharacterController" type="Node2D" parent="."]
+
+[node name="NPCManager" type="Node2D" parent="CharacterController"]
+script = ExtResource( 14 )
+
+[node name="Wizard" parent="CharacterController/NPCManager" instance=ExtResource( 9 )]
+position = Vector2( 16, 48 )
+
+[node name="EnemyManager" type="Node2D" parent="CharacterController"]
+script = ExtResource( 15 )
+
+[node name="Goblin" parent="CharacterController/EnemyManager" instance=ExtResource( 10 )]
+position = Vector2( 64, 128 )
+collision_layer = 1
+
+[node name="Goblin2" parent="CharacterController/EnemyManager" instance=ExtResource( 10 )]
+position = Vector2( 160, 64 )
+collision_layer = 1
+
+[node name="Goblin3" parent="CharacterController/EnemyManager" instance=ExtResource( 10 )]
+position = Vector2( 144, 128 )
+collision_layer = 1
+
+[node name="Goblin4" parent="CharacterController/EnemyManager" instance=ExtResource( 10 )]
+position = Vector2( 80, 128 )
+collision_layer = 1
+
+[node name="Player" parent="CharacterController" instance=ExtResource( 1 )]
+position = Vector2( 48, 48 )

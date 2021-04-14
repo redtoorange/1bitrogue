@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Prefabs/GameCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Characters/Player/PlayerMovementController.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/Characters/Controllers/InventoryController.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/Characters/Player/Player.cs" type="Script" id=4]
+[ext_resource path="res://Scripts/Characters/Controllers/HealthController.cs" type="Script" id=5]
+[ext_resource path="res://Scripts/Characters/Controllers/ManaController.cs" type="Script" id=6]
+
+[node name="Player" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+characterType = 0
+
+[node name="Camera2D" type="Camera2D" parent="." index="0"]
+offset = Vector2( 8, 8 )
+current = true
+process_mode = 0
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+editor_draw_screen = false
+
+[node name="RayCaster" parent="." index="2"]
+visible = true
+
+[node name="Sprite" parent="." index="3"]
+region_rect = Rect2( 400, 0, 16, 16 )
+
+[node name="StatController" parent="." index="6"]
+strength = 18
+dexterity = 16
+constitution = 14
+charisma = 12
+
+[node name="HealthController" type="Node" parent="." index="9"]
+script = ExtResource( 5 )
+
+[node name="ManaController" type="Node" parent="." index="10"]
+script = ExtResource( 6 )
+
+[node name="MovementController" type="Node" parent="." index="11"]
+script = ExtResource( 2 )
+
+[node name="InventoryController" type="Node" parent="." index="12"]
+script = ExtResource( 3 )
