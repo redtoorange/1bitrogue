@@ -3,7 +3,7 @@ using Godot;
 
 namespace GameboyRoguelike.Scripts.Items
 {
-    public enum ArmorSlot
+    public enum ArmorSlotType
     {
         HEAD,
         CHEST,

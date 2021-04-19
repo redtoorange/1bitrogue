@@ -6,6 +6,6 @@ namespace GameboyRoguelike.Scripts.Items.Stats
     {
         [Export] public int armorBonus = 0;
         [Export] public int maxDexBonus = 10;
-        [Export] public ArmorSlot slot = ArmorSlot.HEAD;
+        [Export] public ArmorSlotType slotType = ArmorSlotType.HEAD;
     }
 }

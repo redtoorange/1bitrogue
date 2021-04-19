@@ -14,7 +14,7 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
             
         }
 
-        public void UnEquipArmor(ArmorSlot slot)
+        public void UnEquipArmor(ArmorSlotType slotType)
         {
             
         }

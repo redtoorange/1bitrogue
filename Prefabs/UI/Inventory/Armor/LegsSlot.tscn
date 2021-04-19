@@ -9,7 +9,7 @@ atlas = ExtResource( 2 )
 region = Rect2( 624, 0, 16, 16 )
 
 [node name="LegsSlot" instance=ExtResource( 1 )]
-armorSlotType = 3
+armorSlotType = 2
 
 [node name="PlaceholderImage" parent="." index="0"]
 texture = SubResource( 1 )

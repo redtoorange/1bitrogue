@@ -13,4 +13,4 @@ inventoryIcon = ExtResource( 2 )
 worldSprite = ExtResource( 2 )
 armorBonus = 0
 maxDexBonus = 10
-slot = 0
+slotType = 0

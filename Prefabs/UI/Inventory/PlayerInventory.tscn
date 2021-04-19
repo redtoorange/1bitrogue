@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Prefabs/UI/Inventory/Weapons/MainHandSlot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/UI/Inventory/Armor/LegsSlot.tscn" type="PackedScene" id=2]
@@ -8,8 +8,11 @@
 [ext_resource path="res://Sprites/TileSheets/1bit/Modified/Menu.png" type="Texture" id=6]
 [ext_resource path="res://Prefabs/UI/Inventory/EmptySlot.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sprites/BlackSquare.png" type="Texture" id=8]
-[ext_resource path="res://Scripts/UI/Inventory/PlayerInventory.cs" type="Script" id=9]
+[ext_resource path="res://Scripts/UI/Inventory/InventorySlotsManager.cs" type="Script" id=9]
 [ext_resource path="res://Prefabs/UI/Inventory/ItemInventoryTile.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/UI/Inventory/EquipmentSlotsManager.cs" type="Script" id=11]
+[ext_resource path="res://Scripts/UI/Inventory/PlayerInventoryManager.cs" type="Script" id=12]
+[ext_resource path="res://Scripts/UI/Inventory/InventoryDragController.cs" type="Script" id=13]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 6 )
@@ -22,13 +25,13 @@ margin_bottom = 3.0
 [node name="PlayerInventory" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 9 )
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.498039 )
+[node name="ScreenDimBackground" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.74902 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 8 )
@@ -43,11 +46,17 @@ margin_top = 40.0
 margin_right = 80.0
 margin_bottom = 112.0
 custom_styles/panel = SubResource( 1 )
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+headSlotPath = NodePath("Slots/HeadSlot")
+chestSlotPath = NodePath("Slots/ChestSlot")
+legsSlotPath = NodePath("Slots/LegsSlot")
+mainHandSlotPath = NodePath("Slots/MainHandSlot")
+offHandSlotPath = NodePath("Slots/OffHandSlot")
 
-[node name="ArmorSlots" type="Control" parent="EquipmentSlots"]
+[node name="Slots" type="Control" parent="EquipmentSlots"]
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 69.0
@@ -56,17 +65,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HeadSlot" parent="EquipmentSlots/ArmorSlots" instance=ExtResource( 5 )]
+[node name="HeadSlot" parent="EquipmentSlots/Slots" instance=ExtResource( 5 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -8.0
-margin_top = -31.0
+margin_top = -28.0
 margin_right = 8.0
-margin_bottom = -15.0
+margin_bottom = -12.0
 
-[node name="ChestSlot" parent="EquipmentSlots/ArmorSlots" instance=ExtResource( 3 )]
+[node name="ChestSlot" parent="EquipmentSlots/Slots" instance=ExtResource( 3 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -76,45 +85,48 @@ margin_top = -8.0
 margin_right = 8.0
 margin_bottom = 8.0
 
-[node name="LegsSlot" parent="EquipmentSlots/ArmorSlots" instance=ExtResource( 2 )]
+[node name="LegsSlot" parent="EquipmentSlots/Slots" instance=ExtResource( 2 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -8.0
-margin_top = 15.0
+margin_top = 12.0
 margin_right = 8.0
-margin_bottom = 31.0
+margin_bottom = 28.0
 
-[node name="ItemInventoryRepresentation" parent="EquipmentSlots/ArmorSlots/LegsSlot" instance=ExtResource( 10 )]
-
-[node name="MainHandSlot" parent="EquipmentSlots/ArmorSlots" instance=ExtResource( 1 )]
+[node name="MainHandSlot" parent="EquipmentSlots/Slots" instance=ExtResource( 1 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -31.0
+margin_left = 12.0
 margin_top = -8.0
-margin_right = -15.0
+margin_right = 28.0
 margin_bottom = 8.0
 
-[node name="OffHandSlot" parent="EquipmentSlots/ArmorSlots" instance=ExtResource( 4 )]
-margin_left = 48.0
-margin_top = 25.0
-margin_right = 64.0
-margin_bottom = 41.0
+[node name="OffHandSlot" parent="EquipmentSlots/Slots" instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -28.0
+margin_top = -8.0
+margin_right = -12.0
+margin_bottom = 8.0
 
-[node name="Inventory" type="PanelContainer" parent="."]
+[node name="InventorySlots" type="PanelContainer" parent="."]
 margin_left = 80.0
 margin_top = 40.0
 margin_right = 152.0
 margin_bottom = 112.0
 custom_styles/panel = SubResource( 1 )
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="Inventory"]
+[node name="Container" type="MarginContainer" parent="InventorySlots"]
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 69.0
@@ -124,7 +136,7 @@ custom_constants/margin_top = 1
 custom_constants/margin_left = 1
 custom_constants/margin_bottom = 1
 
-[node name="Rows" type="VBoxContainer" parent="Inventory/MarginContainer"]
+[node name="Rows" type="VBoxContainer" parent="InventorySlots/Container"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 65.0
@@ -134,7 +146,7 @@ size_flags_vertical = 3
 custom_constants/separation = 0
 alignment = 1
 
-[node name="Row1" type="HBoxContainer" parent="Inventory/MarginContainer/Rows"]
+[node name="0" type="HBoxContainer" parent="InventorySlots/Container/Rows"]
 margin_right = 64.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
@@ -142,31 +154,31 @@ size_flags_vertical = 3
 custom_constants/separation = 0
 alignment = 1
 
-[node name="EmptySlot" parent="Inventory/MarginContainer/Rows/Row1" instance=ExtResource( 7 )]
+[node name="0" parent="InventorySlots/Container/Rows/0" instance=ExtResource( 7 )]
 margin_left = 0.0
 margin_top = 0.0
 margin_right = 16.0
 margin_bottom = 16.0
 
-[node name="EmptySlot2" parent="Inventory/MarginContainer/Rows/Row1" instance=ExtResource( 7 )]
+[node name="1" parent="InventorySlots/Container/Rows/0" instance=ExtResource( 7 )]
 margin_left = 16.0
 margin_top = 0.0
 margin_right = 32.0
 margin_bottom = 16.0
 
-[node name="EmptySlot3" parent="Inventory/MarginContainer/Rows/Row1" instance=ExtResource( 7 )]
+[node name="2" parent="InventorySlots/Container/Rows/0" instance=ExtResource( 7 )]
 margin_left = 32.0
 margin_top = 0.0
 margin_right = 48.0
 margin_bottom = 16.0
 
-[node name="EmptySlot4" parent="Inventory/MarginContainer/Rows/Row1" instance=ExtResource( 7 )]
+[node name="3" parent="InventorySlots/Container/Rows/0" instance=ExtResource( 7 )]
 margin_left = 48.0
 margin_top = 0.0
 margin_right = 64.0
 margin_bottom = 16.0
 
-[node name="Row2" type="HBoxContainer" parent="Inventory/MarginContainer/Rows"]
+[node name="1" type="HBoxContainer" parent="InventorySlots/Container/Rows"]
 margin_top = 16.0
 margin_right = 64.0
 margin_bottom = 32.0
@@ -175,31 +187,31 @@ size_flags_vertical = 3
 custom_constants/separation = 0
 alignment = 1
 
-[node name="EmptySlot5" parent="Inventory/MarginContainer/Rows/Row2" instance=ExtResource( 7 )]
+[node name="0" parent="InventorySlots/Container/Rows/1" instance=ExtResource( 7 )]
 margin_left = 0.0
 margin_top = 0.0
 margin_right = 16.0
 margin_bottom = 16.0
 
-[node name="EmptySlot6" parent="Inventory/MarginContainer/Rows/Row2" instance=ExtResource( 7 )]
+[node name="1" parent="InventorySlots/Container/Rows/1" instance=ExtResource( 7 )]
 margin_left = 16.0
 margin_top = 0.0
 margin_right = 32.0
 margin_bottom = 16.0
 
-[node name="EmptySlot7" parent="Inventory/MarginContainer/Rows/Row2" instance=ExtResource( 7 )]
+[node name="2" parent="InventorySlots/Container/Rows/1" instance=ExtResource( 7 )]
 margin_left = 32.0
 margin_top = 0.0
 margin_right = 48.0
 margin_bottom = 16.0
 
-[node name="EmptySlot8" parent="Inventory/MarginContainer/Rows/Row2" instance=ExtResource( 7 )]
+[node name="3" parent="InventorySlots/Container/Rows/1" instance=ExtResource( 7 )]
 margin_left = 48.0
 margin_top = 0.0
 margin_right = 64.0
 margin_bottom = 16.0
 
-[node name="Row3" type="HBoxContainer" parent="Inventory/MarginContainer/Rows"]
+[node name="2" type="HBoxContainer" parent="InventorySlots/Container/Rows"]
 margin_top = 32.0
 margin_right = 64.0
 margin_bottom = 48.0
@@ -208,31 +220,31 @@ size_flags_vertical = 3
 custom_constants/separation = 0
 alignment = 1
 
-[node name="EmptySlot9" parent="Inventory/MarginContainer/Rows/Row3" instance=ExtResource( 7 )]
+[node name="0" parent="InventorySlots/Container/Rows/2" instance=ExtResource( 7 )]
 margin_left = 0.0
 margin_top = 0.0
 margin_right = 16.0
 margin_bottom = 16.0
 
-[node name="EmptySlot10" parent="Inventory/MarginContainer/Rows/Row3" instance=ExtResource( 7 )]
+[node name="1" parent="InventorySlots/Container/Rows/2" instance=ExtResource( 7 )]
 margin_left = 16.0
 margin_top = 0.0
 margin_right = 32.0
 margin_bottom = 16.0
 
-[node name="EmptySlot11" parent="Inventory/MarginContainer/Rows/Row3" instance=ExtResource( 7 )]
+[node name="2" parent="InventorySlots/Container/Rows/2" instance=ExtResource( 7 )]
 margin_left = 32.0
 margin_top = 0.0
 margin_right = 48.0
 margin_bottom = 16.0
 
-[node name="EmptySlot12" parent="Inventory/MarginContainer/Rows/Row3" instance=ExtResource( 7 )]
+[node name="3" parent="InventorySlots/Container/Rows/2" instance=ExtResource( 7 )]
 margin_left = 48.0
 margin_top = 0.0
 margin_right = 64.0
 margin_bottom = 16.0
 
-[node name="Row4" type="HBoxContainer" parent="Inventory/MarginContainer/Rows"]
+[node name="3" type="HBoxContainer" parent="InventorySlots/Container/Rows"]
 margin_top = 48.0
 margin_right = 64.0
 margin_bottom = 64.0
@@ -241,26 +253,38 @@ size_flags_vertical = 3
 custom_constants/separation = 0
 alignment = 1
 
-[node name="EmptySlot13" parent="Inventory/MarginContainer/Rows/Row4" instance=ExtResource( 7 )]
+[node name="0" parent="InventorySlots/Container/Rows/3" instance=ExtResource( 7 )]
 margin_left = 0.0
 margin_top = 0.0
 margin_right = 16.0
 margin_bottom = 16.0
 
-[node name="EmptySlot14" parent="Inventory/MarginContainer/Rows/Row4" instance=ExtResource( 7 )]
+[node name="1" parent="InventorySlots/Container/Rows/3" instance=ExtResource( 7 )]
 margin_left = 16.0
 margin_top = 0.0
 margin_right = 32.0
 margin_bottom = 16.0
 
-[node name="EmptySlot15" parent="Inventory/MarginContainer/Rows/Row4" instance=ExtResource( 7 )]
+[node name="2" parent="InventorySlots/Container/Rows/3" instance=ExtResource( 7 )]
 margin_left = 32.0
 margin_top = 0.0
 margin_right = 48.0
 margin_bottom = 16.0
 
-[node name="EmptySlot16" parent="Inventory/MarginContainer/Rows/Row4" instance=ExtResource( 7 )]
+[node name="3" parent="InventorySlots/Container/Rows/3" instance=ExtResource( 7 )]
 margin_left = 48.0
 margin_top = 0.0
 margin_right = 64.0
 margin_bottom = 16.0
+
+[node name="DragController" type="Control" parent="."]
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemInventoryRepresentation2" parent="DragController" instance=ExtResource( 10 )]
+margin_left = 56.0
+margin_top = 68.0
+margin_right = 72.0
+margin_bottom = 84.0

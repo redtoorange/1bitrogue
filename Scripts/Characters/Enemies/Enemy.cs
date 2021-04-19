@@ -12,8 +12,8 @@ namespace GameboyRoguelike.Scripts.Characters.Enemies
 
         private HealthController healthController;
         private MovementController movementController;
-        private HealthBar healthBar;
-    
+        private ResourceBar healthBar;
+
         public MovementController GetMovementController() => movementController;
         public HealthController GetHealthController() => healthController;
 
@@ -23,7 +23,7 @@ namespace GameboyRoguelike.Scripts.Characters.Enemies
 
             healthController = GetNode<HealthController>(healthControllerPath);
             movementController = GetNode<MovementController>(movementControllerPath);
-            healthBar = GetNode<HealthBar>(healthBarPath);
+            healthBar = GetNode<ResourceBar>(healthBarPath);
 
             movementController.Init(
                 GetAnimationPlayer(),
@@ -31,15 +31,17 @@ namespace GameboyRoguelike.Scripts.Characters.Enemies
                 GetTween()
             );
 
-            healthController.Connect(nameof(HealthController.OnDeath), this, nameof(Died));
-        
+            healthController.OnDie += Died;
+
             healthBar.Init(healthController);
         }
 
-        private void Died()
+        private void Died(HealthController healthController)
         {
-            GD.Print("Monster Died!");
-            QueueFree();
+            if (healthController == this.healthController)
+            {
+                QueueFree();
+            }
         }
 
         public int GetArmorClass()

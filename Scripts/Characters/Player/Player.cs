@@ -40,12 +40,15 @@ namespace GameboyRoguelike.Scripts.Characters.Player
                 inventoryController
             );
 
-            healthController.Connect(nameof(HealthController.OnDeath), this, nameof(PlayerDied));
+            healthController.OnDie += PlayerDied;
         }
 
-        private void PlayerDied()
+        private void PlayerDied(HealthController healthController)
         {
-            QueueFree();
+            if (this.healthController == healthController)
+            {
+                QueueFree();
+            }
         }
 
         public int GetArmorClass()

@@ -1,18 +1,16 @@
+using System;
 using Godot;
 
 namespace GameboyRoguelike.Scripts.Characters.Controllers
 {
-    public class HealthController : Node
+    public class HealthController : ResourceController
     {
-        [Signal] public delegate void OnHealthChange(int amount);
-
-        [Signal] public delegate void OnDeath();
-
+        public Action<HealthController> OnDie;
+        
         [Export] private int maxHealth = 100;
-
         private int currentHealth;
 
-        public override void _Ready()
+        public override void _EnterTree()
         {
             currentHealth = maxHealth;
         }
@@ -22,7 +20,10 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
             currentHealth += amount;
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-            EmitSignal(nameof(OnHealthChange), currentHealth);
+            OnResourceChange?.Invoke(new ResourceChangeData(
+                ResourceChangeType.GAIN,
+                currentHealth,
+                maxHealth));
         }
 
         public void TakeDamage(int amount)
@@ -30,17 +31,25 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
             currentHealth -= amount;
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-            EmitSignal(nameof(OnHealthChange), currentHealth);
+            OnResourceChange?.Invoke(new ResourceChangeData(
+                ResourceChangeType.GAIN,
+                currentHealth,
+                maxHealth));
 
             if (currentHealth <= 0)
             {
-                EmitSignal(nameof(OnDeath));
+                OnDie?.Invoke(this);
             }
         }
 
-        public int GetHealth()
+        public override int GetValue()
         {
             return currentHealth;
+        }
+
+        public override float GetPercentValue()
+        {
+            return currentHealth / (float) maxHealth;
         }
     }
 }

@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/UI/ResourceBar.cs" type="Script" id=1]
+[ext_resource path="res://Sprites/WhiteSquare.png" type="Texture" id=2]
+
+[node name="ResourceBar" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 5.0
+margin_right = -3.0
+margin_bottom = -7.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GainLayer" type="TextureProgress" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture_progress = ExtResource( 2 )
+tint_progress = Color( 0.164706, 0.701961, 0.121569, 1 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoseLayer" type="TextureProgress" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+value = 100.0
+texture_progress = ExtResource( 2 )
+tint_progress = Color( 0.739004, 0.792969, 0.102219, 1 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BaseLayer" type="TextureProgress" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+value = 50.0
+texture_progress = ExtResource( 2 )
+tint_progress = Color( 1, 0, 0, 1 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

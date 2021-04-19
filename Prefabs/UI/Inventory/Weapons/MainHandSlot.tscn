@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/UI/Inventory/WeaponSlot.cs" type="Script" id=1]
+[ext_resource path="res://Scripts/UI/Inventory/Slots/WeaponSlot.cs" type="Script" id=1]
 [ext_resource path="res://Prefabs/UI/Inventory/ItemSlot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=3]
 

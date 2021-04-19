@@ -8,13 +8,13 @@ namespace GameboyRoguelike.Scripts.UI
         [Export] private NodePath healthBarPath;
         [Export] private NodePath manaBarPath;
 
-        private HealthBar healthBar;
-        private ManaBar manaBar;
+        private ResourceBar healthBar;
+        private ResourceBar manaBar;
 
         public override void _Ready()
         {
-            healthBar = GetNode<HealthBar>(healthBarPath);
-            manaBar = GetNode<ManaBar>(manaBarPath);
+            healthBar = GetNode<ResourceBar>(healthBarPath);
+            manaBar = GetNode<ResourceBar>(manaBarPath);
         }
 
         public void Init(Player player)
