@@ -3,7 +3,7 @@ using Godot;
 
 namespace GameboyRoguelike.Scripts.UI
 {
-    public class PlayerUI : Node
+    public class PlayerHUDController : Node
     {
         [Export] private NodePath healthBarPath;
         [Export] private NodePath manaBarPath;

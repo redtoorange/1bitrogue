@@ -11,11 +11,6 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
         {
             equipmentSlotsManager = GetNode<EquipmentSlotsManager>("EquipmentSlots");
             inventorySlotsManager = GetNode<InventorySlotsManager>("InventorySlots");
-            
-            if (Input.IsActionJustPressed("Inventory"))
-            {
-                Visible = !Visible;
-            }
         }
     }
 }

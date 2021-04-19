@@ -10,7 +10,7 @@ namespace GameboyRoguelike.Scripts
         [Export] private NodePath mainHUDPath;
 
         private Player player;
-        private MainUI mainUi;
+        private PlayerUiController playerUiController;
     
         public override void _Ready()
         {
@@ -21,13 +21,13 @@ namespace GameboyRoguelike.Scripts
 
         private void Init()
         {
-            mainUi.Init(player);
+            playerUiController.Init(player);
         }
 
         private void FetchDependencies()
         {
             player = GetNode<Player>(playerPath);
-            mainUi = GetNode<MainUI>(mainHUDPath);
+            playerUiController = GetNode<PlayerUiController>(mainHUDPath);
         }
     }
 }

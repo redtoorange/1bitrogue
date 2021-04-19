@@ -6,7 +6,7 @@
 [ext_resource path="res://Prefabs/GameCharacter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/Items/Weapon.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/Items/Armor.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Prefabs/UI/HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Prefabs/UI/PlayerUi.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/MainGame.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/Managers/NPCManager.cs" type="Script" id=14]
 [ext_resource path="res://Scripts/Managers/EnemyManager.cs" type="Script" id=15]
@@ -15,7 +15,7 @@
 [node name="Main" type="Node2D"]
 script = ExtResource( 8 )
 playerPath = NodePath("CharacterController/Player")
-mainHUDPath = NodePath("UI/HUD")
+mainHUDPath = NodePath("UI/PlayerUi")
 
 [node name="House" parent="." instance=ExtResource( 2 )]
 
@@ -54,4 +54,4 @@ position = Vector2( 32, 48 )
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 3
 
-[node name="HUD" parent="UI" instance=ExtResource( 7 )]
+[node name="PlayerUi" parent="UI" instance=ExtResource( 7 )]
