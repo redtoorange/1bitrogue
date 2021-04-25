@@ -1,9 +1,12 @@
+using System;
 using GameboyRoguelike.Scripts.Characters.Controllers;
 
 namespace GameboyRoguelike.Scripts.Characters.Player
 {
     public class Player : GameCharacter, IDefender, IAttacker
     {
+        public static Action OnPlayerTurnFinished;
+        
         private HealthController healthController;
         private ManaController manaController;
         private PlayerMovementController movementController;
@@ -31,6 +34,7 @@ namespace GameboyRoguelike.Scripts.Characters.Player
                 GetRayCast2D(),
                 GetTween()
             );
+            movementController.OnPlayerCompletedAction += HandlePerformedAction;
             inventoryController.Init(
                 GetArmorController(),
                 GetWeaponController(),
@@ -74,6 +78,11 @@ namespace GameboyRoguelike.Scripts.Characters.Player
         public int GetDamageBonus()
         {
             return 0;
+        }
+
+        private void HandlePerformedAction()
+        {
+            OnPlayerTurnFinished?.Invoke();
         }
     }
 }

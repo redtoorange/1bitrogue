@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/House.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Prefabs/Items/Armor.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/UI/PlayerUi.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/MainGame.cs" type="Script" id=8]
+[ext_resource path="res://Scripts/Managers/GameRoundManager.cs" type="Script" id=9]
 [ext_resource path="res://Scripts/Managers/NPCManager.cs" type="Script" id=14]
 [ext_resource path="res://Scripts/Managers/EnemyManager.cs" type="Script" id=15]
 [ext_resource path="res://Scripts/Managers/ItemManager.cs" type="Script" id=16]
@@ -19,13 +20,13 @@ mainHUDPath = NodePath("UI/PlayerUi")
 
 [node name="House" parent="." instance=ExtResource( 2 )]
 
-[node name="WorldItemManager" type="Node2D" parent="."]
+[node name="WorldItemsManager" type="Node2D" parent="."]
 script = ExtResource( 16 )
 
-[node name="Armor" parent="WorldItemManager" instance=ExtResource( 6 )]
+[node name="Armor" parent="WorldItemsManager" instance=ExtResource( 6 )]
 position = Vector2( 64, 48 )
 
-[node name="Weapon" parent="WorldItemManager" instance=ExtResource( 5 )]
+[node name="Weapon" parent="WorldItemsManager" instance=ExtResource( 5 )]
 position = Vector2( 64, 64 )
 
 [node name="CharacterController" type="Node2D" parent="."]
@@ -55,3 +56,7 @@ position = Vector2( 32, 48 )
 layer = 3
 
 [node name="PlayerUi" parent="UI" instance=ExtResource( 7 )]
+
+[node name="GameRoundManager" type="Node" parent="."]
+script = ExtResource( 9 )
+currentTimingState = 1

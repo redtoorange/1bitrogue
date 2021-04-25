@@ -19,10 +19,6 @@ namespace GameboyRoguelike.Scripts.UI
 
         private Tween tweener = new Tween();
 
-        private float baseValue = 100;
-        private float gainValue = 0;
-        private float loseValue = 0;
-
         public override void _Ready()
         {
             baseLayer = GetNode<TextureProgress>("BaseLayer");
@@ -42,37 +38,46 @@ namespace GameboyRoguelike.Scripts.UI
             this.resourceController = resourceController;
             this.resourceController.OnResourceChange += HandleValueChange;
 
-            baseValue = this.resourceController.GetPercentValue() * 100;
-            baseLayer.Value = baseValue;
+            baseLayer.Value = this.resourceController.GetPercentValue() * 100;
         }
 
         private void HandleValueChange(ResourceChangeData data)
         {
-            // SetValue((data.newValue / (float) data.maxValue) * 100);
-            
-            AnimateLoss((data.newValue / (float) data.maxValue) * 100);
+            float value = (data.newValue / (float) data.maxValue) * 100;
+            if (data.changeType == ResourceChangeType.LOSE)
+            {
+                AnimateLoss(value);
+            }
+            else
+            {
+                AnimateGain(value);
+            }
         }
 
         private void AnimateLoss(float to)
         {
-            loseValue = baseValue;
-            loseLayer.Value = loseValue;
-
-            baseValue = to;
-            baseLayer.Value = baseValue;
+            loseLayer.Value = baseLayer.Value;
+            baseLayer.Value = to;
 
             tweener.StopAll();
-            tweener.InterpolateProperty(loseLayer, "value", loseValue, baseValue, 0.25f);
+            tweener.InterpolateProperty(loseLayer, "value", loseLayer.Value, baseLayer.Value, 0.25f);
             tweener.Start();
         }
 
         private void OnTweenComplete(TextureProgress obj, NodePath key)
         {
-            GD.Print("Tween Completed: <" + obj.Name + ">, <" + key + ">.");
+            GD.Print("Tween Completed: <" + obj.Name + ">, <" + key.ToString() + ">.");
+            loseLayer.Value = 0;
+            gainLayer.Value = 0;
         }
 
         private void AnimateGain(float to)
         {
+            gainLayer.Value = to;
+
+            tweener.StopAll();
+            tweener.InterpolateProperty(baseLayer, "value", baseLayer.Value, gainLayer.Value, 0.25f);
+            tweener.Start();
         }
 
         private void SetValue(float amount)

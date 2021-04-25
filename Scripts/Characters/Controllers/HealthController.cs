@@ -32,7 +32,7 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
             OnResourceChange?.Invoke(new ResourceChangeData(
-                ResourceChangeType.GAIN,
+                ResourceChangeType.LOSE,
                 currentHealth,
                 maxHealth));
 

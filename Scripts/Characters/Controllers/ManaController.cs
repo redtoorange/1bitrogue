@@ -33,7 +33,7 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
             currentMana = Mathf.Clamp(currentMana, 0, maxMana);
 
             OnResourceChange?.Invoke(new ResourceChangeData(
-                ResourceChangeType.GAIN,
+                ResourceChangeType.LOSE,
                 currentMana,
                 maxMana));
         }

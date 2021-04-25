@@ -1,4 +1,6 @@
+using System;
 using GameboyRoguelike.Scripts.Characters.Controllers;
+using GameboyRoguelike.Scripts.Managers;
 using GameboyRoguelike.Scripts.Map.Objects;
 using Godot;
 
@@ -6,6 +8,8 @@ namespace GameboyRoguelike.Scripts.Characters.Player
 {
     public class PlayerMovementController : MovementController
     {
+        public Action OnPlayerCompletedAction;
+
         [Export] private float movementCooldown = 0.2f;
         private float coolDownTimer = 0.0f;
 
@@ -28,10 +32,13 @@ namespace GameboyRoguelike.Scripts.Characters.Player
         {
             this.player = player;
             base.Init(animationPlayer, rayCast2D, tween);
+
+            animationPlayer.Connect("animation_finished", this, nameof(AnimationFinished));
         }
 
         public override void _Process(float delta)
         {
+            
             if (onCooldown && coolDownTimer > 0)
             {
                 coolDownTimer -= delta;
@@ -44,24 +51,21 @@ namespace GameboyRoguelike.Scripts.Characters.Player
 
         public override void _PhysicsProcess(float delta)
         {
-            if (isTweening || onCooldown) return;
+            if (!GameRoundManager.S.CanPlayerAct() || isTweening || onCooldown) return;
 
             if (Input.IsActionPressed(MOVE_UP))
             {
                 MoveTo(moveUpVector);
             }
-
-            if (Input.IsActionPressed(MOVE_DOWN))
+            else if (Input.IsActionPressed(MOVE_DOWN))
             {
                 MoveTo(moveDownVector);
             }
-
-            if (Input.IsActionPressed(MOVE_LEFT))
+            else if (Input.IsActionPressed(MOVE_LEFT))
             {
                 MoveTo(moveLeftVector);
             }
-
-            if (Input.IsActionPressed(MOVE_RIGHT))
+            else if (Input.IsActionPressed(MOVE_RIGHT))
             {
                 MoveTo(moveRightVector);
             }
@@ -145,6 +149,11 @@ namespace GameboyRoguelike.Scripts.Characters.Player
             {
                 animationPlayer.Play("LungeUp");
             }
+        }
+
+        private void AnimationFinished(string animName)
+        {
+            OnPlayerCompletedAction?.Invoke();
         }
     }
 }
