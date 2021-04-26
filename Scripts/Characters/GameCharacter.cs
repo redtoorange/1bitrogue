@@ -47,7 +47,11 @@ namespace GameboyRoguelike.Scripts.Characters
             armorController = GetNode<ArmorController>("Controllers/ArmorController");
             inputController = GetNode<InputController>("Controllers/InputController");
             movementController = GetNode<MovementController>("Controllers/MovementController");
-            
+
+            if (movementController == null)
+            {
+                GD.PrintErr("MovementController null");
+            }
             movementController.Init(this, animationPlayer, rayCast2D, tween);
         }
     }

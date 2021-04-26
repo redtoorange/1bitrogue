@@ -73,7 +73,7 @@ namespace GameboyRoguelike.Scripts.Characters.Enemies
         public void Tick(float deltaTime)
         {
             GD.Print(Name + " is ticking.");
-            healthController.HealDamage(1);
+            healthController.Heal(1);
             currentState = TurnTakerState.DONE;
         }
 

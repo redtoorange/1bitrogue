@@ -28,26 +28,29 @@ namespace GameboyRoguelike.Scripts.Characters.Player
         
         public override void _Process(float delta)
         {
-            if (!GameRoundManager.S.CanPlayerAct())
+            if (GameRoundManager.S.CanPlayerAct())
             {
-                return;
+                HandleInput();
             }
+        }
 
+        private void HandleInput()
+        {
             if (Input.IsActionPressed(MOVE_UP))
             {
-                movementController.MoveTo(moveUpVector);
+                movementController.AttemptMove(moveUpVector);
             }
             else if (Input.IsActionPressed(MOVE_DOWN))
             {
-                movementController.MoveTo(moveDownVector);
+                movementController.AttemptMove(moveDownVector);
             }
             else if (Input.IsActionPressed(MOVE_LEFT))
             {
-                movementController.MoveTo(moveLeftVector);
+                movementController.AttemptMove(moveLeftVector);
             }
             else if (Input.IsActionPressed(MOVE_RIGHT))
             {
-                movementController.MoveTo(moveRightVector);
+                movementController.AttemptMove(moveRightVector);
             }
         }
     }

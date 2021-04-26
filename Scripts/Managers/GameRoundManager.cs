@@ -14,11 +14,13 @@ namespace GameboyRoguelike.Scripts.Managers
     public enum GameTurnState
     {
         WAITING_ON_PLAYER,
+        ANIMATING_PLAYER,
         TICKING_ENTITIES
     }
     
     public class GameRoundManager : Node
     {
+        private static readonly string TAG = "||GameRoundManager||";
         public static GameRoundManager S;
 
         [Export] private GameTimingState currentTimingState = GameTimingState.REALTIME;
@@ -38,27 +40,38 @@ namespace GameboyRoguelike.Scripts.Managers
             }
             else
             {
-                GD.PrintErr("More than one GameRoundManager exists in tree");
+                GD.PrintErr($"{TAG} - More than one GameRoundManager exists in tree");
                 QueueFree();
             }
 
-            Player.OnPlayerTurnFinished += HandleOnPlayerTurnFinished;
+            Player.OnPlayerActionStarted += HandleOnPlayerActionStarted;
+            Player.OnPlayerActionCompleted += HandleOnPlayerActionCompleted;
         }
 
         public override void _ExitTree()
         {
-            Player.OnPlayerTurnFinished -= HandleOnPlayerTurnFinished;
+            Player.OnPlayerActionStarted -= HandleOnPlayerActionStarted;
+            Player.OnPlayerActionCompleted -= HandleOnPlayerActionCompleted;
         }
 
-        private void HandleOnPlayerTurnFinished()
+        private void HandleOnPlayerActionStarted()
         {
+            GD.Print($"{TAG} - Player Action Started");
             if (currentTimingState == GameTimingState.TURN_BASED)
             {
+                currentGameTurnState = GameTurnState.ANIMATING_PLAYER;
                 coolDownTimer = playerTurnCooldown;
                 onCooldown = true;
-                
-                InitializeTickingEntities();
+            }
+        }
+        
+        private void HandleOnPlayerActionCompleted()
+        {
+            GD.Print($"{TAG} - Player Action Completed");
+            if (currentTimingState == GameTimingState.TURN_BASED)
+            {
                 currentGameTurnState = GameTurnState.TICKING_ENTITIES;
+                InitializeTickingEntities();
             }
         }
 
@@ -67,7 +80,7 @@ namespace GameboyRoguelike.Scripts.Managers
         /// </summary>
         public bool CanPlayerAct()
         {
-            if (onCooldown) return false;
+            if (onCooldown || currentGameTurnState == GameTurnState.ANIMATING_PLAYER) return false;
             
             if (currentTimingState == GameTimingState.REALTIME)
             {
@@ -79,7 +92,7 @@ namespace GameboyRoguelike.Scripts.Managers
 
         public override void _Process(float delta)
         {
-            if (onCooldown && coolDownTimer > 0)
+            if (currentGameTurnState != GameTurnState.ANIMATING_PLAYER && onCooldown && coolDownTimer > 0)
             {
                 coolDownTimer -= delta;
                 if (coolDownTimer <= 0)
@@ -94,6 +107,7 @@ namespace GameboyRoguelike.Scripts.Managers
 
                 if (tickingEntities.Count == 0)
                 {
+                    GD.Print($"{TAG} - Player's Turn Has Started");
                     currentGameTurnState = GameTurnState.WAITING_ON_PLAYER;
                 }
             }

@@ -10,7 +10,7 @@ namespace GameboyRoguelike.Scripts.UI
         [Export] private Color loseColor = Colors.Yellow;
 
         [Export] private float tweenSpeed = 0.25f;
-        
+
         private ResourceController resourceController;
 
         private TextureProgress baseLayer;
@@ -27,7 +27,7 @@ namespace GameboyRoguelike.Scripts.UI
 
             AddChild(tweener);
             tweener.Connect("tween_completed", this, nameof(OnTweenComplete));
-            
+
             baseLayer.TintProgress = baseColor;
             loseLayer.TintProgress = loseColor;
             gainLayer.TintProgress = gainColor;
@@ -39,6 +39,8 @@ namespace GameboyRoguelike.Scripts.UI
             this.resourceController.OnResourceChange += HandleValueChange;
 
             baseLayer.Value = this.resourceController.GetPercentValue() * 100;
+            loseLayer.Value = 0;
+            gainLayer.Value = 0;
         }
 
         private void HandleValueChange(ResourceChangeData data)
@@ -66,7 +68,6 @@ namespace GameboyRoguelike.Scripts.UI
 
         private void OnTweenComplete(TextureProgress obj, NodePath key)
         {
-            GD.Print("Tween Completed: <" + obj.Name + ">, <" + key.ToString() + ">.");
             loseLayer.Value = 0;
             gainLayer.Value = 0;
         }
@@ -78,11 +79,6 @@ namespace GameboyRoguelike.Scripts.UI
             tweener.StopAll();
             tweener.InterpolateProperty(baseLayer, "value", baseLayer.Value, gainLayer.Value, 0.25f);
             tweener.Start();
-        }
-
-        private void SetValue(float amount)
-        {
-            baseLayer.Value = amount;
         }
     }
 }

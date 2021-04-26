@@ -5,13 +5,21 @@ namespace GameboyRoguelike.Scripts
 {
     public class AttackSystem : Node
     {
-        public static AttackSystem S;
+        public static AttackSystem S = null;
 
         private RandomNumberGenerator rng;
 
-        public override void _Ready()
+        public override void _EnterTree()
         {
-            S = this;
+            if (S == null)
+            {
+                S = this;
+            }
+            else
+            {
+                GD.PrintErr("Multiple AttackSystem present");
+                QueueFree();
+            }
 
             rng = new RandomNumberGenerator();
             rng.Randomize();

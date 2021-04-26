@@ -59,4 +59,4 @@ layer = 3
 
 [node name="GameRoundManager" type="Node" parent="."]
 script = ExtResource( 9 )
-playerTurnCooldown = 5.0
+currentTimingState = 1

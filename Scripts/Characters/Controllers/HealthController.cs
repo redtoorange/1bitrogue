@@ -15,7 +15,7 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
             currentHealth = maxHealth;
         }
 
-        public void HealDamage(int amount)
+        public void Heal(int amount)
         {
             currentHealth += amount;
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);

@@ -5,7 +5,8 @@ namespace GameboyRoguelike.Scripts.Characters.Player
 {
     public class Player : GameCharacter, IDefender, IAttacker
     {
-        public static Action OnPlayerTurnFinished;
+        public static Action OnPlayerActionStarted;
+        public static Action OnPlayerActionCompleted;
         
         private HealthController healthController;
         private ManaController manaController;
@@ -29,7 +30,8 @@ namespace GameboyRoguelike.Scripts.Characters.Player
             
             playerInputController = GetInputController() as PlayerInputController;
             
-            GetMovementController().OnCompletedMove += HandlePerformedAction;
+            GetMovementController().OnMoveStarted += HandleActionStarted;
+            GetMovementController().OnMoveCompleted += HandleActionFinished;
             
             playerInputController.Init(GetMovementController());
             inventoryController.Init(
@@ -77,9 +79,14 @@ namespace GameboyRoguelike.Scripts.Characters.Player
             return 0;
         }
 
-        private void HandlePerformedAction()
+        private void HandleActionStarted()
         {
-            OnPlayerTurnFinished?.Invoke();
+            OnPlayerActionStarted?.Invoke();
+        }
+        
+        private void HandleActionFinished()
+        {
+            OnPlayerActionCompleted?.Invoke();
         }
     }
 }

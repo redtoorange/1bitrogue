@@ -1,20 +1,28 @@
 using System;
 using GameboyRoguelike.Scripts.Map.Objects;
 using Godot;
-using Object = Godot.Object;
 
 namespace GameboyRoguelike.Scripts.Characters.Controllers
 {
     public class MovementController : Node
     {
-        public Action OnCompletedMove;
+        public Action OnMoveCompleted;
+        public Action OnMoveStarted;
 
         [Export] private float movementSpeed = 0.2f;
         private GameCharacter gameCharacter = null;
         protected AnimationPlayer animationPlayer = null;
         protected Tween tween = null;
         protected RayCast2D rayCast2D = null;
+        
         protected bool isTweening = false;
+        protected Timer timer = null;
+
+        public override void _Ready()
+        {
+            timer = new Timer();
+            AddChild(timer);
+        }
 
         public void Init(GameCharacter gameCharacter, AnimationPlayer animationPlayer, RayCast2D rayCast2D, Tween tween)
         {
@@ -23,18 +31,20 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
             this.tween = tween;
             this.gameCharacter = gameCharacter;
 
-            this.animationPlayer.Connect("animation_completed", this, nameof(AnimationCompleted));
+            this.animationPlayer.Connect("animation_finished", this, nameof(AnimationCompleted));
         }
 
         private void AnimationCompleted(string name)
         {
             isTweening = false;
-            OnCompletedMove?.Invoke();
         }
 
-        public void MoveTo(Vector2 destination)
+        public void AttemptMove(Vector2 destination)
         {
-            if (!tween.IsActive() && CanMoveTo(destination))
+            if (tween.IsActive()) return;
+            
+            Node blocker = CanMoveTo(destination);
+            if (blocker == null)
             {
                 tween.InterpolateProperty(gameCharacter,
                     "position",
@@ -46,33 +56,34 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
                 tween.Start();
                 isTweening = true;
             }
+            else
+            {
+                if (blocker is IInteractable interactable)
+                {
+                    interactable.Interact();
+                }
+                else if (blocker is IDefender target && gameCharacter is IAttacker attacker)
+                {
+                    AttackSystem.S.ResolveAttack(attacker, target);
+                }
+
+                PlayLungeAnimation(destination);
+            }
+            
+            Timeout(1);
         }
 
-        private bool CanMoveTo(Vector2 destination)
+        private Node CanMoveTo(Vector2 destination)
         {
-            bool pathClear = true;
-
             rayCast2D.CastTo = destination;
             rayCast2D.ForceRaycastUpdate();
 
             if (rayCast2D.IsColliding())
             {
-                pathClear = false;
-
-                Node collider = rayCast2D.GetCollider() as Node;
-                GD.Print("Collider: " + collider.Name);
-                if (collider is IInteractable interactable)
-                {
-                    interactable.Interact();
-                }
-                else if (collider is IDefender target && gameCharacter is IAttacker attacker)
-                {
-                    PlayLungeAnimation(destination);
-                    AttackSystem.S.ResolveAttack(attacker, target);
-                }
+                return rayCast2D.GetCollider() as Node;
             }
 
-            return pathClear;
+            return null;
         }
 
         private void PlayLungeAnimation(Vector2 destination)
@@ -93,6 +104,17 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
             {
                 animationPlayer.Play("LungeUp");
             }
+        }
+
+        private async void Timeout(float amount)
+        {
+            OnMoveStarted?.Invoke();
+
+            timer.Start(0.25f);
+            await ToSignal(timer, "timeout");
+            GD.Print("Timer finished");
+
+            OnMoveCompleted?.Invoke();
         }
     }
 }
