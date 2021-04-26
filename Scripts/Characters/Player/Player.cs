@@ -9,11 +9,11 @@ namespace GameboyRoguelike.Scripts.Characters.Player
         
         private HealthController healthController;
         private ManaController manaController;
-        private PlayerMovementController movementController;
         private InventoryController inventoryController;
         private GroundItemController groundItemController;
+        
+        private PlayerInputController playerInputController;
 
-        public PlayerMovementController GetMovementController() => movementController;
         public HealthController GetHealthController() => healthController;
         public ManaController GetManaController() => manaController;
         public GroundItemController GetGroundItemController() => groundItemController;
@@ -22,19 +22,16 @@ namespace GameboyRoguelike.Scripts.Characters.Player
         {
             base._Ready();
 
-            healthController = GetNode<HealthController>("HealthController");
-            manaController = GetNode<ManaController>("ManaController");
-            movementController = GetNode<PlayerMovementController>("MovementController");
-            inventoryController = GetNode<InventoryController>("InventoryController");
-            groundItemController = GetNode<GroundItemController>("GroundItemController");
-
-            movementController.Init(
-                this,
-                GetAnimationPlayer(),
-                GetRayCast2D(),
-                GetTween()
-            );
-            movementController.OnPlayerCompletedAction += HandlePerformedAction;
+            healthController = GetNode<HealthController>("Controllers/HealthController");
+            manaController = GetNode<ManaController>("Controllers/ManaController");
+            inventoryController = GetNode<InventoryController>("Controllers/InventoryController");
+            groundItemController = GetNode<GroundItemController>("Controllers/GroundItemController");
+            
+            playerInputController = GetInputController() as PlayerInputController;
+            
+            GetMovementController().OnCompletedMove += HandlePerformedAction;
+            
+            playerInputController.Init(GetMovementController());
             inventoryController.Init(
                 GetArmorController(),
                 GetWeaponController(),
@@ -43,7 +40,7 @@ namespace GameboyRoguelike.Scripts.Characters.Player
             groundItemController.Init(
                 inventoryController
             );
-
+            
             healthController.OnDie += PlayerDied;
         }
 

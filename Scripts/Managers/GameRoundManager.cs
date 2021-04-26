@@ -22,8 +22,11 @@ namespace GameboyRoguelike.Scripts.Managers
         public static GameRoundManager S;
 
         [Export] private GameTimingState currentTimingState = GameTimingState.REALTIME;
+        [Export] private float playerTurnCooldown = 0.25f;
+        
         private GameTurnState currentGameTurnState = GameTurnState.WAITING_ON_PLAYER;
-
+        private float coolDownTimer = 0.0f;
+        private bool onCooldown = false;
         private List<ITurnTaker> turnTakers = new List<ITurnTaker>();
         private Queue<ITurnTaker> tickingEntities;
 
@@ -51,6 +54,9 @@ namespace GameboyRoguelike.Scripts.Managers
         {
             if (currentTimingState == GameTimingState.TURN_BASED)
             {
+                coolDownTimer = playerTurnCooldown;
+                onCooldown = true;
+                
                 InitializeTickingEntities();
                 currentGameTurnState = GameTurnState.TICKING_ENTITIES;
             }
@@ -61,6 +67,8 @@ namespace GameboyRoguelike.Scripts.Managers
         /// </summary>
         public bool CanPlayerAct()
         {
+            if (onCooldown) return false;
+            
             if (currentTimingState == GameTimingState.REALTIME)
             {
                 return true;
@@ -71,6 +79,15 @@ namespace GameboyRoguelike.Scripts.Managers
 
         public override void _Process(float delta)
         {
+            if (onCooldown && coolDownTimer > 0)
+            {
+                coolDownTimer -= delta;
+                if (coolDownTimer <= 0)
+                {
+                    onCooldown = false;
+                }
+            }
+            
             if (currentGameTurnState == GameTurnState.TICKING_ENTITIES)
             {
                 ProcessTickingEntities(delta);

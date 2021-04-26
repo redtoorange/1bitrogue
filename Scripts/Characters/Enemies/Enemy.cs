@@ -7,30 +7,17 @@ namespace GameboyRoguelike.Scripts.Characters.Enemies
 {
     public class Enemy : GameCharacter, IDefender, IAttacker, ITurnTaker
     {
-        [Export] private NodePath healthControllerPath;
-        [Export] private NodePath movementControllerPath;
-        [Export] private NodePath healthBarPath;
-
         private HealthController healthController;
-        private MovementController movementController;
         private ResourceBar healthBar;
 
-        public MovementController GetMovementController() => movementController;
         public HealthController GetHealthController() => healthController;
 
         public override void _Ready()
         {
             base._Ready();
 
-            healthController = GetNode<HealthController>(healthControllerPath);
-            movementController = GetNode<MovementController>(movementControllerPath);
-            healthBar = GetNode<ResourceBar>(healthBarPath);
-
-            movementController.Init(
-                GetAnimationPlayer(),
-                GetRayCast2D(),
-                GetTween()
-            );
+            healthController = GetNode<HealthController>("Controllers/HealthController");
+            healthBar = GetNode<ResourceBar>("HealthBarPositioner/HealthBar");
 
             healthBar.Init(healthController);
             healthController.OnDie += Died;
