@@ -14,6 +14,7 @@ config/name="1BitRoguelike"
 run/main_scene="res://Scenes/Main.tscn"
 boot_splash/image="res://Sprites/noodles.png"
 config/icon="res://Sprites/noodles.png"
+config/windows_native_icon="res://Sprites/icon.ico"
 
 [autoload]
 
