@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=1]
+[ext_resource path="res://Prefabs/UI/Inventory/Trinkets/_TrinketSlot.tscn" type="PackedScene" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+resource_local_to_scene = true
+atlas = ExtResource( 1 )
+region = Rect2( 720, 96, 16, 16 )
+
+[node name="RingSlot" instance=ExtResource( 2 )]
+
+[node name="PlaceholderImage" parent="." index="0"]
+texture = SubResource( 1 )

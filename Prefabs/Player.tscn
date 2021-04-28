@@ -15,18 +15,14 @@ characterType = 0
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
 offset = Vector2( 8, 8 )
 current = true
-process_mode = 0
-limit_smoothed = true
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
 smoothing_enabled = true
-smoothing_speed = 2.5
 editor_draw_screen = false
 
 [node name="RayCaster" parent="." index="2"]
 visible = true
 
 [node name="Sprite" parent="." index="3"]
+modulate = Color( 0.933333, 0.933333, 0.933333, 1 )
 region_rect = Rect2( 400, 0, 16, 16 )
 
 [node name="InputController" parent="Controllers" index="0"]

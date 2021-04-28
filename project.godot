@@ -20,10 +20,6 @@ config/windows_native_icon="res://Sprites/icon.ico"
 
 AttackSystem="*res://Scripts/Systems/AttackSystem.cs"
 
-[compression]
-
-formats/zlib/compression_level=9
-
 [display]
 
 window/size/width=160
@@ -162,6 +158,6 @@ quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=1
 2d/snapping/use_gpu_pixel_snap=true
 quality/shadows/filter_mode=0
-environment/default_clear_color=Color( 0.278431, 0.176471, 0.235294, 1 )
+environment/default_clear_color=Color( 0.223529, 0.243137, 0.27451, 1 )
 environment/default_environment="res://default_env.tres"
 quality/dynamic_fonts/use_oversampling=false

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/UI/Inventory/Slots/BackPackSlot.cs" type="Script" id=1]
-[ext_resource path="res://Sprites/TileSheets/1bit/Modified/ProgressBarOutline.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/TileSheets/1bit/Atlas/SlotBorder.tres" type="Texture" id=2]
 
 [node name="BackPackSlot" type="Control"]
 margin_left = 8.0
@@ -16,13 +16,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlaceholderImage" type="TextureRect" parent="."]
-modulate = Color( 0, 0, 0, 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_min_size = Vector2( 8, 8 )
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 16, 16 )
 texture = ExtResource( 2 )
-stretch_mode = 2
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }

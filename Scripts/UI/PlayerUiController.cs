@@ -18,7 +18,7 @@ namespace GameboyRoguelike.Scripts.UI
         [Export] private NodePath playerInventoryUiPath;
         [Export] private NodePath pauseMenuPath;
 
-        private PlayerHUDController playerHudController;
+        private PlayerResourceDisplayController playerResourceDisplayController;
         private PlayerInventoryManager playerInventoryUi;
         private PauseMenuController pauseMenu;
 
@@ -26,14 +26,14 @@ namespace GameboyRoguelike.Scripts.UI
 
         public override void _Ready()
         {
-            playerHudController = GetNode<PlayerHUDController>(playerHudPath);
+            playerResourceDisplayController = GetNode<PlayerResourceDisplayController>(playerHudPath);
             playerInventoryUi = GetNode<PlayerInventoryManager>(playerInventoryUiPath);
             pauseMenu = GetNode<PauseMenuController>(pauseMenuPath);
         }
 
         public void Init(Player player)
         {
-            playerHudController.Init(player);
+            playerResourceDisplayController.Init(player);
         }
 
         public override void _Process(float delta)
