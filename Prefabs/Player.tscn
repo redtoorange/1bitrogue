@@ -16,10 +16,11 @@ characterType = 0
 offset = Vector2( 8, 8 )
 current = true
 process_mode = 0
+limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
-smoothing_speed = 10.0
+smoothing_speed = 2.5
 editor_draw_screen = false
 
 [node name="RayCaster" parent="." index="2"]
