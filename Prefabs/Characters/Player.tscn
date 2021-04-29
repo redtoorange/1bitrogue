@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Prefabs/GameCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Characters/_GameCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Characters/Player/PlayerInputController.cs" type="Script" id=2]
 [ext_resource path="res://Scripts/Characters/Controllers/InventoryController.cs" type="Script" id=3]
 [ext_resource path="res://Scripts/Characters/Player/Player.cs" type="Script" id=4]

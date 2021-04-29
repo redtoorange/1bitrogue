@@ -1,17 +1,38 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Prefabs/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Characters/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/House.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Prefabs/Goblin.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Prefabs/GameCharacter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Prefabs/Characters/Goblin.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/Characters/NPC.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/Items/Weapon.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/Items/Armor.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/UI/PlayerUi.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/MainGame.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/Managers/GameRoundManager.cs" type="Script" id=9]
+[ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=10]
 [ext_resource path="res://Scripts/Managers/NPCManager.cs" type="Script" id=14]
 [ext_resource path="res://Scripts/Managers/EnemyManager.cs" type="Script" id=15]
 [ext_resource path="res://Scripts/Managers/ItemManager.cs" type="Script" id=16]
+
+[sub_resource type="AtlasTexture" id=1]
+resource_local_to_scene = true
+atlas = ExtResource( 10 )
+region = Rect2( 496, 64, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+resource_local_to_scene = true
+atlas = ExtResource( 10 )
+region = Rect2( 416, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+resource_local_to_scene = true
+atlas = ExtResource( 10 )
+region = Rect2( 496, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+resource_local_to_scene = true
+atlas = ExtResource( 10 )
+region = Rect2( 496, 32, 16, 16 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 8 )
@@ -30,30 +51,43 @@ position = Vector2( -0.561218, 0 )
 script = ExtResource( 16 )
 
 [node name="Armor" parent="WorldItemsManager" instance=ExtResource( 6 )]
-position = Vector2( 64, 48 )
+position = Vector2( 32, 32 )
 
 [node name="Weapon" parent="WorldItemsManager" instance=ExtResource( 5 )]
-position = Vector2( 64, 64 )
+position = Vector2( 48, 32 )
 
 [node name="CharacterController" type="Node2D" parent="."]
 
 [node name="NPCManager" type="Node2D" parent="CharacterController"]
 script = ExtResource( 14 )
 
-[node name="GameCharacter" parent="CharacterController/NPCManager" instance=ExtResource( 4 )]
-position = Vector2( 16, 48 )
+[node name="NPC" parent="CharacterController/NPCManager" instance=ExtResource( 4 )]
+position = Vector2( 64, 48 )
+characterSprite = SubResource( 1 )
+
+[node name="NPC2" parent="CharacterController/NPCManager" instance=ExtResource( 4 )]
+position = Vector2( 144, 128 )
+characterSprite = SubResource( 2 )
+
+[node name="NPC3" parent="CharacterController/NPCManager" instance=ExtResource( 4 )]
+position = Vector2( 32, 128 )
+characterSprite = SubResource( 3 )
+
+[node name="NPC4" parent="CharacterController/NPCManager" instance=ExtResource( 4 )]
+position = Vector2( 16, 112 )
+characterSprite = SubResource( 4 )
 
 [node name="EnemyManager" type="Node2D" parent="CharacterController"]
 script = ExtResource( 15 )
 
 [node name="Goblin" parent="CharacterController/EnemyManager" instance=ExtResource( 3 )]
-position = Vector2( 112, 48 )
+position = Vector2( 80, 208 )
 
 [node name="Goblin2" parent="CharacterController/EnemyManager" instance=ExtResource( 3 )]
-position = Vector2( 96, 112 )
+position = Vector2( 64, 208 )
 
 [node name="Goblin3" parent="CharacterController/EnemyManager" instance=ExtResource( 3 )]
-position = Vector2( 128, 112 )
+position = Vector2( 96, 208 )
 
 [node name="Player" parent="CharacterController" instance=ExtResource( 1 )]
 position = Vector2( 32, 48 )
@@ -62,3 +96,4 @@ position = Vector2( 32, 48 )
 layer = 3
 
 [node name="PlayerUi" parent="UI" instance=ExtResource( 7 )]
+visible = false

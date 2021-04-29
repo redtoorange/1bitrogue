@@ -13,14 +13,14 @@ tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 show_collision = true
 format = 1
-tile_data = PoolIntArray( 65536, 0, 1114122, 65537, 0, 1114122, 65538, 0, 1114124, 65539, 0, 1114122, 65540, 0, 1114122, 65541, 0, 1114122, 65542, 0, 1114122, 65543, 0, 1114124, 65544, 0, 1114122, 65545, 0, 1114122, 131072, 0, 1114124, 131081, 0, 1114122, 196608, 0, 1114122, 196613, 0, 1114122, 196617, 0, 1114124, 262144, 0, 1114122, 262149, 0, 1114122, 262153, 0, 1114122, 327680, 0, 1114124, 327685, 0, 1114122, 327689, 0, 1114122, 393216, 0, 1114122, 393217, 0, 1114122, 393218, 0, 1114124, 393219, 0, 1114122, 393220, 0, 1114122, 393221, 0, 1114122, 393222, 0, 1114122, 393224, 0, 1114122, 393225, 0, 1114122 )
+tile_data = PoolIntArray( 65536, 0, 1114122, 65537, 0, 1114122, 65538, 0, 1114124, 65539, 0, 1114122, 65540, 0, 1114122, 65541, 0, 1114122, 65542, 0, 1114122, 65543, 0, 1114122, 65544, 0, 1114124, 65545, 0, 1114122, 65546, 0, 1114122, 131072, 0, 1114122, 131077, 0, 1114122, 131082, 0, 1114122, 196608, 0, 1114124, 196613, 0, 1114122, 196618, 0, 1114124, 262144, 0, 1114122, 262149, 0, 1114122, 262154, 0, 1114122, 327680, 0, 1114122, 327685, 0, 1114122, 327690, 0, 1114122, 393216, 0, 1114122, 393217, 0, 1114122, 393218, 0, 1114122, 393220, 0, 1114122, 393221, 0, 1114122, 393222, 0, 1114122, 393224, 0, 1114122, 393225, 0, 1114122, 393226, 0, 1114122, 458752, 0, 1114122, 458762, 0, 1114122, 524288, 0, 1114122, 524298, 0, 1114122, 589824, 0, 1114122, 589834, 0, 1114122, 655360, 0, 1114122, 655370, 0, 1114122, 720896, 0, 1114122, 720897, 0, 1114122, 720898, 0, 1114122, 720899, 0, 1114124, 720900, 0, 1114122, 720902, 0, 1114122, 720903, 0, 1114124, 720904, 0, 1114122, 720905, 0, 1114122, 720906, 0, 1114122 )
 
 [node name="Floor" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 0
 format = 1
-tile_data = PoolIntArray( 131076, 0, 3, 131078, 0, 1, 327687, 0, 3, 458759, 0, 4 )
+tile_data = PoolIntArray( 327683, 0, 2, 327687, 0, 2, 458755, 0, 2, 458759, 0, 2, 655365, 0, 2, 786437, 0, 2 )
 
 [node name="Doodads" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -28,11 +28,12 @@ cell_size = Vector2( 16, 16 )
 show_collision = true
 collision_layer = 2
 format = 1
-tile_data = PoolIntArray( 131080, 0, 524290, 196616, 0, 524289, 327686, 0, 983045, 458757, 0, 65540, 458761, 0, 65540 )
+tile_data = PoolIntArray( 327684, 0, 983044, 327686, 0, 983044, 458753, 0, 524289, 458760, 0, 524304, 524289, 0, 524304, 524290, 0, 524289, 524296, 0, 589840, 589825, 0, 655376, 589826, 0, 524289, 589832, 0, 655377, 655361, 0, 524289, 786436, 0, 65536, 786438, 0, 65536 )
 
 [node name="MapObjectController" type="Node2D" parent="."]
 
 [node name="Door" parent="MapObjectController" instance=ExtResource( 7 )]
+position = Vector2( 56, 104 )
 collision_layer = 12
 collision_mask = 0
 
@@ -41,18 +42,47 @@ position = Vector2( 120, 104 )
 collision_layer = 12
 collision_mask = 0
 
+[node name="Door3" parent="MapObjectController" instance=ExtResource( 7 )]
+position = Vector2( 88, 184 )
+collision_layer = 12
+collision_mask = 0
+currentState = 2
+
 [node name="Bed" parent="MapObjectController" instance=ExtResource( 6 )]
 position = Vector2( 24, 88 )
 collision_layer = 8
 collision_mask = 0
 
+[node name="Bed2" parent="MapObjectController" instance=ExtResource( 6 )]
+position = Vector2( 152, 88 )
+scale = Vector2( -1, 1 )
+collision_layer = 8
+collision_mask = 0
+
 [node name="Chest" parent="MapObjectController" instance=ExtResource( 9 )]
-position = Vector2( 72, 88 )
+position = Vector2( 40, 88 )
+collision_layer = 8
+collision_mask = 0
+isLocked = true
+
+[node name="Chest2" parent="MapObjectController" instance=ExtResource( 9 )]
+position = Vector2( 136, 88 )
+collision_layer = 8
+collision_mask = 0
+isLocked = true
+
+[node name="Chest3" parent="MapObjectController" instance=ExtResource( 9 )]
+position = Vector2( 152, 120 )
 collision_layer = 8
 collision_mask = 0
 isLocked = true
 
 [node name="Bookcase" parent="MapObjectController" instance=ExtResource( 8 )]
 position = Vector2( 24, 40 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="Bookcase2" parent="MapObjectController" instance=ExtResource( 8 )]
+position = Vector2( 152, 40 )
 collision_layer = 8
 collision_mask = 0
