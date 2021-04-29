@@ -29,6 +29,8 @@ namespace GameboyRoguelike.Scripts.UI
             playerResourceDisplayController = GetNode<PlayerResourceDisplayController>(playerHudPath);
             playerInventoryUiUi = GetNode<PlayerInventoryUiManager>(playerInventoryUiPath);
             pauseMenu = GetNode<PauseMenuController>(pauseMenuPath);
+
+            pauseMenu.OnMenuClosed += HandleOnMenuClicked;
         }
 
         public void Init(Player player)
@@ -41,8 +43,42 @@ namespace GameboyRoguelike.Scripts.UI
         {
             if (Input.IsActionJustPressed("Inventory"))
             {
-                playerInventoryUiUi.Show();
+                switch (currentState)
+                {
+                    case PlayerUiState.GAME:
+                        currentState = PlayerUiState.INVENTORY;
+                        playerInventoryUiUi.Show();
+                        break;
+                    case PlayerUiState.INVENTORY:
+                        currentState = PlayerUiState.GAME;
+                        playerInventoryUiUi.Hide();
+                        break;
+                }
             }
+            else if (Input.IsActionJustPressed("Back"))
+            {
+                switch (currentState)
+                {
+                    case PlayerUiState.GAME:
+                        currentState = PlayerUiState.MENU;
+                        pauseMenu.Show();
+                        break;
+                    case PlayerUiState.MENU:
+                        currentState = PlayerUiState.GAME;
+                        pauseMenu.Hide();
+                        break;
+                    case PlayerUiState.INVENTORY:
+                        currentState = PlayerUiState.GAME;
+                        playerInventoryUiUi.Hide();
+                        break;
+                }
+            }
+        }
+
+        private void HandleOnMenuClicked()
+        {
+            currentState = PlayerUiState.GAME;
+            pauseMenu.Hide();
         }
     }
 }

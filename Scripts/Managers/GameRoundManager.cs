@@ -168,7 +168,7 @@ namespace GameboyRoguelike.Scripts.Managers
             {
                 turnTakers.Remove(turnTaker);
 
-                if (tickingEntities.Contains(turnTaker))
+                if (tickingEntities != null && tickingEntities.Contains(turnTaker))
                 {
                     RemoveEntity(turnTaker);
                 }

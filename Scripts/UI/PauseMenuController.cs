@@ -1,12 +1,15 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 namespace GameboyRoguelike.Scripts.UI.Inventory
 {
     public class PauseMenuController : Control
     {
+        public Action OnMenuClosed;
+        
         private void OnContinueClicked()
         {
-            GD.Print("Continue Clicked");
+            OnMenuClosed?.Invoke();
         }
 
         private void OnSettingsClicked()
@@ -26,7 +29,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
 
         private void OnMainMenuClicked()
         {
-            GD.Print("Main Menu Clicked");
+            GetTree().Quit();
         }
     }
 }
