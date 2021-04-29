@@ -11,7 +11,7 @@
 [ext_resource path="res://Scripts/UI/Inventory/InventorySlotsManager.cs" type="Script" id=9]
 [ext_resource path="res://Prefabs/UI/Inventory/ItemInventoryTile.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scripts/UI/Inventory/EquipmentSlotsManager.cs" type="Script" id=11]
-[ext_resource path="res://Scripts/UI/Inventory/PlayerInventoryManager.cs" type="Script" id=12]
+[ext_resource path="res://Scripts/UI/Inventory/PlayerInventoryUiManager.cs" type="Script" id=12]
 [ext_resource path="res://Scripts/UI/Inventory/InventoryDragController.cs" type="Script" id=13]
 [ext_resource path="res://Prefabs/UI/Inventory/Armor/HandSlot.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Prefabs/UI/Inventory/Trinkets/Necklace.tscn" type="PackedScene" id=16]
@@ -45,9 +45,9 @@ __meta__ = {
 
 [node name="EquipmentSlots" type="PanelContainer" parent="."]
 margin_left = 8.0
-margin_top = 37.0
+margin_top = 32.0
 margin_right = 72.0
-margin_bottom = 117.0
+margin_bottom = 112.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 11 )
 __meta__ = {
@@ -161,12 +161,13 @@ margin_right = 37.0
 [node name="RingSlotB" parent="EquipmentSlots/Slots2/VBoxContainer/HBoxContainer4" instance=ExtResource( 17 )]
 margin_left = 41.0
 margin_right = 57.0
+trinketSlotType = 1
 
 [node name="InventorySlots" type="PanelContainer" parent="."]
 margin_left = 80.0
-margin_top = 41.0
+margin_top = 40.0
 margin_right = 152.0
-margin_bottom = 113.0
+margin_bottom = 112.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 9 )
 __meta__ = {
@@ -328,14 +329,13 @@ margin_right = 65.0
 margin_bottom = 17.0
 
 [node name="DragController" type="Control" parent="."]
-visible = false
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ItemInventoryRepresentation2" parent="DragController" instance=ExtResource( 10 )]
-margin_left = 56.0
-margin_top = 68.0
-margin_right = 72.0
-margin_bottom = 84.0
+margin_left = 52.0
+margin_top = 55.0
+margin_right = 68.0
+margin_bottom = 71.0

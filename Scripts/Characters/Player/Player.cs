@@ -1,20 +1,26 @@
 using System;
 using GameboyRoguelike.Scripts.Characters.Controllers;
+using GameboyRoguelike.Scripts.UI;
 
 namespace GameboyRoguelike.Scripts.Characters.Player
 {
     public class Player : GameCharacter, IDefender, IAttacker
     {
+        // Actions
         public static Action OnPlayerActionStarted;
         public static Action OnPlayerActionCompleted;
         
+        // Owned Controllers
         private HealthController healthController;
         private ManaController manaController;
         private InventoryController inventoryController;
         private GroundItemController groundItemController;
-        
         private PlayerInputController playerInputController;
 
+        // Injected Dependencies
+        private PlayerUiController playerUiController;
+        
+        // Getters
         public HealthController GetHealthController() => healthController;
         public ManaController GetManaController() => manaController;
         public GroundItemController GetGroundItemController() => groundItemController;
@@ -29,10 +35,16 @@ namespace GameboyRoguelike.Scripts.Characters.Player
             groundItemController = GetNode<GroundItemController>("Controllers/GroundItemController");
             
             playerInputController = GetInputController() as PlayerInputController;
+        }
+
+        public void Init(PlayerUiController playerUiController)
+        {
+            this.playerUiController = playerUiController;
             
             GetMovementController().OnMoveStarted += HandleActionStarted;
             GetMovementController().OnMoveCompleted += HandleActionFinished;
-            
+            healthController.OnDie += PlayerDied;
+
             playerInputController.Init(GetMovementController());
             inventoryController.Init(
                 GetArmorController(),
@@ -42,8 +54,6 @@ namespace GameboyRoguelike.Scripts.Characters.Player
             groundItemController.Init(
                 inventoryController
             );
-            
-            healthController.OnDie += PlayerDied;
         }
 
         private void PlayerDied(HealthController healthController)

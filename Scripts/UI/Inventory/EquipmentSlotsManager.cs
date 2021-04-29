@@ -27,5 +27,10 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             mainHand = GetNode<WeaponSlot>(mainHandSlotPath);
             offHand = GetNode<WeaponSlot>(offHandSlotPath);
         }
+
+        public void Init()
+        {
+            
+        }
     }
 }

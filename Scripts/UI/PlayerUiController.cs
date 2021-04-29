@@ -19,7 +19,7 @@ namespace GameboyRoguelike.Scripts.UI
         [Export] private NodePath pauseMenuPath;
 
         private PlayerResourceDisplayController playerResourceDisplayController;
-        private PlayerInventoryManager playerInventoryUi;
+        private PlayerInventoryUiManager playerInventoryUiUi;
         private PauseMenuController pauseMenu;
 
         private PlayerUiState currentState = PlayerUiState.GAME;
@@ -27,20 +27,21 @@ namespace GameboyRoguelike.Scripts.UI
         public override void _Ready()
         {
             playerResourceDisplayController = GetNode<PlayerResourceDisplayController>(playerHudPath);
-            playerInventoryUi = GetNode<PlayerInventoryManager>(playerInventoryUiPath);
+            playerInventoryUiUi = GetNode<PlayerInventoryUiManager>(playerInventoryUiPath);
             pauseMenu = GetNode<PauseMenuController>(pauseMenuPath);
         }
 
         public void Init(Player player)
         {
             playerResourceDisplayController.Init(player);
+            playerInventoryUiUi.Init(player);
         }
 
         public override void _Process(float delta)
         {
             if (Input.IsActionJustPressed("Inventory"))
             {
-                playerInventoryUi.Show();
+                playerInventoryUiUi.Show();
             }
         }
     }

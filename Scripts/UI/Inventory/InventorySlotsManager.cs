@@ -22,6 +22,9 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             }
         }
         
-        
+        public void Init()
+        {
+            
+        }
     }
 }

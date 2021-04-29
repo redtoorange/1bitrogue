@@ -19,15 +19,16 @@ namespace GameboyRoguelike.Scripts
             Init();
         }
 
-        private void Init()
-        {
-            playerUiController.Init(player);
-        }
-
         private void FetchDependencies()
         {
             player = GetNode<Player>(playerPath);
             playerUiController = GetNode<PlayerUiController>(mainHUDPath);
+        }
+        
+        private void Init()
+        {
+            player.Init(playerUiController);
+            playerUiController.Init(player);
         }
     }
 }

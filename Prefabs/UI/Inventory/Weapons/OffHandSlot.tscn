@@ -9,6 +9,7 @@ atlas = ExtResource( 2 )
 region = Rect2( 592, 48, 16, 16 )
 
 [node name="OffHandSlot" instance=ExtResource( 1 )]
+weaponSlotType = 1
 
 [node name="PlaceholderImage" parent="." index="0"]
 texture = SubResource( 1 )

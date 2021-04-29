@@ -7,6 +7,7 @@ namespace GameboyRoguelike.Scripts.Items
     {
         HEAD,
         CHEST,
+        HANDS,
         LEGS
     }
     
