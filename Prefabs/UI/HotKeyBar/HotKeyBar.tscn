@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Prefabs/UI/HotKeyBar/HotKeyBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/UI/HotKey/HotKeyBar.cs" type="Script" id=2]
+
+[node name="HotKeyBar" type="Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -16.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slots" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -20.0
+margin_right = 80.0
+margin_bottom = -4.0
+custom_constants/separation = 4
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HotKeyBox1" parent="Slots" instance=ExtResource( 1 )]
+margin_left = 2.0
+margin_right = 18.0
+enabled = false
+
+[node name="HotKeyBox2" parent="Slots" instance=ExtResource( 1 )]
+margin_left = 22.0
+margin_right = 38.0
+labelText = "2"
+enabled = false
+
+[node name="HotKeyBox3" parent="Slots" instance=ExtResource( 1 )]
+margin_left = 42.0
+margin_right = 58.0
+labelText = "3"
+enabled = false
+
+[node name="HotKeyBox4" parent="Slots" instance=ExtResource( 1 )]
+margin_left = 62.0
+margin_right = 78.0
+labelText = "4"
+enabled = false
+
+[node name="HotKeyBox5" parent="Slots" instance=ExtResource( 1 )]
+margin_left = 82.0
+margin_right = 98.0
+labelText = "5"
+enabled = false
+
+[node name="HotKeyBox6" parent="Slots" instance=ExtResource( 1 )]
+margin_left = 102.0
+margin_right = 118.0
+labelText = "6"
+enabled = false
+
+[node name="HotKeyBox7" parent="Slots" instance=ExtResource( 1 )]
+margin_left = 122.0
+margin_right = 138.0
+labelText = "7"
+enabled = false
+
+[node name="HotKeyBox8" parent="Slots" instance=ExtResource( 1 )]
+margin_left = 142.0
+margin_right = 158.0
+labelText = "8"
+enabled = false
