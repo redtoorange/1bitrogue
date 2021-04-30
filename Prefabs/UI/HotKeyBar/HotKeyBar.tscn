@@ -10,7 +10,9 @@ anchor_bottom = 1.0
 margin_top = -16.0
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_horizontal_guides_": [ 140.0, 124.0 ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 80.0, 2.0, 158.0 ]
 }
 
 [node name="Slots" type="HBoxContainer" parent="."]

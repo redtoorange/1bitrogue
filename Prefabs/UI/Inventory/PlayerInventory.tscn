@@ -30,12 +30,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 12 )
 __meta__ = {
+"_edit_horizontal_guides_": [ 36.0, 52.0, 76.0, 116.0 ],
 "_edit_use_anchors_": false,
-"_edit_vertical_guides_": [ 80.0, 78.0, 82.0 ]
+"_edit_vertical_guides_": [ 28.0, 52.0 ]
 }
 
 [node name="ScreenDimBackground" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.74902 )
+modulate = Color( 1, 1, 1, 0.94902 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 8 )
@@ -45,134 +46,94 @@ __meta__ = {
 }
 
 [node name="EquipmentSlots" type="PanelContainer" parent="."]
-margin_left = 14.0
+margin_left = 8.0
 margin_top = 32.0
-margin_right = 78.0
-margin_bottom = 112.0
+margin_right = 72.0
+margin_bottom = 116.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 11 )
 __meta__ = {
-"_edit_group_": true,
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
-headSlotPath = NodePath("Slots2/VBoxContainer/HBoxContainer/HeadSlot")
-chestSlotPath = NodePath("Slots2/VBoxContainer/HBoxContainer2/ChestSlot")
-legsSlotPath = NodePath("Slots2/VBoxContainer/MarginContainer/HBoxContainer3/LegsSlot")
-mainHandSlotPath = NodePath("Slots2/VBoxContainer/HBoxContainer2/MainHandSlot")
-offHandSlotPath = NodePath("Slots2/VBoxContainer/HBoxContainer2/OffHandSlot")
+headSlotPath = NodePath("Slots/HeadSlot")
+chestSlotPath = NodePath("Slots/ChestSlot")
+legsSlotPath = NodePath("Slots/LegsSlot")
+mainHandSlotPath = NodePath("Slots/MainHandSlot")
+offHandSlotPath = NodePath("Slots/OffHandSlot")
 
 [node name="Slots" type="Control" parent="EquipmentSlots"]
 margin_left = 2.0
 margin_top = 2.0
 margin_right = 62.0
-margin_bottom = 78.0
+margin_bottom = 82.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Slots2" type="MarginContainer" parent="EquipmentSlots"]
-margin_left = 2.0
+[node name="HeadSlot" parent="EquipmentSlots/Slots" instance=ExtResource( 5 )]
+margin_left = 22.0
 margin_top = 2.0
-margin_right = 62.0
-margin_bottom = 78.0
-custom_constants/margin_right = 1
-custom_constants/margin_top = 1
-custom_constants/margin_left = 1
-custom_constants/margin_bottom = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="EquipmentSlots/Slots2"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 59.0
-margin_bottom = 75.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 2
-alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="EquipmentSlots/Slots2/VBoxContainer"]
-margin_top = 2.0
-margin_right = 58.0
+margin_right = 38.0
 margin_bottom = 18.0
-size_flags_horizontal = 3
-custom_constants/separation = 0
-alignment = 1
 
-[node name="HeadSlot" parent="EquipmentSlots/Slots2/VBoxContainer/HBoxContainer" instance=ExtResource( 5 )]
-margin_left = 21.0
-margin_right = 37.0
+[node name="OffHandSlot" parent="EquipmentSlots/Slots" instance=ExtResource( 4 )]
+margin_left = 2.0
+margin_top = 22.0
+margin_right = 18.0
+margin_bottom = 38.0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="EquipmentSlots/Slots2/VBoxContainer"]
-margin_top = 20.0
+[node name="ChestSlot" parent="EquipmentSlots/Slots" instance=ExtResource( 3 )]
+margin_left = 22.0
+margin_top = 22.0
+margin_right = 38.0
+margin_bottom = 38.0
+
+[node name="MainHandSlot" parent="EquipmentSlots/Slots" instance=ExtResource( 1 )]
+margin_left = 42.0
+margin_top = 22.0
 margin_right = 58.0
-margin_bottom = 36.0
-size_flags_horizontal = 3
-custom_constants/separation = 4
-alignment = 1
+margin_bottom = 38.0
 
-[node name="OffHandSlot" parent="EquipmentSlots/Slots2/VBoxContainer/HBoxContainer2" instance=ExtResource( 4 )]
-margin_left = 1.0
-margin_right = 17.0
+[node name="LegsSlot" parent="EquipmentSlots/Slots" instance=ExtResource( 2 )]
+margin_left = 22.0
+margin_top = 42.0
+margin_right = 38.0
+margin_bottom = 58.0
 
-[node name="ChestSlot" parent="EquipmentSlots/Slots2/VBoxContainer/HBoxContainer2" instance=ExtResource( 3 )]
-margin_left = 21.0
-margin_right = 37.0
-
-[node name="MainHandSlot" parent="EquipmentSlots/Slots2/VBoxContainer/HBoxContainer2" instance=ExtResource( 1 )]
-margin_left = 41.0
-margin_right = 57.0
-
-[node name="MarginContainer" type="MarginContainer" parent="EquipmentSlots/Slots2/VBoxContainer"]
-margin_top = 38.0
+[node name="HandSlot" parent="EquipmentSlots/Slots" instance=ExtResource( 14 )]
+margin_left = 42.0
+margin_top = 42.0
 margin_right = 58.0
-margin_bottom = 54.0
-size_flags_horizontal = 3
-custom_constants/margin_right = 1
+margin_bottom = 58.0
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="EquipmentSlots/Slots2/VBoxContainer/MarginContainer"]
-margin_right = 57.0
-margin_bottom = 16.0
-custom_constants/separation = 4
-alignment = 2
+[node name="RingSlotA" parent="EquipmentSlots/Slots" instance=ExtResource( 17 )]
+margin_left = 2.0
+margin_top = 62.0
+margin_right = 18.0
+margin_bottom = 78.0
 
-[node name="LegsSlot" parent="EquipmentSlots/Slots2/VBoxContainer/MarginContainer/HBoxContainer3" instance=ExtResource( 2 )]
-margin_left = 21.0
-margin_right = 37.0
+[node name="Necklace" parent="EquipmentSlots/Slots" instance=ExtResource( 16 )]
+margin_left = 22.0
+margin_top = 62.0
+margin_right = 38.0
+margin_bottom = 78.0
 
-[node name="HandSlot" parent="EquipmentSlots/Slots2/VBoxContainer/MarginContainer/HBoxContainer3" instance=ExtResource( 14 )]
-margin_left = 41.0
-margin_right = 57.0
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="EquipmentSlots/Slots2/VBoxContainer"]
-margin_top = 56.0
+[node name="RingSlotB" parent="EquipmentSlots/Slots" instance=ExtResource( 17 )]
+margin_left = 42.0
+margin_top = 62.0
 margin_right = 58.0
-margin_bottom = 72.0
-size_flags_horizontal = 3
-custom_constants/separation = 4
-alignment = 1
-
-[node name="RingSlotA" parent="EquipmentSlots/Slots2/VBoxContainer/HBoxContainer4" instance=ExtResource( 17 )]
-margin_left = 1.0
-margin_right = 17.0
-
-[node name="Necklace" parent="EquipmentSlots/Slots2/VBoxContainer/HBoxContainer4" instance=ExtResource( 16 )]
-margin_left = 21.0
-margin_right = 37.0
-
-[node name="RingSlotB" parent="EquipmentSlots/Slots2/VBoxContainer/HBoxContainer4" instance=ExtResource( 17 )]
-margin_left = 41.0
-margin_right = 57.0
+margin_bottom = 78.0
 trinketSlotType = 1
 
 [node name="InventorySlots" type="PanelContainer" parent="."]
-margin_left = 82.0
+margin_left = 80.0
 margin_top = 40.0
-margin_right = 154.0
+margin_right = 152.0
 margin_bottom = 112.0
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 9 )
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -336,7 +297,7 @@ __meta__ = {
 }
 
 [node name="ItemInventoryRepresentation2" parent="DragController" instance=ExtResource( 10 )]
-margin_left = 58.0
-margin_top = 55.0
-margin_right = 74.0
-margin_bottom = 71.0
+margin_left = 52.0
+margin_top = 56.0
+margin_right = 68.0
+margin_bottom = 72.0

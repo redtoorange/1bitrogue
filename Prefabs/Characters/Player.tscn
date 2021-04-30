@@ -16,6 +16,7 @@ characterType = 0
 z_index = 99
 offset = Vector2( 8, 8 )
 current = true
+process_mode = 0
 smoothing_enabled = true
 editor_draw_screen = false
 

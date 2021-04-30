@@ -45,7 +45,6 @@ currentTimingState = 1
 playerTurnCooldown = 0.1
 
 [node name="House" parent="." instance=ExtResource( 2 )]
-position = Vector2( -0.561218, 0 )
 
 [node name="WorldItemsManager" type="Node2D" parent="."]
 script = ExtResource( 16 )
@@ -96,4 +95,3 @@ position = Vector2( 32, 48 )
 layer = 3
 
 [node name="PlayerUi" parent="UI" instance=ExtResource( 7 )]
-visible = false
