@@ -5,7 +5,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
 {
     public class PlayerInventoryUiManager : Control
     {
-        public static PlayerInventoryUiManager S;
+        // public static PlayerInventoryUiManager S;
         
         [Export] private NodePath equipmentSlotsManagerPath;
         [Export] private NodePath backPackSlotManagerPath;
@@ -34,21 +34,21 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
         }
 
 
-        public override void _EnterTree()
-        {
-            if (S == null)
-            {
-                S = this;
-            }
-            else
-            {
-                GD.PrintErr("Error: More than one PlayerInventoryManager in the scene tree");
-            }
-        }
-
-        public override void _ExitTree()
-        {
-            S = null;
-        }
+        // public override void _EnterTree()
+        // {
+        //     if (S == null)
+        //     {
+        //         S = this;
+        //     }
+        //     else
+        //     {
+        //         GD.PrintErr("Error: More than one PlayerInventoryManager in the scene tree");
+        //     }
+        // }
+        //
+        // public override void _ExitTree()
+        // {
+        //     S = null;
+        // }
     }
 }

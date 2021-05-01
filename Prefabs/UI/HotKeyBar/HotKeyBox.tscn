@@ -13,6 +13,7 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+enabled = false
 
 [node name="Border" type="NinePatchRect" parent="."]
 anchor_right = 1.0

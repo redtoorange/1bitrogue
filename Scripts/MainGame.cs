@@ -7,7 +7,7 @@ namespace GameboyRoguelike.Scripts
     public class MainGame : Node
     {
         [Export] private NodePath playerPath;
-        [Export] private NodePath mainHUDPath;
+        [Export] private NodePath playerUIController;
 
         private Player player;
         private PlayerUiController playerUiController;
@@ -22,7 +22,7 @@ namespace GameboyRoguelike.Scripts
         private void FetchDependencies()
         {
             player = GetNode<Player>(playerPath);
-            playerUiController = GetNode<PlayerUiController>(mainHUDPath);
+            playerUiController = GetNode<PlayerUiController>(playerUIController);
         }
         
         private void Init()

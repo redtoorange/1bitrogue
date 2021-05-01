@@ -38,41 +38,41 @@ enabled = false
 [node name="HotKeyBox2" parent="Slots" instance=ExtResource( 1 )]
 margin_left = 22.0
 margin_right = 38.0
-labelText = "2"
 enabled = false
+labelText = "2"
 
 [node name="HotKeyBox3" parent="Slots" instance=ExtResource( 1 )]
 margin_left = 42.0
 margin_right = 58.0
-labelText = "3"
 enabled = false
+labelText = "3"
 
 [node name="HotKeyBox4" parent="Slots" instance=ExtResource( 1 )]
 margin_left = 62.0
 margin_right = 78.0
-labelText = "4"
 enabled = false
+labelText = "4"
 
 [node name="HotKeyBox5" parent="Slots" instance=ExtResource( 1 )]
 margin_left = 82.0
 margin_right = 98.0
-labelText = "5"
 enabled = false
+labelText = "5"
 
 [node name="HotKeyBox6" parent="Slots" instance=ExtResource( 1 )]
 margin_left = 102.0
 margin_right = 118.0
-labelText = "6"
 enabled = false
+labelText = "6"
 
 [node name="HotKeyBox7" parent="Slots" instance=ExtResource( 1 )]
 margin_left = 122.0
 margin_right = 138.0
-labelText = "7"
 enabled = false
+labelText = "7"
 
 [node name="HotKeyBox8" parent="Slots" instance=ExtResource( 1 )]
 margin_left = 142.0
 margin_right = 158.0
-labelText = "8"
 enabled = false
+labelText = "8"

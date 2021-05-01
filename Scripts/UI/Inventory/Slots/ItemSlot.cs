@@ -2,7 +2,7 @@ using Godot;
 
 namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
 {
-    public class ItemSlot : Control
+    public abstract class ItemSlot : Control
     {
         public override void _Ready()
         {
@@ -20,9 +20,8 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
             GD.Print("HoverEnded: ItemSlot");
         }
 
-        protected virtual void PlaceItemInSlot()
-        {
-            
-        }
+        public abstract void AddItemTile(ItemInventoryTile tile);
+
+        public abstract void RemoveItemTile(ItemInventoryTile tile);
     }
 }

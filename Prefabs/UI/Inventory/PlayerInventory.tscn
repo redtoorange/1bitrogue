@@ -28,11 +28,10 @@ margin_bottom = 2.0
 [node name="PlayerInventoryUiManager" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -26, 9 )
 script = ExtResource( 12 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 36.0, 52.0, 76.0, 116.0 ],
-"_edit_use_anchors_": false,
-"_edit_vertical_guides_": [ 28.0, 52.0 ]
+"_edit_use_anchors_": false
 }
 equipmentSlotsManagerPath = NodePath("EquipmentSlotsManager")
 backPackSlotManagerPath = NodePath("BackPackSlotsManager")

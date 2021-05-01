@@ -2,6 +2,7 @@
 
 namespace BitRoguelike.Scripts.UI.HotKey
 {
+    [Tool]
     public class HotKeySlot : Control
     {
         [Export] private string labelText = "1";

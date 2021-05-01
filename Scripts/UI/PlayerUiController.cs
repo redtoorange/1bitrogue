@@ -19,7 +19,7 @@ namespace GameboyRoguelike.Scripts.UI
         [Export] private NodePath pauseMenuPath;
 
         private PlayerResourceDisplayController playerResourceDisplayController;
-        private PlayerInventoryUiManager playerInventoryUiUi;
+        private PlayerInventoryUiManager playerInventoryUiController;
         private PauseMenuController pauseMenu;
 
         private PlayerUiState currentState = PlayerUiState.GAME;
@@ -27,7 +27,7 @@ namespace GameboyRoguelike.Scripts.UI
         public override void _Ready()
         {
             playerResourceDisplayController = GetNode<PlayerResourceDisplayController>(playerHudPath);
-            playerInventoryUiUi = GetNode<PlayerInventoryUiManager>(playerInventoryUiPath);
+            playerInventoryUiController = GetNode<PlayerInventoryUiManager>(playerInventoryUiPath);
             pauseMenu = GetNode<PauseMenuController>(pauseMenuPath);
 
             pauseMenu.OnMenuClosed += HandleOnMenuClicked;
@@ -36,7 +36,7 @@ namespace GameboyRoguelike.Scripts.UI
         public void Init(Player player)
         {
             playerResourceDisplayController.Init(player);
-            playerInventoryUiUi.Init(player);
+            playerInventoryUiController.Init(player);
         }
 
         public override void _Process(float delta)
@@ -47,11 +47,11 @@ namespace GameboyRoguelike.Scripts.UI
                 {
                     case PlayerUiState.GAME:
                         currentState = PlayerUiState.INVENTORY;
-                        playerInventoryUiUi.Show();
+                        playerInventoryUiController.Show();
                         break;
                     case PlayerUiState.INVENTORY:
                         currentState = PlayerUiState.GAME;
-                        playerInventoryUiUi.Hide();
+                        playerInventoryUiController.Hide();
                         break;
                 }
             }
@@ -69,7 +69,7 @@ namespace GameboyRoguelike.Scripts.UI
                         break;
                     case PlayerUiState.INVENTORY:
                         currentState = PlayerUiState.GAME;
-                        playerInventoryUiUi.Hide();
+                        playerInventoryUiController.Hide();
                         break;
                 }
             }

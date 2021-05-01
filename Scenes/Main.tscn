@@ -37,7 +37,7 @@ region = Rect2( 496, 32, 16, 16 )
 [node name="Main" type="Node2D"]
 script = ExtResource( 8 )
 playerPath = NodePath("CharacterController/Player")
-mainHUDPath = NodePath("UI/PlayerUi")
+playerUIController = NodePath("UI/PlayerUIController")
 
 [node name="GameRoundManager" type="Node" parent="."]
 script = ExtResource( 9 )
@@ -94,4 +94,4 @@ position = Vector2( 32, 48 )
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 3
 
-[node name="PlayerUi" parent="UI" instance=ExtResource( 7 )]
+[node name="PlayerUIController" parent="UI" instance=ExtResource( 7 )]

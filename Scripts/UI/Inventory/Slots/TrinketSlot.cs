@@ -15,5 +15,15 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
         {
             GD.Print($"HoverEnded {trinketSlotType}");
         }
+        
+        public override void AddItemTile(ItemInventoryTile tile)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void RemoveItemTile(ItemInventoryTile tile)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
