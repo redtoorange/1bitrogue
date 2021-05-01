@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Prefabs/Characters/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/House.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scripts/MainGame.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/Managers/GameRoundManager.cs" type="Script" id=9]
 [ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=10]
+[ext_resource path="res://Prefabs/Items/Item.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/Managers/NPCManager.cs" type="Script" id=14]
 [ext_resource path="res://Scripts/Managers/EnemyManager.cs" type="Script" id=15]
 [ext_resource path="res://Scripts/Managers/ItemManager.cs" type="Script" id=16]
@@ -54,6 +55,9 @@ position = Vector2( 32, 32 )
 
 [node name="Weapon" parent="WorldItemsManager" instance=ExtResource( 5 )]
 position = Vector2( 48, 32 )
+
+[node name="Item" parent="WorldItemsManager" instance=ExtResource( 11 )]
+position = Vector2( 64, 32 )
 
 [node name="CharacterController" type="Node2D" parent="."]
 

@@ -6,6 +6,8 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
     {
         private int row = -1;
         private int col = -1;
+
+        private ItemInventoryTile currentTile = null;
         
         public void Init(int row, int col)
         {
@@ -24,12 +26,17 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
 
         public override void AddItemTile(ItemInventoryTile tile)
         {
-            throw new System.NotImplementedException();
+            tile.SetSlot(this);
+            currentTile = tile;
+
+            AddChild(tile);
         }
 
         public override void RemoveItemTile(ItemInventoryTile tile)
         {
             throw new System.NotImplementedException();
         }
+
+        public bool IsOccupied() => currentTile != null;
     }
 }

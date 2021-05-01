@@ -1,14 +1,29 @@
+using GameboyRoguelike.Scripts.Items;
+using GameboyRoguelike.Scripts.UI.Inventory.Slots;
 using Godot;
 
 namespace GameboyRoguelike.Scripts.UI.Inventory
 {
     public class ItemInventoryTile : TextureRect
     {
+        private ItemSlot previousSlot = null;
         private bool hovered = false;
         private bool dragging = false;
-    
-    
-    
+        private Vector2 offset = Vector2.Zero;
+        private Vector2 startPosition = Vector2.Zero;
+        private Item parentItem = null;
+        public void SetSlot(ItemSlot slot)
+        {
+            previousSlot = slot;
+        }
+
+        public void Init(Item parentItem)
+        {
+            this.parentItem = parentItem;
+            
+            Texture = this.parentItem.GetUiTexture();
+        }
+
         public override void _Process(float delta)
         {
             if (!Visible) return;
@@ -33,9 +48,6 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             }
         }
 
-        private Vector2 offset = Vector2.Zero;
-        private Vector2 startPosition = Vector2.Zero;
-    
         private void StartDragging()
         {
             dragging = true;

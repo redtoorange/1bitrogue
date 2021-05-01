@@ -49,7 +49,8 @@ namespace GameboyRoguelike.Scripts.Characters.Player
             inventoryController.Init(
                 GetArmorController(),
                 GetWeaponController(),
-                groundItemController
+                groundItemController,
+                playerUiController.GetPlayerInventoryUiController()
             );
             groundItemController.Init(
                 inventoryController

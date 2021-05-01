@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using GameboyRoguelike.Scripts.Characters.Player;
 using GameboyRoguelike.Scripts.Items;
-using GameboyRoguelike.Scripts.Managers;
+using GameboyRoguelike.Scripts.UI.Inventory;
 using Godot;
 
 namespace GameboyRoguelike.Scripts.Characters.Controllers
@@ -11,6 +11,7 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
         private ArmorController armorController;
         private WeaponController weaponController;
         private GroundItemController groundItemController;
+        private PlayerInventoryUiManager playerInventoryUiManager;
 
         private List<Item> managedItems;
 
@@ -27,12 +28,17 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
             }
         }
 
-        public void Init(ArmorController armorController, WeaponController weaponController,
-            GroundItemController groundItemController)
+        public void Init(
+            ArmorController armorController,
+            WeaponController weaponController,
+            GroundItemController groundItemController,
+            PlayerInventoryUiManager playerInventoryUiManager
+        )
         {
             this.armorController = armorController;
             this.weaponController = weaponController;
             this.groundItemController = groundItemController;
+            this.playerInventoryUiManager = playerInventoryUiManager;
         }
 
         /// <summary>
@@ -46,6 +52,7 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
             {
                 AddChild(itemToAdd);
                 managedItems.Add(itemToAdd);
+                playerInventoryUiManager.AddItemToUi(itemToAdd);
                 return true;
             }
 

@@ -1,4 +1,5 @@
 using GameboyRoguelike.Scripts.Characters.Player;
+using GameboyRoguelike.Scripts.Items;
 using Godot;
 
 namespace GameboyRoguelike.Scripts.UI.Inventory
@@ -10,6 +11,8 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
         [Export] private NodePath equipmentSlotsManagerPath;
         [Export] private NodePath backPackSlotManagerPath;
         [Export] private NodePath inventoryDragControllerPath;
+
+        [Export] private PackedScene itemInventoryTilePrefab;
 
         private Player player;
         private EquipmentSlotsManager equipmentSlotsManager;
@@ -33,22 +36,12 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             this.player = player;
         }
 
-
-        // public override void _EnterTree()
-        // {
-        //     if (S == null)
-        //     {
-        //         S = this;
-        //     }
-        //     else
-        //     {
-        //         GD.PrintErr("Error: More than one PlayerInventoryManager in the scene tree");
-        //     }
-        // }
-        //
-        // public override void _ExitTree()
-        // {
-        //     S = null;
-        // }
+        public void AddItemToUi(Item item)
+        {
+            ItemInventoryTile tile = itemInventoryTilePrefab.Instance<ItemInventoryTile>();
+            tile.Init(item);
+            
+            backPackSlotManager.AddItemTileToBackpack(tile);
+        }
     }
 }

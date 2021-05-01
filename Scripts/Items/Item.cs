@@ -22,6 +22,9 @@ namespace GameboyRoguelike.Scripts.Items
             area2D.Connect("body_exited", this, nameof(HandleBodyExited));
         }
 
+        public Texture GetWorldTexture() => stats.worldSprite;
+        public Texture GetUiTexture() => stats.inventoryIcon;
+
         private void HandleBodyEntered(PhysicsBody2D other)
         {
             if (other is Player p)

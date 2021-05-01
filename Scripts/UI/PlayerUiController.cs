@@ -24,6 +24,8 @@ namespace GameboyRoguelike.Scripts.UI
 
         private PlayerUiState currentState = PlayerUiState.GAME;
 
+        public PlayerInventoryUiManager GetPlayerInventoryUiController() => playerInventoryUiController;
+
         public override void _Ready()
         {
             playerResourceDisplayController = GetNode<PlayerResourceDisplayController>(playerHudPath);
