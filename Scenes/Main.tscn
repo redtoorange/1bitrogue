@@ -17,7 +17,7 @@
 [sub_resource type="AtlasTexture" id=1]
 resource_local_to_scene = true
 atlas = ExtResource( 10 )
-region = Rect2( 496, 64, 16, 16 )
+region = Rect2( 384, 16, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=2]
 resource_local_to_scene = true

@@ -53,7 +53,13 @@ namespace GameboyRoguelike.Scripts.Characters.Player
         {
             for (int i = itemsInSpace.Count - 1; i >= 0; i--)
             {
-                inventoryController.AddItem(itemsInSpace[i]);
+                Item item = itemsInSpace[i];
+
+                if (inventoryController.CanPickup(item))
+                {
+                    item.OnPickedUp();
+                    inventoryController.AddItem(item);
+                }
             }
         }
     }

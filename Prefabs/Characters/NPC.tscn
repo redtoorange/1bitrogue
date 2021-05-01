@@ -16,4 +16,3 @@ spritePath = NodePath("Sprite")
 
 [node name="Sprite" parent="." index="2"]
 texture = SubResource( 1 )
-region_enabled = false

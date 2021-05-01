@@ -5,12 +5,12 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
     public class InventoryDragController : Control
     {
         private EquipmentSlotsManager equipmentSlotsManager;
-        private InventorySlotsManager inventorySlotsManager;
+        private BackPackSlotManager backPackSlotManager;
 
-        public void Init(EquipmentSlotsManager equipmentSlotsManager, InventorySlotsManager inventorySlotsManager)
+        public void Init(EquipmentSlotsManager equipmentSlotsManager, BackPackSlotManager backPackSlotManager)
         {
             this.equipmentSlotsManager = equipmentSlotsManager;
-            this.inventorySlotsManager = inventorySlotsManager;
+            this.backPackSlotManager = backPackSlotManager;
         }
     }
 }

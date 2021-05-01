@@ -3,7 +3,7 @@ using Godot;
 
 namespace GameboyRoguelike.Scripts.UI.Inventory
 {
-    public class InventorySlotsManager : PanelContainer
+    public class BackPackSlotManager : PanelContainer
     {
         private BackPackSlot[,] backPackSlots;
 

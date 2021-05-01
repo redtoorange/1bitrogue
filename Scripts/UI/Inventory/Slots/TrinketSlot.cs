@@ -4,7 +4,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
 {
     public class TrinketSlot : ItemSlot
     {
-        [Export] private Items.TrinketSlot trinketSlotType;
+        [Export] private Items.TrinketSlotType trinketSlotType;
 
         protected override void HoverStarted()
         {

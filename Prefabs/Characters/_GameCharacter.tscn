@@ -1,6 +1,5 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Characters/GameCharacter.cs" type="Script" id=2]
 [ext_resource path="res://Scripts/Characters/Controllers/ArmorController.cs" type="Script" id=3]
 [ext_resource path="res://Scripts/Characters/Controllers/WeaponController.cs" type="Script" id=4]
@@ -12,7 +11,6 @@
 extents = Vector2( 7, 7 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "MoveRight"
 length = 0.2
 step = 0.05
 tracks/0/type = "value"
@@ -29,7 +27,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "LungeDown"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:offset")
@@ -45,7 +42,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "LungeLeft"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:offset")
@@ -77,7 +73,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=6]
-resource_name = "LungeUp"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:offset")
@@ -108,9 +103,7 @@ cast_to = Vector2( 0, 16 )
 collision_mask = 31
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
 centered = false
-region_enabled = true
 region_rect = Rect2( 384, 16, 16, 16 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

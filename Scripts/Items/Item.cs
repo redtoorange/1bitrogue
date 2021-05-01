@@ -1,5 +1,6 @@
 ﻿using GameboyRoguelike.Scripts.Characters.Player;
 using GameboyRoguelike.Scripts.Items.Stats;
+using GameboyRoguelike.Scripts.Managers;
 using Godot;
 
 namespace GameboyRoguelike.Scripts.Items
@@ -37,14 +38,30 @@ namespace GameboyRoguelike.Scripts.Items
             }
         }
 
-        public void SetCollisionEnabled(bool enabled)
+        private void SetCollisionEnabled(bool enabled)
         {
             area2D.Monitoring = enabled;
         }
 
-        public void SetSpriteEnabled(bool enabled)
+        private void SetSpriteEnabled(bool enabled)
         {
             itemSprite.Visible = enabled;
+        }
+
+        public void OnPickedUp()
+        {
+            SetSpriteEnabled(false);
+            SetCollisionEnabled(false);
+                
+            ItemManager.S.RemoveChild(this);
+        }
+
+        public void OnDropped()
+        {
+            ItemManager.S.AddChild(this);
+                
+            SetSpriteEnabled(true);
+            SetCollisionEnabled(false);
         }
     }
 }

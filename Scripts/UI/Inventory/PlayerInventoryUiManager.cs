@@ -6,22 +6,26 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
     public class PlayerInventoryUiManager : Control
     {
         public static PlayerInventoryUiManager S;
+        
+        [Export] private NodePath equipmentSlotsManagerPath;
+        [Export] private NodePath backPackSlotManagerPath;
+        [Export] private NodePath inventoryDragControllerPath;
 
         private Player player;
         private EquipmentSlotsManager equipmentSlotsManager;
-        private InventorySlotsManager inventorySlotsManager;
+        private BackPackSlotManager backPackSlotManager;
         private InventoryDragController inventoryDragController;
 
         public override void _Ready()
         {
-            equipmentSlotsManager = GetNode<EquipmentSlotsManager>("EquipmentSlots");
-            inventorySlotsManager = GetNode<InventorySlotsManager>("InventorySlots");
-            inventoryDragController = GetNode<InventoryDragController>("DragController");
+            equipmentSlotsManager = GetNode<EquipmentSlotsManager>(equipmentSlotsManagerPath);
+            backPackSlotManager = GetNode<BackPackSlotManager>(backPackSlotManagerPath);
+            inventoryDragController = GetNode<InventoryDragController>(inventoryDragControllerPath);
 
             // Inject Dependencies
             equipmentSlotsManager.Init();
-            inventorySlotsManager.Init();
-            inventoryDragController.Init(equipmentSlotsManager, inventorySlotsManager);
+            backPackSlotManager.Init();
+            inventoryDragController.Init(equipmentSlotsManager, backPackSlotManager);
         }
 
         public void Init(Player player)

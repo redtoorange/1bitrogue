@@ -1,6 +1,6 @@
 ﻿namespace GameboyRoguelike.Scripts.Items
 {
-    public enum TrinketSlot
+    public enum TrinketSlotType
     {
         LEFT_RING,
         RIGHT_RING,

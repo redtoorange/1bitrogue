@@ -44,10 +44,6 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
         {
             if (!managedItems.Contains(itemToAdd))
             {
-                itemToAdd.SetSpriteEnabled(false);
-                itemToAdd.SetCollisionEnabled(false);
-                
-                ItemManager.S.RemoveChild(itemToAdd);
                 AddChild(itemToAdd);
                 managedItems.Add(itemToAdd);
                 return true;
@@ -56,16 +52,17 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
             return false;
         }
 
+        public bool CanPickup(Item itemToAdd)
+        {
+            return !managedItems.Contains(itemToAdd);
+        }
+
         public void RemoveItem(Item itemToRemove)
         {
             if (managedItems.Contains(itemToRemove))
             {
                 managedItems.Remove(itemToRemove);
                 RemoveChild(itemToRemove);
-                ItemManager.S.AddChild(itemToRemove);
-                
-                itemToRemove.SetSpriteEnabled(true);
-                itemToRemove.SetCollisionEnabled(false);
             }
         }
 
