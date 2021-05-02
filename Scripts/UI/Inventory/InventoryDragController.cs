@@ -36,7 +36,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
 
         public override void _Process(float delta)
         {
-            if (IsDragging())
+            if (IsDragging() && preview != null)
             {
                 UpdatePreview();
             }
@@ -56,14 +56,16 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
 
         private void DestroyPreview()
         {
-            RemoveChild(preview);
-            preview.QueueFree();
-            preview = null;
+            if (preview != null)
+            {
+                RemoveChild(preview);
+                preview.QueueFree();
+                preview = null;
+            }
         }
 
         private void UpdatePreview()
         {
-            // TODO
             preview.SetGlobalPosition(GetGlobalMousePosition());
         }
 

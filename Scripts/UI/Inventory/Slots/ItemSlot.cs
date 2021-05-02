@@ -44,18 +44,15 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
         {
             return true;
         }
-        
-        
+
+
         /// <summary>
         /// Drop the item tile onto this Slot
         /// </summary>
         public virtual void DropDnDItem(ItemInventoryTile tile)
         {
-            if (tile != null)
-            {
-                AddItemTile(tile);
-                tile.Visible = true;
-            }
+            AddItemTile(tile);
+            tile.Visible = true;
         }
 
         /// <summary>
@@ -71,8 +68,8 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
 
         public override void _Input(InputEvent @event)
         {
-            if(!Visible) return;
-            
+            if (!IsVisibleInTree()) return;
+
             if (hovered && @event is InputEventMouseButton mb)
             {
                 HandleDragging(mb);

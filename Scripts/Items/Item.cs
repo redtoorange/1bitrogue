@@ -41,12 +41,12 @@ namespace GameboyRoguelike.Scripts.Items
             }
         }
 
-        private void SetCollisionEnabled(bool enabled)
+        public void SetCollisionEnabled(bool enabled)
         {
             area2D.Monitoring = enabled;
         }
 
-        private void SetSpriteEnabled(bool enabled)
+        public void SetSpriteEnabled(bool enabled)
         {
             itemSprite.Visible = enabled;
         }

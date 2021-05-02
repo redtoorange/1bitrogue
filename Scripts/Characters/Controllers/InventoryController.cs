@@ -18,14 +18,6 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
         public override void _Ready()
         {
             managedItems = new List<Item>();
-
-            for (int i = 0; i < GetChildCount(); i++)
-            {
-                if (GetChild(i) is Item item)
-                {
-                    AddItem(item);
-                }
-            }
         }
 
         public void Init(
@@ -39,6 +31,17 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
             this.weaponController = weaponController;
             this.groundItemController = groundItemController;
             this.playerInventoryUiManager = playerInventoryUiManager;
+
+            for (int i = 0; i < GetChildCount(); i++)
+            {
+                if (GetChild(i) is Item item)
+                {
+                    managedItems.Add(item);
+                    playerInventoryUiManager.AddItemToUi(item);
+                    item.SetCollisionEnabled(false);
+                    item.SetSpriteEnabled(false);
+                }
+            }
         }
 
         /// <summary>

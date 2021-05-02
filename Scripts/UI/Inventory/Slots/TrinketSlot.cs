@@ -27,5 +27,15 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
             // Failed the conversion tree, so the item is not the right type for this slot
             return false;
         }
+        
+        public override void AddItemTile(ItemInventoryTile tile)
+        {
+            base.AddItemTile(tile);
+        }
+
+        public override void RemoveItemTile(ItemInventoryTile tile)
+        {
+            base.RemoveItemTile(tile);
+        }
     }
 }
