@@ -29,6 +29,7 @@ namespace GameboyRoguelike.Scripts.Managers
         private GameTurnState currentGameTurnState = GameTurnState.WAITING_ON_PLAYER;
         private float coolDownTimer = 0.0f;
         private bool onCooldown = false;
+        private bool gamePaused = false;
         private List<ITurnTaker> turnTakers = new List<ITurnTaker>();
         private Queue<ITurnTaker> tickingEntities;
 
@@ -80,6 +81,8 @@ namespace GameboyRoguelike.Scripts.Managers
         /// </summary>
         public bool CanPlayerAct()
         {
+            if (gamePaused) return false;
+            
             if (onCooldown || currentGameTurnState == GameTurnState.ANIMATING_PLAYER) return false;
             
             if (currentTimingState == GameTimingState.REALTIME)
@@ -92,6 +95,8 @@ namespace GameboyRoguelike.Scripts.Managers
 
         public override void _Process(float delta)
         {
+            if (gamePaused) return;
+            
             if (currentGameTurnState != GameTurnState.ANIMATING_PLAYER && onCooldown && coolDownTimer > 0)
             {
                 coolDownTimer -= delta;
@@ -192,6 +197,16 @@ namespace GameboyRoguelike.Scripts.Managers
             }
 
             tickingEntities = tempQueue;
+        }
+
+        public bool GetGamePaused()
+        {
+            return gamePaused;
+        }
+        
+        public void SetGamePaused(bool paused)
+        {
+            gamePaused = paused;
         }
     }
 }

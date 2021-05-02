@@ -65,11 +65,11 @@ margin_top = 6.0
 margin_bottom = -6.0
 baseColor = Color( 0, 0.576471, 1, 1 )
 
-[node name="HotKeyBar" parent="." instance=ExtResource( 6 )]
-margin_top = -24.0
-
 [node name="InventoryUiController" parent="." instance=ExtResource( 1 )]
 visible = false
+
+[node name="HotKeyBar" parent="." instance=ExtResource( 6 )]
+margin_top = -24.0
 
 [node name="PauseUiController" parent="." instance=ExtResource( 2 )]
 visible = false

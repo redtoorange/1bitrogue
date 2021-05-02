@@ -1,4 +1,5 @@
 using GameboyRoguelike.Scripts.Characters.Player;
+using GameboyRoguelike.Scripts.Managers;
 using GameboyRoguelike.Scripts.UI.Inventory;
 using Godot;
 
@@ -50,10 +51,12 @@ namespace GameboyRoguelike.Scripts.UI
                     case PlayerUiState.GAME:
                         currentState = PlayerUiState.INVENTORY;
                         playerInventoryUiController.Show();
+                        GameRoundManager.S.SetGamePaused(true);
                         break;
                     case PlayerUiState.INVENTORY:
                         currentState = PlayerUiState.GAME;
                         playerInventoryUiController.Hide();
+                        GameRoundManager.S.SetGamePaused(false);
                         break;
                 }
             }
@@ -64,14 +67,17 @@ namespace GameboyRoguelike.Scripts.UI
                     case PlayerUiState.GAME:
                         currentState = PlayerUiState.MENU;
                         pauseMenu.Show();
+                        GameRoundManager.S.SetGamePaused(true);
                         break;
                     case PlayerUiState.MENU:
                         currentState = PlayerUiState.GAME;
                         pauseMenu.Hide();
+                        GameRoundManager.S.SetGamePaused(false);
                         break;
                     case PlayerUiState.INVENTORY:
                         currentState = PlayerUiState.GAME;
                         playerInventoryUiController.Hide();
+                        GameRoundManager.S.SetGamePaused(false);
                         break;
                 }
             }

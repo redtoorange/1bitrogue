@@ -104,7 +104,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             ItemSlot origin = currentStartPayload.originatingSlot;
             ItemInventoryTile tile = currentStartPayload.draggedTile;
 
-            if (canDrop)
+            if (destination != origin && canDrop)
             {
                 if (destination.IsOccupied())
                 {
