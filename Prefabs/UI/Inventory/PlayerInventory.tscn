@@ -29,6 +29,7 @@ margin_bottom = 2.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -26, 9 )
+mouse_filter = 1
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -95,6 +96,7 @@ margin_left = 22.0
 margin_top = 22.0
 margin_right = 38.0
 margin_bottom = 38.0
+rect_min_size = Vector2( 16, 16 )
 
 [node name="MainHandSlot" parent="EquipmentSlotsManager/Slots" instance=ExtResource( 1 )]
 margin_left = 42.0
@@ -107,12 +109,14 @@ margin_left = 22.0
 margin_top = 42.0
 margin_right = 38.0
 margin_bottom = 58.0
+rect_min_size = Vector2( 16, 16 )
 
 [node name="HandSlot" parent="EquipmentSlotsManager/Slots" instance=ExtResource( 14 )]
 margin_left = 42.0
 margin_top = 42.0
 margin_right = 58.0
 margin_bottom = 58.0
+rect_min_size = Vector2( 16, 16 )
 
 [node name="LeftRingSlot" parent="EquipmentSlotsManager/Slots" instance=ExtResource( 17 )]
 margin_left = 2.0
@@ -138,6 +142,7 @@ margin_left = 80.0
 margin_top = 40.0
 margin_right = 152.0
 margin_bottom = 112.0
+mouse_filter = 1
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 9 )
 __meta__ = {
@@ -150,6 +155,7 @@ margin_left = 2.0
 margin_top = 2.0
 margin_right = 70.0
 margin_bottom = 70.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 1
@@ -170,6 +176,7 @@ alignment = 1
 [node name="0" type="HBoxContainer" parent="BackPackSlotsManager/Container/Rows"]
 margin_right = 65.0
 margin_bottom = 16.0
+mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
@@ -299,15 +306,7 @@ margin_right = 65.0
 margin_bottom = 17.0
 
 [node name="_InventoryDragController" type="Control" parent="."]
-visible = false
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="ItemInventoryRepresentation2" parent="_InventoryDragController" instance=ExtResource( 10 )]
-visible = false
-margin_left = 52.0
-margin_top = 56.0
-margin_right = 68.0
-margin_bottom = 72.0

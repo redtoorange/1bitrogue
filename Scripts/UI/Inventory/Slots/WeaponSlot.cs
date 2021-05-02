@@ -8,38 +8,22 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
     {
         [Export] private Items.WeaponSlot weaponSlotType;
 
-        protected override void HoverStarted()
+        public override bool CanDropDnDItem(ItemInventoryTile tile)
         {
-            GD.Print($"HoverStarted {weaponSlotType}");
-        }
+            Item item = tile.GetParentItem();
 
-        protected override void HoverEnded()
-        {
-            GD.Print($"HoverEnded {weaponSlotType}");
-        }
-
-        public override bool CanDropData(Vector2 position, object data)
-        {
-            // Convert to payload
-            if (data is DragAndDropPayload payload)
+            // Cast to Armor and get stats
+            if (item is Equipable && item is Weapon w)
             {
-                // Get the item from the Tile
-                ItemInventoryTile tile = payload.draggedTile;
-                Item item = tile.GetParentItem();
-
-                // Cast to Armor and get stats
-                if (item is Equipable && item is Weapon w)
+                WeaponStats stats = w.GetStats();
+                // Verify matching slot types
+                if (weaponSlotType == Items.WeaponSlot.MAIN_HAND)
                 {
-                    WeaponStats stats = w.GetStats();
-                    // Verify matching slot types
-                    if (weaponSlotType == Items.WeaponSlot.MAIN_HAND)
-                    {
-                        return stats.weaponEquipType != WeaponEquipType.OFF_HAND;
-                    }
-                    else if (weaponSlotType == Items.WeaponSlot.OFF_HAND)
-                    {
-                        return stats.weaponEquipType != WeaponEquipType.MAIN_HAND;;
-                    }
+                    return stats.weaponEquipType != WeaponEquipType.OFF_HAND;
+                }
+                else if (weaponSlotType == Items.WeaponSlot.OFF_HAND)
+                {
+                    return stats.weaponEquipType != WeaponEquipType.MAIN_HAND;
                 }
             }
 

@@ -12,15 +12,5 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
             this.row = row;
             this.col = col;
         }
-
-        protected override void HoverStarted()
-        {
-            GD.Print($"HoverStarted ({row}, {col})");
-        }
-
-        protected override void HoverEnded()
-        {
-            GD.Print($"HoverEnded ({row}, {col})");
-        }
     }
 }

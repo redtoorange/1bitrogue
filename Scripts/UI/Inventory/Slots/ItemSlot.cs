@@ -1,26 +1,126 @@
+using System;
 using Godot;
 
 namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
 {
+    public class DragStartPayload
+    {
+        public ItemSlot originatingSlot;
+        public ItemInventoryTile draggedTile;
+
+        public DragStartPayload(ItemSlot originatingSlot, ItemInventoryTile draggedTile)
+        {
+            this.originatingSlot = originatingSlot;
+            this.draggedTile = draggedTile;
+        }
+    }
+
+    public class DragStopPayload
+    {
+        public ItemSlot destinationSlot;
+
+        public DragStopPayload(ItemSlot destinationSlot)
+        {
+            this.destinationSlot = destinationSlot;
+        }
+    }
+
     public abstract class ItemSlot : Control
     {
+        public static Action<ItemSlot> OnHoverStarted;
+        public static Action<ItemSlot> OnHoverEnded;
+        public static Action<DragStartPayload> OnDragStarted;
+        public static Action<DragStopPayload> OnDragEnded;
+
+
         protected ItemInventoryTile currentTile = null;
 
+        protected bool hovered = false;
 
-        public override void _Ready()
+        /// <summary>
+        /// Can this Tile accept the drag and drop item?
+        /// </summary>
+        public virtual bool CanDropDnDItem(ItemInventoryTile tile)
         {
-            Connect("mouse_entered", this, nameof(HoverStarted));
-            Connect("mouse_exited", this, nameof(HoverEnded));
+            return true;
+        }
+        
+        
+        /// <summary>
+        /// Drop the item tile onto this Slot
+        /// </summary>
+        public virtual void DropDnDItem(ItemInventoryTile tile)
+        {
+            if (tile != null)
+            {
+                AddItemTile(tile);
+                tile.Visible = true;
+            }
         }
 
-        protected virtual void HoverStarted()
+        /// <summary>
+        /// Cancel the drag and drop operation.
+        /// </summary>
+        public virtual void CancelDnD()
         {
-            GD.Print("HoverStarted: ItemSlot");
+            if (currentTile != null)
+            {
+                currentTile.Visible = true;
+            }
         }
 
-        protected virtual void HoverEnded()
+        public override void _Input(InputEvent @event)
         {
-            GD.Print("HoverEnded: ItemSlot");
+            if(!Visible) return;
+            
+            if (hovered && @event is InputEventMouseButton mb)
+            {
+                HandleDragging(mb);
+            }
+            else if (@event is InputEventMouseMotion mm)
+            {
+                HandleHovering();
+            }
+        }
+
+        private void HandleHovering()
+        {
+            if (hovered)
+            {
+                Vector2 mpos = GetGlobalMousePosition();
+                bool hasPoint = GetGlobalRect().HasPoint(mpos);
+
+                if (!hasPoint)
+                {
+                    hovered = false;
+                    OnHoverEnded?.Invoke(this);
+                }
+            }
+            else
+            {
+                Vector2 mpos = GetGlobalMousePosition();
+                bool hasPoint = GetGlobalRect().HasPoint(mpos);
+                if (hasPoint)
+                {
+                    hovered = true;
+                    OnHoverStarted?.Invoke(this);
+                }
+            }
+        }
+
+        private void HandleDragging(InputEventMouseButton mb)
+        {
+            if (mb.IsActionPressed("LeftClick") && currentTile != null)
+            {
+                DragStartPayload payload = new DragStartPayload(this, currentTile);
+                OnDragStarted?.Invoke(payload);
+                currentTile.Visible = false;
+            }
+            else if (mb.IsActionReleased("LeftClick"))
+            {
+                DragStopPayload payload = new DragStopPayload(this);
+                OnDragEnded?.Invoke(payload);
+            }
         }
 
         public virtual void AddItemTile(ItemInventoryTile tile)
@@ -38,47 +138,6 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
         }
 
         public bool IsOccupied() => currentTile != null;
-
-        public override bool CanDropData(Vector2 position, object data)
-        {
-            return !IsOccupied();
-        }
-
-        public override void DropData(Vector2 position, object data)
-        {
-            if (data is DragAndDropPayload payload)
-            {
-                ItemInventoryTile tile = payload.draggedTile;
-                payload.originalSlot.RemoveItemTile(tile);
-                AddItemTile(tile);
-            }
-        }
-
-        public override object GetDragData(Vector2 position)
-        {
-            if (currentTile == null) return null;
-
-            TextureRect image = new TextureRect();
-            image.Texture = currentTile.Texture;
-            image.RectPosition = new Vector2(-8, -8);
-
-            Control preview = new Control();
-            preview.AddChild(image);
-            SetDragPreview(preview);
-
-            return new DragAndDropPayload(this, currentTile);
-        }
-    }
-
-    public class DragAndDropPayload : Object
-    {
-        public ItemSlot originalSlot;
-        public ItemInventoryTile draggedTile;
-
-        public DragAndDropPayload(ItemSlot originalSlot, ItemInventoryTile draggedTile)
-        {
-            this.originalSlot = originalSlot;
-            this.draggedTile = draggedTile;
-        }
+        public ItemInventoryTile GetItemTile() => currentTile;
     }
 }
