@@ -19,8 +19,11 @@ namespace GameboyRoguelike.Scripts.Items
         {
             base._Ready();
 
-            armorStats = stats as ArmorStats;
-            if (armorStats == null)
+            if (stats is ArmorStats c)
+            {
+                armorStats = c;
+            }
+            else
             {
                 GD.PrintErr("Failed to convert ItemStat to ArmorStats.");
             }

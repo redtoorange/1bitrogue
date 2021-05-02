@@ -35,7 +35,7 @@ __meta__ = {
 }
 equipmentSlotsManagerPath = NodePath("EquipmentSlotsManager")
 backPackSlotManagerPath = NodePath("BackPackSlotsManager")
-inventoryDragControllerPath = NodePath("InventoryDragController")
+inventoryDragControllerPath = NodePath("_InventoryDragController")
 itemInventoryTilePrefab = ExtResource( 10 )
 
 [node name="ScreenDimBackground" type="TextureRect" parent="."]
@@ -298,13 +298,15 @@ margin_top = 0.0
 margin_right = 65.0
 margin_bottom = 17.0
 
-[node name="InventoryDragController" type="Control" parent="."]
+[node name="_InventoryDragController" type="Control" parent="."]
+visible = false
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ItemInventoryRepresentation2" parent="InventoryDragController" instance=ExtResource( 10 )]
+[node name="ItemInventoryRepresentation2" parent="_InventoryDragController" instance=ExtResource( 10 )]
+visible = false
 margin_left = 52.0
 margin_top = 56.0
 margin_right = 68.0

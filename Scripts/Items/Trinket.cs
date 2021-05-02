@@ -1,4 +1,7 @@
-﻿namespace GameboyRoguelike.Scripts.Items
+﻿using GameboyRoguelike.Scripts.Items.Stats;
+using Godot;
+
+namespace GameboyRoguelike.Scripts.Items
 {
     public enum TrinketSlotType
     {
@@ -6,14 +9,31 @@
         RIGHT_RING,
         NECKLACE
     }
+
     public enum TrinketEquipType
     {
         RING,
         NECKLACE,
     }
-    
+
     public class Trinket : Item, Equipable
     {
-        
+        private TrinketStats trinketStats;
+
+        public override void _Ready()
+        {
+            base._Ready();
+
+            if (stats is TrinketStats c)
+            {
+                trinketStats = c;
+            }
+            else
+            {
+                GD.PrintErr("Failed to convert ItemStat to TrinketStats.");
+            }
+        }
+
+        public TrinketStats GetStats() => trinketStats;
     }
 }

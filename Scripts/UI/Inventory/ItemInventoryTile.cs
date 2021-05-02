@@ -50,7 +50,10 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
 
         private void StartDragging()
         {
+            GD.Print("Started Dragging");
             dragging = true;
+
+            MouseFilter = MouseFilterEnum.Ignore;                
 
             startPosition = RectPosition;
             offset = GetGlobalMousePosition() - RectPosition;
@@ -58,7 +61,11 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
 
         private void EndDragging()
         {
+            GD.Print("Stopped Dragging");
             dragging = false;
+            
+            MouseFilter = MouseFilterEnum.Stop;      
+            
             RectPosition = startPosition;
         }
 
@@ -81,6 +88,11 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
         protected virtual void HoverEnded()
         {
             hovered = false;
+        }
+
+        public Item GetParentItem()
+        {
+            return parentItem;
         }
     }
 }

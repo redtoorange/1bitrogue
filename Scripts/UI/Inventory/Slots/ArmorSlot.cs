@@ -1,12 +1,15 @@
+using GameboyRoguelike.Scripts.Items;
+using GameboyRoguelike.Scripts.Items.Stats;
 using Godot;
 
 namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
 {
     public class ArmorSlot : ItemSlot
     {
-        [Export] private Items.ArmorSlotType armorSlotType = Items.ArmorSlotType.HEAD;
-        
-        protected override void HoverStarted(){
+        [Export] private ArmorSlotType armorSlotType = ArmorSlotType.HEAD;
+
+        protected override void HoverStarted()
+        {
             GD.Print($"HoverStarted {armorSlotType}");
         }
 
@@ -14,15 +17,31 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
         {
             GD.Print($"HoverEnded {armorSlotType}");
         }
-        
-        public override void AddItemTile(ItemInventoryTile tile)
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public override void RemoveItemTile(ItemInventoryTile tile)
+        public override bool CanDropData(Vector2 position, object data)
         {
-            throw new System.NotImplementedException();
+            // Convert to payload
+            if (data is DragAndDropPayload payload)
+            {
+                // Get the item from the Tile
+                ItemInventoryTile tile = payload.draggedTile;
+                Item item = tile.GetParentItem();
+                
+                // Cast to Armor and get stats
+                if (item is Equipable && item is Armor a)
+                {
+                    ArmorStats stats = a.GetStats();
+                    // Verify matching slot types
+                    if (stats.slotType == armorSlotType)
+                    {
+                        // Return true even if we are occupied so we can swap the items
+                        return true;
+                    }
+                }
+            }
+
+            // Failed the conversion tree, so the item is not the right type for this slot
+            return false;
         }
     }
 }

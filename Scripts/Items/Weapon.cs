@@ -37,8 +37,11 @@ namespace GameboyRoguelike.Scripts.Items
         {
             base._Ready();
 
-            weaponStats = stats as WeaponStats;
-            if (weaponStats == null)
+            if (stats is WeaponStats c)
+            {
+                weaponStats = c;
+            }
+            else
             {
                 GD.PrintErr("Failed to convert ItemStat to WeaponStats.");
             }
