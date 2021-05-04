@@ -16,7 +16,7 @@ namespace GameboyRoguelike.Scripts.Items
         NECKLACE,
     }
 
-    public class Trinket : Item, Equipable
+    public class Trinket : Item, IEquipable
     {
         private TrinketStats trinketStats;
 

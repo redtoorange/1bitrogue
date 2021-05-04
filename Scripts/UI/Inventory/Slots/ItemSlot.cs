@@ -33,6 +33,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
         public static Action<DragStopPayload> OnDragEnded;
 
         public Action<ItemInventoryTile> OnDropItemOnGround;
+        public Action<ItemSlot> OnShowContextMenu;
 
         protected ItemInventoryTile currentTile = null;
 
@@ -121,7 +122,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
             }
             if (mb.IsActionPressed("RightClick") && currentTile != null)
             {
-                HandleOnDropItemOnGround();
+                OnShowContextMenu?.Invoke(this);
             }
         }
 
@@ -148,7 +149,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
         /// <summary>
         /// Just process and forward the event.  Equipment tiles should override this to handle unequipping
         /// </summary>
-        public virtual void HandleOnDropItemOnGround()
+        public virtual void ContextMenuNotifyDrop()
         {
             ItemInventoryTile tempTile = currentTile;
             RemoveItemTile(tempTile);

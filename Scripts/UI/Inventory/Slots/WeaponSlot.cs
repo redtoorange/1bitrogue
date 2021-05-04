@@ -13,7 +13,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
             Item item = tile.GetParentItem();
 
             // Cast to Armor and get stats
-            if (item is Equipable && item is Weapon w)
+            if (item is IEquipable && item is Weapon w)
             {
                 WeaponStats stats = w.GetStats();
                 // Verify matching slot types

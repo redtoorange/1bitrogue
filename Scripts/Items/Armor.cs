@@ -11,7 +11,7 @@ namespace GameboyRoguelike.Scripts.Items
         LEGS
     }
     
-    public class Armor : Item, Equipable
+    public class Armor : Item, IEquipable
     {
         private ArmorStats armorStats;
 

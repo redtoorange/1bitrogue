@@ -7,6 +7,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
     public class BackPackSlotManager : PanelContainer
     {
         public Action<ItemInventoryTile> OnDropItemOnGround;
+        public Action<ItemSlot> OnShowContextMenu;
         
         private BackPackSlot[,] backPackSlots;
 
@@ -29,10 +30,13 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
                     BackPackSlot slot = GetNode<BackPackSlot>($"Container/Rows/{row}/{col}");
                     slot.Init(row, col);
                     slot.OnDropItemOnGround += HandleOnDropItemOnGround;
+                    slot.OnShowContextMenu += HandleOnShowContextMenu;
                     backPackSlots[row, col] = slot;
                 }
             }
         }
+
+        
 
         public bool AddItemTileToBackpack(ItemInventoryTile itemTile)
         {
@@ -85,6 +89,11 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
         public virtual void HandleOnDropItemOnGround(ItemInventoryTile tile)
         {
             OnDropItemOnGround?.Invoke(tile);
+        }
+        
+        private void HandleOnShowContextMenu(ItemSlot slot)
+        {
+            OnShowContextMenu?.Invoke(slot);
         }
     }
 }

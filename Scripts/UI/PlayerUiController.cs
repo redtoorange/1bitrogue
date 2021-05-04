@@ -9,6 +9,7 @@ namespace GameboyRoguelike.Scripts.UI
     {
         GAME,
         INVENTORY,
+        INVENTORY_CONTEXT_MENU,
         MENU,
         CHEST
     }
@@ -47,9 +48,9 @@ namespace GameboyRoguelike.Scripts.UI
             );
         }
 
-        public override void _Process(float delta)
+        public override void _UnhandledKeyInput(InputEventKey @event)
         {
-            if (Input.IsActionJustPressed("Inventory"))
+            if (@event.IsActionPressed("Inventory"))
             {
                 switch (currentState)
                 {
@@ -65,7 +66,7 @@ namespace GameboyRoguelike.Scripts.UI
                         break;
                 }
             }
-            else if (Input.IsActionJustPressed("Back"))
+            else if (@event.IsActionPressed("Back"))
             {
                 switch (currentState)
                 {

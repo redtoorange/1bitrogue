@@ -1,6 +1,8 @@
 using GameboyRoguelike.Scripts.Characters.Controllers;
 using GameboyRoguelike.Scripts.Characters.Player;
 using GameboyRoguelike.Scripts.Items;
+using GameboyRoguelike.Scripts.UI.Inventory.ContextMenu;
+using GameboyRoguelike.Scripts.UI.Inventory.Slots;
 using Godot;
 
 namespace GameboyRoguelike.Scripts.UI.Inventory
@@ -12,6 +14,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
         [Export] private NodePath equipmentSlotsManagerPath;
         [Export] private NodePath backPackSlotManagerPath;
         [Export] private NodePath inventoryDragControllerPath;
+        [Export] private NodePath contextMenuControllerPath;
 
         [Export] private PackedScene itemInventoryTilePrefab;
 
@@ -19,6 +22,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
         private EquipmentSlotsManager equipmentSlotsManager;
         private BackPackSlotManager backPackSlotManager;
         private InventoryDragController inventoryDragController;
+        private ContextMenuController contextMenuController;
         
         // Injected
         private InventoryController inventoryController;
@@ -28,13 +32,18 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             equipmentSlotsManager = GetNode<EquipmentSlotsManager>(equipmentSlotsManagerPath);
             backPackSlotManager = GetNode<BackPackSlotManager>(backPackSlotManagerPath);
             inventoryDragController = GetNode<InventoryDragController>(inventoryDragControllerPath);
-
+            contextMenuController = GetNode<ContextMenuController>(contextMenuControllerPath);
+            
             // Inject Dependencies
             // equipmentSlotsManager.Init();
             // backPackSlotManager.Init();
             inventoryDragController.Init(equipmentSlotsManager, backPackSlotManager);
 
             backPackSlotManager.OnDropItemOnGround += HandleOnDropItem;
+            backPackSlotManager.OnShowContextMenu += HandleOnShowContextMenu;
+
+            equipmentSlotsManager.OnDropItemOnGround += HandleOnDropItem;
+            equipmentSlotsManager.OnShowContextMenu += HandleOnShowContextMenu;
         }
 
         public void Init(InventoryController inventoryController)
@@ -55,6 +64,11 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             Item droppedItem = tile.GetParentItem();
             inventoryController.RemoveItem(droppedItem);
             tile.QueueFree();
+        }
+
+        public void HandleOnShowContextMenu(ItemSlot slot)
+        {
+            contextMenuController.ShowMenu(slot);
         }
     }
 }

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.IO.Ports;
 using GameboyRoguelike.Scripts.UI.Inventory.Slots;
 using Godot;
@@ -6,6 +8,9 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
 {
     public class EquipmentSlotsManager : PanelContainer
     {
+        public Action<ItemInventoryTile> OnDropItemOnGround;
+        public Action<ItemSlot> OnShowContextMenu;
+        
         // Armor
         [Export] private NodePath headSlotPath;
         [Export] private NodePath chestSlotPath;
@@ -46,6 +51,31 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             leftRingSlot = GetNode<TrinketSlot>(leftRingSlotPath);
             necklaceSlot = GetNode<TrinketSlot>(necklaceSlotPath);
             rightRingSlot = GetNode<TrinketSlot>(rightRingSlotPath);
+            
+            ConnectCallbacks();
+        }
+
+        private void ConnectCallbacks()
+        {
+            ItemSlot[] slots = new ItemSlot[]
+            {
+                headSlot, chestSlot, legsSlot, handsSlot, mainHandSlot, offHandSlot, leftRingSlot, necklaceSlot, rightRingSlot
+            };
+            foreach (ItemSlot slot in slots)
+            {
+                slot.OnDropItemOnGround += HandleOnDropItemOnGround;
+                slot.OnShowContextMenu += HandleOnShowContextMenu;
+            }
+        }
+
+        public virtual void HandleOnDropItemOnGround(ItemInventoryTile tile)
+        {
+            OnDropItemOnGround?.Invoke(tile);
+        }
+        
+        private void HandleOnShowContextMenu(ItemSlot slot)
+        {
+            OnShowContextMenu?.Invoke(slot);
         }
     }
 }

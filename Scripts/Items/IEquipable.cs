@@ -1,6 +1,6 @@
 ﻿namespace GameboyRoguelike.Scripts.Items
 {
-    public interface Equipable
+    public interface IEquipable
     {
         
     }

@@ -29,7 +29,7 @@ namespace GameboyRoguelike.Scripts.Items
         TWO_HANDS
     }
 
-    public class Weapon : Item, Equipable
+    public class Weapon : Item, IEquipable
     {
         private WeaponStats weaponStats;
 

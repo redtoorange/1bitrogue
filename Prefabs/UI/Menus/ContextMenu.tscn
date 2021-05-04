@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://UI/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://Shaders/ContextMenu.shader" type="Shader" id=2]
+[ext_resource path="res://Scripts/UI/Inventory/ContextMenu/ContextMenuController.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/UI/Inventory/ContextMenu/MaskingBackdropHandler.cs" type="Script" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 2 )
+shader_param/backDropSize = Vector2( 160, 144 )
+shader_param/area = Vector2( 16, 16 )
+shader_param/size = Vector2( 16, 16 )
+
+[node name="ContextMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+buttonContainerPath = NodePath("ButtonContainer")
+backDropMaskPath = NodePath("MaskingBackDrop")
+equipButtonPath = NodePath("ButtonContainer/EquipButton")
+consumeButtonPath = NodePath("ButtonContainer/ConsumeButton")
+inspectButtonPath = NodePath("ButtonContainer/InspectButton")
+dropButtonPath = NodePath("ButtonContainer/DropButton")
+
+[node name="MaskingBackDrop" type="ColorRect" parent="."]
+material = SubResource( 1 )
+margin_right = 160.0
+margin_bottom = 144.0
+color = Color( 0, 0, 0, 0.498039 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -22.0
+margin_top = -27.0
+margin_right = 42.0
+margin_bottom = 9.0
+rect_min_size = Vector2( 64, 16 )
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EquipButton" type="Button" parent="ButtonContainer"]
+visible = false
+margin_right = 64.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 16, 16 )
+text = "Equip"
+
+[node name="ConsumeButton" type="Button" parent="ButtonContainer"]
+visible = false
+margin_top = 18.0
+margin_right = 64.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 16, 16 )
+text = "Equip"
+
+[node name="InspectButton" type="Button" parent="ButtonContainer"]
+margin_right = 64.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 16, 16 )
+text = "Inspect"
+
+[node name="DropButton" type="Button" parent="ButtonContainer"]
+margin_top = 18.0
+margin_right = 64.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 16, 16 )
+text = "Drop"
