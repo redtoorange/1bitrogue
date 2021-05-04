@@ -18,5 +18,10 @@ namespace GameboyRoguelike.Scripts.Managers
                 QueueFree();
             }
         }
+
+        public override void _ExitTree()
+        {
+            S = null;
+        }
     }
 }

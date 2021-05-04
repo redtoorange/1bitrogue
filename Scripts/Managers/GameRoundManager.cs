@@ -51,6 +51,7 @@ namespace GameboyRoguelike.Scripts.Managers
 
         public override void _ExitTree()
         {
+            S = null;
             Player.OnPlayerActionStarted -= HandleOnPlayerActionStarted;
             Player.OnPlayerActionCompleted -= HandleOnPlayerActionCompleted;
         }

@@ -5,6 +5,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
 {
     public class PauseMenuController : Control
     {
+        public static Action OnQuitToMainMenu;
         public Action OnMenuClosed;
         
         private void OnContinueClicked()
@@ -29,7 +30,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
 
         private void OnMainMenuClicked()
         {
-            GetTree().Quit();
+            OnQuitToMainMenu?.Invoke();
         }
     }
 }
