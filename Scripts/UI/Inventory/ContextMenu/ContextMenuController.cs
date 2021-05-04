@@ -40,7 +40,9 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.ContextMenu
 
         public override void _Input(InputEvent @event)
         {
-            if (IsVisibleInTree() && @event is InputEventKey key)
+            if (!IsVisibleInTree()) return;
+            
+            if (@event is InputEventKey key)
             {
                 if (key.IsActionPressed("Back"))
                 {
@@ -48,6 +50,14 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.ContextMenu
                     GetTree().SetInputAsHandled();
                 }
                 else if (key.IsActionPressed("Inventory"))
+                {
+                    HideMenu();
+                }
+            }
+            
+            if (@event is InputEventMouseButton mb && mb.Pressed)
+            {
+                if (!buttonContainer.GetRect().HasPoint(mb.Position))
                 {
                     HideMenu();
                 }

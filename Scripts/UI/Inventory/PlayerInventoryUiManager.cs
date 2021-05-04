@@ -14,7 +14,6 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
         [Export] private NodePath equipmentSlotsManagerPath;
         [Export] private NodePath backPackSlotManagerPath;
         [Export] private NodePath inventoryDragControllerPath;
-        [Export] private NodePath contextMenuControllerPath;
 
         [Export] private PackedScene itemInventoryTilePrefab;
 
@@ -32,7 +31,6 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             equipmentSlotsManager = GetNode<EquipmentSlotsManager>(equipmentSlotsManagerPath);
             backPackSlotManager = GetNode<BackPackSlotManager>(backPackSlotManagerPath);
             inventoryDragController = GetNode<InventoryDragController>(inventoryDragControllerPath);
-            contextMenuController = GetNode<ContextMenuController>(contextMenuControllerPath);
             
             // Inject Dependencies
             // equipmentSlotsManager.Init();
@@ -46,9 +44,10 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             equipmentSlotsManager.OnShowContextMenu += HandleOnShowContextMenu;
         }
 
-        public void Init(InventoryController inventoryController)
+        public void Init(InventoryController inventoryController, ContextMenuController contextMenuController)
         {
             this.inventoryController = inventoryController;
+            this.contextMenuController = contextMenuController;
         }
 
         public void AddItemToUi(Item item)

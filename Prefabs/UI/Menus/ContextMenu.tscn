@@ -30,6 +30,7 @@ dropButtonPath = NodePath("ButtonContainer/DropButton")
 material = SubResource( 1 )
 margin_right = 160.0
 margin_bottom = 144.0
+mouse_filter = 2
 color = Color( 0, 0, 0, 0.498039 )
 script = ExtResource( 4 )
 __meta__ = {

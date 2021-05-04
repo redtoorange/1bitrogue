@@ -38,7 +38,6 @@ __meta__ = {
 equipmentSlotsManagerPath = NodePath("EquipmentSlotsManager")
 backPackSlotManagerPath = NodePath("BackPackSlotsManager")
 inventoryDragControllerPath = NodePath("_InventoryDragController")
-contextMenuControllerPath = NodePath("ContextMenu")
 itemInventoryTilePrefab = ExtResource( 10 )
 
 [node name="ScreenDimBackground" type="TextureRect" parent="."]

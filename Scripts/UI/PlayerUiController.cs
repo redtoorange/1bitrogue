@@ -1,6 +1,7 @@
 using GameboyRoguelike.Scripts.Characters.Player;
 using GameboyRoguelike.Scripts.Managers;
 using GameboyRoguelike.Scripts.UI.Inventory;
+using GameboyRoguelike.Scripts.UI.Inventory.ContextMenu;
 using Godot;
 
 namespace GameboyRoguelike.Scripts.UI
@@ -19,10 +20,12 @@ namespace GameboyRoguelike.Scripts.UI
         [Export] private NodePath playerHudPath;
         [Export] private NodePath playerInventoryUiPath;
         [Export] private NodePath pauseMenuPath;
+        [Export] private NodePath contextMenuPath;
 
         private PlayerResourceDisplayController playerResourceDisplayController;
         private PlayerInventoryUiManager playerInventoryUiController;
         private PauseMenuController pauseMenu;
+        private ContextMenuController contextMenu;
 
         private PlayerUiState currentState = PlayerUiState.GAME;
 
@@ -33,6 +36,7 @@ namespace GameboyRoguelike.Scripts.UI
             playerResourceDisplayController = GetNode<PlayerResourceDisplayController>(playerHudPath);
             playerInventoryUiController = GetNode<PlayerInventoryUiManager>(playerInventoryUiPath);
             pauseMenu = GetNode<PauseMenuController>(pauseMenuPath);
+            contextMenu = GetNode<ContextMenuController>(contextMenuPath);
 
             pauseMenu.OnMenuClosed += HandleOnMenuClicked;
         }
@@ -44,7 +48,8 @@ namespace GameboyRoguelike.Scripts.UI
                 player.GetManaController()
             );
             playerInventoryUiController.Init(
-                player.GetInventoryController()
+                player.GetInventoryController(),
+                contextMenu
             );
         }
 
