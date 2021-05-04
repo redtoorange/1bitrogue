@@ -26,6 +26,7 @@ offset = Vector2( 8, 8 )
 current = true
 process_mode = 0
 smoothing_enabled = true
+smoothing_speed = 2.5
 editor_draw_screen = false
 
 [node name="RayCaster" parent="." index="2"]
@@ -56,5 +57,6 @@ visible = false
 [node name="Weapon" parent="Controllers/InventoryController" index="2" instance=ExtResource( 9 )]
 visible = false
 
-[node name="GroundItemController" type="Node" parent="Controllers" index="8"]
+[node name="GroundItemController" type="Node2D" parent="Controllers" index="8"]
+position = Vector2( 8, 8 )
 script = ExtResource( 7 )

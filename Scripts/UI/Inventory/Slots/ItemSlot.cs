@@ -32,6 +32,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
         public static Action<DragStartPayload> OnDragStarted;
         public static Action<DragStopPayload> OnDragEnded;
 
+        public Action<ItemInventoryTile> OnDropItemOnGround;
 
         protected ItemInventoryTile currentTile = null;
 
@@ -118,8 +119,15 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
                 DragStopPayload payload = new DragStopPayload(this);
                 OnDragEnded?.Invoke(payload);
             }
+            if (mb.IsActionPressed("RightClick") && currentTile != null)
+            {
+                HandleOnDropItemOnGround();
+            }
         }
 
+        /// <summary>
+        /// Add an item to a tile.  This should be used as a hook for equipment to equip
+        /// </summary>
         public virtual void AddItemTile(ItemInventoryTile tile)
         {
             tile.SetSlot(this);
@@ -128,13 +136,27 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
             AddChild(tile);
         }
 
+        /// <summary>
+        /// Remove an item from a tile.  This should be used as a hook for equipment to unequip
+        /// </summary>
         public virtual void RemoveItemTile(ItemInventoryTile tile)
         {
             RemoveChild(tile);
             currentTile = null;
         }
 
+        /// <summary>
+        /// Just process and forward the event.  Equipment tiles should override this to handle unequipping
+        /// </summary>
+        public virtual void HandleOnDropItemOnGround()
+        {
+            ItemInventoryTile tempTile = currentTile;
+            RemoveItemTile(tempTile);
+            OnDropItemOnGround?.Invoke(tempTile);
+        }
+
         public bool IsOccupied() => currentTile != null;
+        
         public ItemInventoryTile GetItemTile() => currentTile;
     }
 }

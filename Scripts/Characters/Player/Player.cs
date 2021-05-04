@@ -1,6 +1,7 @@
 using System;
 using GameboyRoguelike.Scripts.Characters.Controllers;
 using GameboyRoguelike.Scripts.UI;
+using Godot;
 
 namespace GameboyRoguelike.Scripts.Characters.Player
 {
@@ -24,6 +25,7 @@ namespace GameboyRoguelike.Scripts.Characters.Player
         public HealthController GetHealthController() => healthController;
         public ManaController GetManaController() => manaController;
         public GroundItemController GetGroundItemController() => groundItemController;
+        public InventoryController GetInventoryController() => inventoryController;
 
         public override void _Ready()
         {
@@ -53,6 +55,7 @@ namespace GameboyRoguelike.Scripts.Characters.Player
                 playerUiController.GetPlayerInventoryUiController()
             );
             groundItemController.Init(
+                this,
                 inventoryController
             );
         }

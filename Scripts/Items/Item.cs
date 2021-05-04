@@ -59,12 +59,14 @@ namespace GameboyRoguelike.Scripts.Items
             ItemManager.S.RemoveChild(this);
         }
 
-        public void OnDropped()
+        public void OnDropped(Vector2 dropLocation)
         {
             ItemManager.S.AddChild(this);
-                
+            GlobalPosition = dropLocation;
+            
             SetSpriteEnabled(true);
-            SetCollisionEnabled(false);
+            SetCollisionEnabled(true);
+            Visible = true;
         }
     }
 }

@@ -38,8 +38,13 @@ namespace GameboyRoguelike.Scripts.UI
 
         public void Init(Player player)
         {
-            playerResourceDisplayController.Init(player);
-            playerInventoryUiController.Init(player);
+            playerResourceDisplayController.Init(
+                player.GetHealthController(),
+                player.GetManaController()
+            );
+            playerInventoryUiController.Init(
+                player.GetInventoryController()
+            );
         }
 
         public override void _Process(float delta)

@@ -1,3 +1,4 @@
+using GameboyRoguelike.Scripts.Characters.Controllers;
 using GameboyRoguelike.Scripts.Characters.Player;
 using GameboyRoguelike.Scripts.Items;
 using Godot;
@@ -14,10 +15,13 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
 
         [Export] private PackedScene itemInventoryTilePrefab;
 
-        private Player player;
+        // Children
         private EquipmentSlotsManager equipmentSlotsManager;
         private BackPackSlotManager backPackSlotManager;
         private InventoryDragController inventoryDragController;
+        
+        // Injected
+        private InventoryController inventoryController;
 
         public override void _Ready()
         {
@@ -26,14 +30,16 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             inventoryDragController = GetNode<InventoryDragController>(inventoryDragControllerPath);
 
             // Inject Dependencies
-            equipmentSlotsManager.Init();
-            backPackSlotManager.Init();
+            // equipmentSlotsManager.Init();
+            // backPackSlotManager.Init();
             inventoryDragController.Init(equipmentSlotsManager, backPackSlotManager);
+
+            backPackSlotManager.OnDropItemOnGround += HandleOnDropItem;
         }
 
-        public void Init(Player player)
+        public void Init(InventoryController inventoryController)
         {
-            this.player = player;
+            this.inventoryController = inventoryController;
         }
 
         public void AddItemToUi(Item item)
@@ -42,6 +48,13 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             tile.Init(item);
             
             backPackSlotManager.AddItemTileToBackpack(tile);
+        }
+
+        public void HandleOnDropItem(ItemInventoryTile tile)
+        {
+            Item droppedItem = tile.GetParentItem();
+            inventoryController.RemoveItem(droppedItem);
+            tile.QueueFree();
         }
     }
 }

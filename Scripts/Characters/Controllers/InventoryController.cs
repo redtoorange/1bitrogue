@@ -73,6 +73,7 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
             {
                 managedItems.Remove(itemToRemove);
                 RemoveChild(itemToRemove);
+                groundItemController.DropItemOnGround(itemToRemove);
             }
         }
 

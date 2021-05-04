@@ -129,7 +129,6 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
 
             currentStartPayload = null;
             DestroyPreview();
-            GD.Print($"Drag Ended on {payload.destinationSlot.Name}");
         }
 
         private bool IsDragging() => currentStartPayload != null;

@@ -1,3 +1,4 @@
+using System;
 using GameboyRoguelike.Scripts.UI.Inventory.Slots;
 using Godot;
 
@@ -5,6 +6,8 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
 {
     public class BackPackSlotManager : PanelContainer
     {
+        public Action<ItemInventoryTile> OnDropItemOnGround;
+        
         private BackPackSlot[,] backPackSlots;
 
         public override void _Ready()
@@ -14,10 +17,6 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             RegisterSlots();
         }
 
-        public void Init()
-        {
-        }
-        
         /// <summary>
         /// Scan and register all inventory slots
         /// </summary>
@@ -29,6 +28,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
                 {
                     BackPackSlot slot = GetNode<BackPackSlot>($"Container/Rows/{row}/{col}");
                     slot.Init(row, col);
+                    slot.OnDropItemOnGround += HandleOnDropItemOnGround;
                     backPackSlots[row, col] = slot;
                 }
             }
@@ -45,6 +45,11 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             return true;
         }
 
+        public void RemoveItemTileFromBackpack(ItemInventoryTile itemTile)
+        {
+            
+        }
+
         /// <summary>
         /// Does the backpack have any empty slots?
         /// </summary>
@@ -53,8 +58,6 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
         {
             return GetEmptySlot() != null;
         }
-
-        
 
         /// <summary>
         /// Get the first empty slot in the backpack
@@ -73,6 +76,15 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             }
 
             return null;
+        }
+        
+        /// <summary>
+        /// Forward event, override to do something specific.
+        /// </summary>
+        /// <param name="tile"></param>
+        public virtual void HandleOnDropItemOnGround(ItemInventoryTile tile)
+        {
+            OnDropItemOnGround?.Invoke(tile);
         }
     }
 }

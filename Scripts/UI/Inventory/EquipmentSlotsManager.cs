@@ -47,10 +47,5 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             necklaceSlot = GetNode<TrinketSlot>(necklaceSlotPath);
             rightRingSlot = GetNode<TrinketSlot>(rightRingSlotPath);
         }
-
-        public void Init()
-        {
-            
-        }
     }
 }

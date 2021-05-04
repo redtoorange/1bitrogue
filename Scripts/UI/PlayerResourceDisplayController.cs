@@ -1,3 +1,4 @@
+using GameboyRoguelike.Scripts.Characters.Controllers;
 using GameboyRoguelike.Scripts.Characters.Player;
 using Godot;
 
@@ -17,10 +18,10 @@ namespace GameboyRoguelike.Scripts.UI
             manaBar = GetNode<ResourceBar>(manaBarPath);
         }
 
-        public void Init(Player player)
+        public void Init(HealthController healthController, ManaController manaController)
         {
-            healthBar.Init(player.GetHealthController());
-            manaBar.Init(player.GetManaController());
+            healthBar.Init(healthController);
+            manaBar.Init(manaController);
         }
     }
 }

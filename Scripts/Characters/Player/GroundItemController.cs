@@ -5,11 +5,13 @@ using Godot;
 
 namespace GameboyRoguelike.Scripts.Characters.Player
 {
-    public class GroundItemController : Node
+    public class GroundItemController : Node2D
     {
         private List<Item> itemsInSpace;
+        
         private InventoryController inventoryController;
-
+        private Player player;
+        
         public override void _Ready()
         {
             itemsInSpace = new List<Item>();
@@ -23,28 +25,25 @@ namespace GameboyRoguelike.Scripts.Characters.Player
             }
         }
 
-        public void Init(InventoryController inventoryController)
+        public void Init(Player player, InventoryController inventoryController)
         {
+            this.player = player;
             this.inventoryController = inventoryController;
         }
 
 
         public void AddItem(Item item)
         {
-            GD.Print("Attempting to add " + item.Name + " to itemsInSpace");
             if (!itemsInSpace.Contains(item))
             {
-                GD.Print("Added " + item.Name + " to itemsInSpace");
                 itemsInSpace.Add(item);
             }
         }
 
         public void RemoveItem(Item item)
         {
-            GD.Print("Attempting to remove " + item.Name + " from itemsInSpace");
             if (itemsInSpace.Contains(item))
             {
-                GD.Print("Removed " + item.Name + " from itemsInSpace");
                 itemsInSpace.Remove(item);
             }
         }
@@ -61,6 +60,11 @@ namespace GameboyRoguelike.Scripts.Characters.Player
                     inventoryController.AddItem(item);
                 }
             }
+        }
+        
+        public void DropItemOnGround(Item item)
+        {
+            item.OnDropped(player.Position);
         }
     }
 }
