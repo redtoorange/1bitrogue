@@ -1,5 +1,6 @@
 using GameboyRoguelike.Scripts.Characters.Player;
 using GameboyRoguelike.Scripts.Managers;
+using GameboyRoguelike.Scripts.Map.Objects;
 using GameboyRoguelike.Scripts.UI.Inventory;
 using GameboyRoguelike.Scripts.UI.Inventory.ContextMenu;
 using Godot;
@@ -11,6 +12,7 @@ namespace GameboyRoguelike.Scripts.UI
         GAME,
         INVENTORY,
         INVENTORY_CONTEXT_MENU,
+        INVENTORY_CHEST,
         MENU,
         CHEST
     }
@@ -38,7 +40,17 @@ namespace GameboyRoguelike.Scripts.UI
             pauseMenu = GetNode<PauseMenuController>(pauseMenuPath);
             contextMenu = GetNode<ContextMenuController>(contextMenuPath);
 
-            pauseMenu.OnMenuClosed += HandleOnMenuClicked;
+            pauseMenu.OnMenuClosed += HandleOnChestClosed;
+        }
+
+        public override void _EnterTree()
+        {
+            LootChest.OnChestOpened += HandleOnChestOpened;
+        }
+
+        public override void _ExitTree()
+        {
+            LootChest.OnChestOpened -= HandleOnChestOpened;
         }
 
         public void Init(Player player)
@@ -57,47 +69,93 @@ namespace GameboyRoguelike.Scripts.UI
         {
             if (@event.IsActionPressed("Inventory"))
             {
-                switch (currentState)
-                {
-                    case PlayerUiState.GAME:
-                        currentState = PlayerUiState.INVENTORY;
-                        playerInventoryUiController.Show();
-                        GameRoundManager.S.SetGamePaused(true);
-                        break;
-                    case PlayerUiState.INVENTORY:
-                        currentState = PlayerUiState.GAME;
-                        playerInventoryUiController.Hide();
-                        GameRoundManager.S.SetGamePaused(false);
-                        break;
-                }
+                HandleInventory();
             }
             else if (@event.IsActionPressed("Back"))
             {
-                switch (currentState)
-                {
-                    case PlayerUiState.GAME:
-                        currentState = PlayerUiState.MENU;
-                        pauseMenu.Show();
-                        GameRoundManager.S.SetGamePaused(true);
-                        break;
-                    case PlayerUiState.MENU:
-                        currentState = PlayerUiState.GAME;
-                        pauseMenu.Hide();
-                        GameRoundManager.S.SetGamePaused(false);
-                        break;
-                    case PlayerUiState.INVENTORY:
-                        currentState = PlayerUiState.GAME;
-                        playerInventoryUiController.Hide();
-                        GameRoundManager.S.SetGamePaused(false);
-                        break;
-                }
+                HandleBack();
             }
         }
 
-        private void HandleOnMenuClicked()
+        private void HandleBack()
+        {
+            switch (currentState)
+            {
+                case PlayerUiState.GAME:
+                    HandleOnMenuOpened();
+                    break;
+                case PlayerUiState.MENU:
+                    HandleOnMenuClosed();
+                    break;
+                case PlayerUiState.INVENTORY:
+                    HandleOnInventoryClosed();
+                    break;
+                case PlayerUiState.INVENTORY_CHEST:
+                    HandleOnChestClosed();
+                    break;
+            }
+        }
+
+        private void HandleInventory()
+        {
+            switch (currentState)
+            {
+                case PlayerUiState.GAME:
+                    HandleOnInventoryOpened();
+                    break;
+                case PlayerUiState.INVENTORY:
+                    HandleOnInventoryClosed();
+                    break;
+                case PlayerUiState.INVENTORY_CHEST:
+                    HandleOnChestClosed();
+                    HandleOnInventoryOpened();
+                    break;
+            }
+        }
+
+        private void HandleOnMenuOpened()
+        {
+            currentState = PlayerUiState.MENU;
+            pauseMenu.Show();
+            GameRoundManager.S.SetGamePaused(true);
+        }
+
+        private void HandleOnMenuClosed()
         {
             currentState = PlayerUiState.GAME;
             pauseMenu.Hide();
+            GameRoundManager.S.SetGamePaused(false);
+        }
+
+        private void HandleOnInventoryClosed()
+        {
+            currentState = PlayerUiState.GAME;
+            playerInventoryUiController.Hide();
+            GameRoundManager.S.SetGamePaused(false);
+        }
+        private void HandleOnInventoryOpened()
+        {
+            currentState = PlayerUiState.INVENTORY;
+            playerInventoryUiController.Show();
+            GameRoundManager.S.SetGamePaused(true);
+        }
+        
+        private void HandleOnChestOpened(LootChest chest)
+        {
+            GameRoundManager.S.SetGamePaused(true);
+            currentState = PlayerUiState.INVENTORY_CHEST;
+            
+            playerInventoryUiController.OpenChest(chest);
+            playerInventoryUiController.Show();
+        }
+        
+        private void HandleOnChestClosed()
+        {
+            playerInventoryUiController.Hide();
+            playerInventoryUiController.CloseChest();
+            
+            currentState = PlayerUiState.GAME;
+            GameRoundManager.S.SetGamePaused(false);
         }
     }
 }

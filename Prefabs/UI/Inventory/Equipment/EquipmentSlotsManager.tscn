@@ -1,0 +1,130 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Prefabs/UI/Inventory/Equipment/Armor/HandSlot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/UI/Inventory/Equipment/Armor/_ArmorSlot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/UI/Inventory/Equipment/Armor/LegSlot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/UI/Inventory/Equipment/Weapons/MainHandSlot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Prefabs/UI/Inventory/Equipment/Armor/ChestSlot.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Prefabs/UI/Inventory/Equipment/Weapons/OffHandSlot.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Sprites/Box.png" type="Texture" id=7]
+[ext_resource path="res://Prefabs/UI/Inventory/Equipment/Trinkets/RingSlot.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Prefabs/UI/Inventory/Equipment/Trinkets/Necklace.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/UI/Inventory/Slots/WeaponSlot.cs" type="Script" id=10]
+[ext_resource path="res://Scripts/UI/Inventory/Slots/ArmorSlot.cs" type="Script" id=11]
+[ext_resource path="res://Scripts/UI/Inventory/EquipmentSlotsManager.cs" type="Script" id=12]
+[ext_resource path="res://Scripts/UI/Inventory/Slots/TrinketSlot.cs" type="Script" id=13]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 16, 16 )
+margin_left = 2.0
+margin_right = 2.0
+margin_top = 2.0
+margin_bottom = 2.0
+
+[node name="EquipmentSlotsManager" type="PanelContainer"]
+margin_left = 8.0
+margin_top = 30.0
+margin_right = 72.0
+margin_bottom = 114.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+headSlotPath = NodePath("Slots/HeadSlot")
+chestSlotPath = NodePath("Slots/ChestSlot")
+legsSlotPath = NodePath("Slots/LegsSlot")
+handsSlotPath = NodePath("Slots/HandSlot")
+mainHandSlotPath = NodePath("Slots/MainHandSlot")
+offHandSlotPath = NodePath("Slots/OffHandSlot")
+leftRingSlotPath = NodePath("Slots/LeftRingSlot")
+necklaceSlotPath = NodePath("Slots/Necklace")
+rightRingSlotPath = NodePath("Slots/RightRingSlot")
+
+[node name="Slots" type="Control" parent="."]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 62.0
+margin_bottom = 82.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeadSlot" type="Control" parent="Slots" instance=ExtResource( 2 )]
+margin_left = 22.0
+margin_top = 2.0
+margin_right = 38.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 16, 16 )
+script = ExtResource( 11 )
+
+[node name="OffHandSlot" type="Control" parent="Slots" instance=ExtResource( 6 )]
+margin_left = 2.0
+margin_top = 22.0
+margin_right = 18.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 16, 16 )
+script = ExtResource( 10 )
+weaponSlotType = 1
+
+[node name="ChestSlot" type="Control" parent="Slots" instance=ExtResource( 5 )]
+margin_left = 22.0
+margin_top = 22.0
+margin_right = 38.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 16, 16 )
+script = ExtResource( 11 )
+armorSlotType = 1
+
+[node name="MainHandSlot" type="Control" parent="Slots" instance=ExtResource( 4 )]
+margin_left = 42.0
+margin_top = 22.0
+margin_right = 58.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 16, 16 )
+script = ExtResource( 10 )
+
+[node name="LegsSlot" type="Control" parent="Slots" instance=ExtResource( 3 )]
+margin_left = 22.0
+margin_top = 42.0
+margin_right = 38.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 16, 16 )
+script = ExtResource( 11 )
+armorSlotType = 3
+
+[node name="HandSlot" type="Control" parent="Slots" instance=ExtResource( 1 )]
+margin_left = 42.0
+margin_top = 42.0
+margin_right = 58.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 16, 16 )
+script = ExtResource( 11 )
+armorSlotType = 2
+
+[node name="LeftRingSlot" type="Control" parent="Slots" instance=ExtResource( 8 )]
+margin_left = 2.0
+margin_top = 62.0
+margin_right = 18.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 16, 16 )
+script = ExtResource( 13 )
+
+[node name="Necklace" type="Control" parent="Slots" instance=ExtResource( 9 )]
+margin_left = 22.0
+margin_top = 62.0
+margin_right = 38.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 16, 16 )
+script = ExtResource( 13 )
+trinketSlotType = 2
+
+[node name="RightRingSlot" type="Control" parent="Slots" instance=ExtResource( 8 )]
+margin_left = 42.0
+margin_top = 62.0
+margin_right = 58.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 16, 16 )
+script = ExtResource( 13 )
+trinketSlotType = 1

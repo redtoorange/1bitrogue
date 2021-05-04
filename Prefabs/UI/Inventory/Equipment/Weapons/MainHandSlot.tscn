@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Prefabs/UI/Inventory/Equipment/Weapons/_WeaponSlot.tscn" type="PackedScene" id=1]
+
+[node name="MainHandSlot" instance=ExtResource( 1 )]

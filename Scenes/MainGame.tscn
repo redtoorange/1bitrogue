@@ -69,7 +69,7 @@ position = Vector2( 64, 48 )
 characterSprite = SubResource( 1 )
 
 [node name="NPC2" parent="CharacterController/NPCManager" instance=ExtResource( 5 )]
-position = Vector2( 144, 128 )
+position = Vector2( 112, 128 )
 characterSprite = SubResource( 2 )
 
 [node name="NPC3" parent="CharacterController/NPCManager" instance=ExtResource( 5 )]

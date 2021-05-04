@@ -1,29 +1,12 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Prefabs/UI/Inventory/Weapons/MainHandSlot.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Prefabs/UI/Inventory/Armor/LegSlot.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Prefabs/UI/Inventory/Armor/ChestSlot.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Prefabs/UI/Inventory/Weapons/OffHandSlot.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Prefabs/UI/Inventory/Armor/_ArmorSlot.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Sprites/Box.png" type="Texture" id=6]
-[ext_resource path="res://Prefabs/UI/Inventory/EmptySlot.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Prefabs/UI/Inventory/Equipment/EquipmentSlotsManager.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/UI/Inventory/BackPack/BackPackSlotsManager.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sprites/BlackSquare.png" type="Texture" id=8]
-[ext_resource path="res://Scripts/UI/Inventory/BackPackSlotManager.cs" type="Script" id=9]
 [ext_resource path="res://Prefabs/UI/Inventory/ItemInventoryTile.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scripts/UI/Inventory/EquipmentSlotsManager.cs" type="Script" id=11]
 [ext_resource path="res://Scripts/UI/Inventory/PlayerInventoryUiManager.cs" type="Script" id=12]
 [ext_resource path="res://Scripts/UI/Inventory/InventoryDragController.cs" type="Script" id=13]
-[ext_resource path="res://Prefabs/UI/Inventory/Armor/HandSlot.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Prefabs/UI/Inventory/Trinkets/Necklace.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Prefabs/UI/Inventory/Trinkets/RingSlot.tscn" type="PackedScene" id=17]
-
-[sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 6 )
-region_rect = Rect2( 0, 0, 16, 16 )
-margin_left = 2.0
-margin_right = 2.0
-margin_top = 2.0
-margin_bottom = 2.0
+[ext_resource path="res://Prefabs/UI/Inventory/LootChest/LootChestMenu.tscn" type="PackedScene" id=15]
 
 [node name="PlayerInventoryUiManager" type="Control"]
 anchor_right = 1.0
@@ -32,11 +15,14 @@ rect_pivot_offset = Vector2( -26, 9 )
 mouse_filter = 1
 script = ExtResource( 12 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_horizontal_guides_": [ 72.0 ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 80.0, 120.0, 40.0 ]
 }
 equipmentSlotsManagerPath = NodePath("EquipmentSlotsManager")
 backPackSlotManagerPath = NodePath("BackPackSlotsManager")
-inventoryDragControllerPath = NodePath("_InventoryDragController")
+inventoryDragControllerPath = NodePath("InventoryDragController")
+chestMenuControllerPath = NodePath("LootChestMenu")
 itemInventoryTilePrefab = ExtResource( 10 )
 
 [node name="ScreenDimBackground" type="TextureRect" parent="."]
@@ -50,260 +36,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EquipmentSlotsManager" type="PanelContainer" parent="."]
-margin_left = 8.0
-margin_top = 32.0
-margin_right = 72.0
-margin_bottom = 116.0
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-headSlotPath = NodePath("Slots/HeadSlot")
-chestSlotPath = NodePath("Slots/ChestSlot")
-legsSlotPath = NodePath("Slots/LegsSlot")
-handsSlotPath = NodePath("Slots/HandSlot")
-mainHandSlotPath = NodePath("Slots/MainHandSlot")
-offHandSlotPath = NodePath("Slots/OffHandSlot")
-leftRingSlotPath = NodePath("Slots/LeftRingSlot")
-necklaceSlotPath = NodePath("Slots/Necklace")
-rightRingSlotPath = NodePath("Slots/RightRingSlot")
+[node name="EquipmentSlotsManager" parent="." instance=ExtResource( 1 )]
+visible = false
 
-[node name="Slots" type="Control" parent="EquipmentSlotsManager"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 62.0
-margin_bottom = 82.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="LootChestMenu" parent="." instance=ExtResource( 15 )]
 
-[node name="HeadSlot" parent="EquipmentSlotsManager/Slots" instance=ExtResource( 5 )]
-margin_left = 22.0
-margin_top = 2.0
-margin_right = 38.0
-margin_bottom = 18.0
+[node name="BackPackSlotsManager" parent="." instance=ExtResource( 2 )]
 
-[node name="OffHandSlot" parent="EquipmentSlotsManager/Slots" instance=ExtResource( 4 )]
-margin_left = 2.0
-margin_top = 22.0
-margin_right = 18.0
-margin_bottom = 38.0
-
-[node name="ChestSlot" parent="EquipmentSlotsManager/Slots" instance=ExtResource( 3 )]
-margin_left = 22.0
-margin_top = 22.0
-margin_right = 38.0
-margin_bottom = 38.0
-
-[node name="MainHandSlot" parent="EquipmentSlotsManager/Slots" instance=ExtResource( 1 )]
-margin_left = 42.0
-margin_top = 22.0
-margin_right = 58.0
-margin_bottom = 38.0
-
-[node name="LegsSlot" parent="EquipmentSlotsManager/Slots" instance=ExtResource( 2 )]
-margin_left = 22.0
-margin_top = 42.0
-margin_right = 38.0
-margin_bottom = 58.0
-
-[node name="HandSlot" parent="EquipmentSlotsManager/Slots" instance=ExtResource( 14 )]
-margin_left = 42.0
-margin_top = 42.0
-margin_right = 58.0
-margin_bottom = 58.0
-
-[node name="LeftRingSlot" parent="EquipmentSlotsManager/Slots" instance=ExtResource( 17 )]
-margin_left = 2.0
-margin_top = 62.0
-margin_right = 18.0
-margin_bottom = 78.0
-
-[node name="Necklace" parent="EquipmentSlotsManager/Slots" instance=ExtResource( 16 )]
-margin_left = 22.0
-margin_top = 62.0
-margin_right = 38.0
-margin_bottom = 78.0
-
-[node name="RightRingSlot" parent="EquipmentSlotsManager/Slots" instance=ExtResource( 17 )]
-margin_left = 42.0
-margin_top = 62.0
-margin_right = 58.0
-margin_bottom = 78.0
-trinketSlotType = 1
-
-[node name="BackPackSlotsManager" type="PanelContainer" parent="."]
-margin_left = 80.0
-margin_top = 40.0
-margin_right = 152.0
-margin_bottom = 112.0
-mouse_filter = 1
-custom_styles/panel = SubResource( 1 )
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Container" type="MarginContainer" parent="BackPackSlotsManager"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 70.0
-margin_bottom = 70.0
-mouse_filter = 1
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/margin_right = 1
-custom_constants/margin_top = 2
-custom_constants/margin_left = 2
-custom_constants/margin_bottom = 1
-
-[node name="Rows" type="VBoxContainer" parent="BackPackSlotsManager/Container"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 67.0
-margin_bottom = 67.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 0
-alignment = 1
-
-[node name="0" type="HBoxContainer" parent="BackPackSlotsManager/Container/Rows"]
-margin_right = 65.0
-margin_bottom = 16.0
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 0
-alignment = 1
-
-[node name="0" parent="BackPackSlotsManager/Container/Rows/0" instance=ExtResource( 7 )]
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 16.0
-margin_bottom = 16.0
-
-[node name="1" parent="BackPackSlotsManager/Container/Rows/0" instance=ExtResource( 7 )]
-margin_left = 16.0
-margin_top = 0.0
-margin_right = 32.0
-margin_bottom = 16.0
-
-[node name="2" parent="BackPackSlotsManager/Container/Rows/0" instance=ExtResource( 7 )]
-margin_left = 32.0
-margin_top = 0.0
-margin_right = 48.0
-margin_bottom = 16.0
-
-[node name="3" parent="BackPackSlotsManager/Container/Rows/0" instance=ExtResource( 7 )]
-margin_left = 48.0
-margin_top = 0.0
-margin_right = 65.0
-margin_bottom = 16.0
-
-[node name="1" type="HBoxContainer" parent="BackPackSlotsManager/Container/Rows"]
-margin_top = 16.0
-margin_right = 65.0
-margin_bottom = 32.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 0
-alignment = 1
-
-[node name="0" parent="BackPackSlotsManager/Container/Rows/1" instance=ExtResource( 7 )]
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 16.0
-margin_bottom = 16.0
-
-[node name="1" parent="BackPackSlotsManager/Container/Rows/1" instance=ExtResource( 7 )]
-margin_left = 16.0
-margin_top = 0.0
-margin_right = 32.0
-margin_bottom = 16.0
-
-[node name="2" parent="BackPackSlotsManager/Container/Rows/1" instance=ExtResource( 7 )]
-margin_left = 32.0
-margin_top = 0.0
-margin_right = 48.0
-margin_bottom = 16.0
-
-[node name="3" parent="BackPackSlotsManager/Container/Rows/1" instance=ExtResource( 7 )]
-margin_left = 48.0
-margin_top = 0.0
-margin_right = 65.0
-margin_bottom = 16.0
-
-[node name="2" type="HBoxContainer" parent="BackPackSlotsManager/Container/Rows"]
-margin_top = 32.0
-margin_right = 65.0
-margin_bottom = 48.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 0
-alignment = 1
-
-[node name="0" parent="BackPackSlotsManager/Container/Rows/2" instance=ExtResource( 7 )]
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 16.0
-margin_bottom = 16.0
-
-[node name="1" parent="BackPackSlotsManager/Container/Rows/2" instance=ExtResource( 7 )]
-margin_left = 16.0
-margin_top = 0.0
-margin_right = 32.0
-margin_bottom = 16.0
-
-[node name="2" parent="BackPackSlotsManager/Container/Rows/2" instance=ExtResource( 7 )]
-margin_left = 32.0
-margin_top = 0.0
-margin_right = 48.0
-margin_bottom = 16.0
-
-[node name="3" parent="BackPackSlotsManager/Container/Rows/2" instance=ExtResource( 7 )]
-margin_left = 48.0
-margin_top = 0.0
-margin_right = 65.0
-margin_bottom = 16.0
-
-[node name="3" type="HBoxContainer" parent="BackPackSlotsManager/Container/Rows"]
-margin_top = 48.0
-margin_right = 65.0
-margin_bottom = 65.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 0
-alignment = 1
-
-[node name="0" parent="BackPackSlotsManager/Container/Rows/3" instance=ExtResource( 7 )]
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 16.0
-margin_bottom = 17.0
-
-[node name="1" parent="BackPackSlotsManager/Container/Rows/3" instance=ExtResource( 7 )]
-margin_left = 16.0
-margin_top = 0.0
-margin_right = 32.0
-margin_bottom = 17.0
-
-[node name="2" parent="BackPackSlotsManager/Container/Rows/3" instance=ExtResource( 7 )]
-margin_left = 32.0
-margin_top = 0.0
-margin_right = 48.0
-margin_bottom = 17.0
-
-[node name="3" parent="BackPackSlotsManager/Container/Rows/3" instance=ExtResource( 7 )]
-margin_left = 48.0
-margin_top = 0.0
-margin_right = 65.0
-margin_bottom = 17.0
-
-[node name="_InventoryDragController" type="Control" parent="."]
+[node name="InventoryDragController" type="Control" parent="."]
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false

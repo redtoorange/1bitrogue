@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/UI/Inventory/Slots/ArmorSlot.cs" type="Script" id=1]
-[ext_resource path="res://Prefabs/UI/Inventory/ItemSlot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/UI/Inventory/Equipment/ItemSlot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]

@@ -41,21 +41,16 @@ namespace GameboyRoguelike.Scripts.Items
             }
         }
 
-        public void SetCollisionEnabled(bool enabled)
+        public void SetEnabled(bool enabled)
         {
             area2D.Monitoring = enabled;
-        }
-
-        public void SetSpriteEnabled(bool enabled)
-        {
             itemSprite.Visible = enabled;
+            Visible = enabled;
         }
 
         public void OnPickedUp()
         {
-            SetSpriteEnabled(false);
-            SetCollisionEnabled(false);
-                
+            SetEnabled(false);
             ItemManager.S.RemoveChild(this);
         }
 
@@ -63,10 +58,7 @@ namespace GameboyRoguelike.Scripts.Items
         {
             ItemManager.S.AddChild(this);
             GlobalPosition = dropLocation;
-            
-            SetSpriteEnabled(true);
-            SetCollisionEnabled(true);
-            Visible = true;
+            SetEnabled(true);
         }
     }
 }

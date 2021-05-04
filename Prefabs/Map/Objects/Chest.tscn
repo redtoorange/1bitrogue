@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scripts/Map/Objects/BedroomChest.cs" type="Script" id=1]
+[ext_resource path="res://Scripts/Map/Objects/LootChest.cs" type="Script" id=1]
 [ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=2]
 [ext_resource path="res://UI/Fonts/Kenney_Pixel.tres" type="DynamicFont" id=3]
 

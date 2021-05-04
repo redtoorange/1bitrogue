@@ -36,9 +36,9 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
             base.AddItemTile(tile);
         }
 
-        public override void RemoveItemTile(ItemInventoryTile tile)
+        public override void RemoveItemTile()
         {
-            base.RemoveItemTile(tile);
+            base.RemoveItemTile();
         }
     }
 }

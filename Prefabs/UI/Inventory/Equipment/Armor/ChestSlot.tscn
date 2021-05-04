@@ -1,15 +1,15 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Prefabs/UI/Inventory/Armor/_ArmorSlot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/UI/Inventory/Equipment/Armor/_ArmorSlot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
 resource_local_to_scene = true
 atlas = ExtResource( 2 )
-region = Rect2( 656, 0, 16, 16 )
+region = Rect2( 512, 16, 16, 16 )
 
-[node name="HandSlot" instance=ExtResource( 1 )]
-armorSlotType = 2
+[node name="ChestSlot" instance=ExtResource( 1 )]
+armorSlotType = 1
 
 [node name="PlaceholderImage" parent="." index="0"]
 texture = SubResource( 1 )

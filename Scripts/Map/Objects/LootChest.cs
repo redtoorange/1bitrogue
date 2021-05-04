@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using GameboyRoguelike.Scripts.Items;
 using Godot;
 
 namespace GameboyRoguelike.Scripts.Map.Objects
@@ -10,10 +12,9 @@ namespace GameboyRoguelike.Scripts.Map.Objects
         CLOSED
     }
     
-    public class BedroomChest : Node2D, IInteractable
+    public class LootChest : Node2D, IInteractable
     {
-        [Signal] public delegate void OnChestOpenedSignal();
-        public static Action<BedroomChest> OnChestOpened;
+        public static Action<LootChest> OnChestOpened;
         
         [Export] private bool isLocked = false;
         
@@ -27,6 +28,8 @@ namespace GameboyRoguelike.Scripts.Map.Objects
         private Sprite closedSprite;
         private AnimationPlayer animationPlayer;
 
+        private List<Item> containedItems = new List<Item>();
+
         public override void _Ready()
         {
             openedSprite = GetNode<Sprite>(openedSpritePath);
@@ -36,6 +39,20 @@ namespace GameboyRoguelike.Scripts.Map.Objects
             if (isLocked)
             {
                 currentState = ChestState.LOCKED;
+            }
+
+            ScanChildren();
+        }
+
+        private void ScanChildren()
+        {
+            for (int i = 0; i < GetChildCount(); i++)
+            {
+                if (GetChild(i) is Item item)
+                {
+                    containedItems.Add(item);
+                    item.SetEnabled(false);
+                }
             }
         }
 
@@ -52,7 +69,6 @@ namespace GameboyRoguelike.Scripts.Map.Objects
             closedSprite.Visible = false;
             
             OnChestOpened?.Invoke(this);
-            EmitSignal(nameof(OnChestOpenedSignal));
         }
 
         public void Close()
@@ -83,6 +99,17 @@ namespace GameboyRoguelike.Scripts.Map.Objects
         public bool HasKey()
         {
             return false;
+        }
+
+        public List<Item> GetContainedItems() => containedItems;
+
+        public void RemoveItem(Item itemToRemove)
+        {
+            if (containedItems.Contains(itemToRemove))
+            {
+                RemoveChild(itemToRemove);
+                containedItems.Remove(itemToRemove);
+            }
         }
     }
 }

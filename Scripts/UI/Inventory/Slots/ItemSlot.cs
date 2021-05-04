@@ -143,9 +143,9 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
         /// <summary>
         /// Remove an item from a tile.  This should be used as a hook for equipment to unequip
         /// </summary>
-        public virtual void RemoveItemTile(ItemInventoryTile tile)
+        public virtual void RemoveItemTile()
         {
-            RemoveChild(tile);
+            RemoveChild(currentTile);
             currentTile = null;
         }
 
@@ -155,7 +155,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
         public virtual void ContextMenuNotifyDrop()
         {
             ItemInventoryTile tempTile = currentTile;
-            RemoveItemTile(tempTile);
+            RemoveItemTile();
             OnDropItemOnGround?.Invoke(tempTile);
         }
 

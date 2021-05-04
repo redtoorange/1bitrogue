@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Prefabs/UI/Inventory/BackPack/BackPackSlot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/UI/Inventory/Chest/LootChestSlot.cs" type="Script" id=2]
+
+[node name="LootChestSlot" instance=ExtResource( 1 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 16.0
+margin_bottom = 16.0
+script = ExtResource( 2 )

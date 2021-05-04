@@ -128,17 +128,17 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
             {
                 if (destination.IsOccupied())
                 {
-                    origin.RemoveItemTile(tile);
+                    origin.RemoveItemTile();
 
                     ItemInventoryTile tempTile = destination.GetItemTile();
-                    destination.RemoveItemTile(tempTile);
+                    destination.RemoveItemTile();
 
                     origin.AddItemTile(tempTile);
                     destination.DropDnDItem(tile);
                 }
                 else
                 {
-                    origin.RemoveItemTile(tile);
+                    origin.RemoveItemTile();
                     destination.DropDnDItem(tile);
                 }
             }

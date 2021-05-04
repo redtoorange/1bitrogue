@@ -38,8 +38,7 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
                 {
                     managedItems.Add(item);
                     playerInventoryUiManager.AddItemToUi(item);
-                    item.SetCollisionEnabled(false);
-                    item.SetSpriteEnabled(false);
+                    item.SetEnabled(false);
                 }
             }
         }
@@ -49,13 +48,17 @@ namespace GameboyRoguelike.Scripts.Characters.Controllers
         /// </summary>
         /// <param name="itemToAdd"></param>
         /// <returns>true if item was added, false otherwise</returns>
-        public bool AddItem(Item itemToAdd)
+        public bool AddItem(Item itemToAdd, bool addToUi)
         {
             if (!managedItems.Contains(itemToAdd))
             {
                 AddChild(itemToAdd);
                 managedItems.Add(itemToAdd);
-                playerInventoryUiManager.AddItemToUi(itemToAdd);
+                if (addToUi)
+                {
+                    playerInventoryUiManager.AddItemToUi(itemToAdd);
+                }
+
                 return true;
             }
 

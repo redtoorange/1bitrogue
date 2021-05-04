@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=2]
+[gd_resource type="Theme" load_steps=10 format=2]
 
 [ext_resource path="res://UI/Fonts/Kenney_Pixel.tres" type="DynamicFont" id=1]
 [ext_resource path="res://UI/Styles/ButtonStyles/Disabled.tres" type="StyleBox" id=2]
@@ -6,6 +6,16 @@
 [ext_resource path="res://UI/Styles/ButtonStyles/Hovered.tres" type="StyleBox" id=4]
 [ext_resource path="res://UI/Styles/ButtonStyles/Pressed.tres" type="StyleBox" id=5]
 [ext_resource path="res://UI/Styles/PanelStyle.tres" type="StyleBox" id=6]
+[ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=7]
+[ext_resource path="res://UI/Fonts/Kenney_Pixel_12.tres" type="DynamicFont" id=8]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 7 )
+region_rect = Rect2( 625, 241, 14, 14 )
+margin_left = 5.0
+margin_right = 5.0
+margin_top = 2.0
+margin_bottom = 2.0
 
 [resource]
 default_font = ExtResource( 1 )
@@ -26,3 +36,9 @@ MarginContainer/constants/margin_right = 0
 MarginContainer/constants/margin_top = 0
 Panel/styles/panel = ExtResource( 6 )
 PanelContainer/styles/panel = ExtResource( 6 )
+TooltipLabel/colors/font_color = Color( 0, 0, 0, 1 )
+TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 0.1 )
+TooltipLabel/constants/shadow_offset_x = 1
+TooltipLabel/constants/shadow_offset_y = 1
+TooltipLabel/fonts/font = ExtResource( 8 )
+TooltipPanel/styles/panel = SubResource( 1 )

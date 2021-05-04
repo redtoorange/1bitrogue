@@ -57,7 +57,7 @@ namespace GameboyRoguelike.Scripts.Characters.Player
                 if (inventoryController.CanPickup(item))
                 {
                     item.OnPickedUp();
-                    inventoryController.AddItem(item);
+                    inventoryController.AddItem(item, true);
                 }
             }
         }

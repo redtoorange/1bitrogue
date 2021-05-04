@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Sprites/TileSheets/1bit/Tiles/1BitTileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://Prefabs/Items/Armor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/Items/Weapon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/Items/Item.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/Map/Objects/Bed.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/Map/Objects/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Prefabs/Map/Objects/Bookcase.tscn" type="PackedScene" id=8]
@@ -63,19 +66,25 @@ collision_mask = 0
 position = Vector2( 40, 88 )
 collision_layer = 8
 collision_mask = 0
-isLocked = true
+
+[node name="Armor" parent="MapObjectController/Chest" instance=ExtResource( 2 )]
+visible = false
 
 [node name="Chest2" parent="MapObjectController" instance=ExtResource( 9 )]
 position = Vector2( 136, 88 )
 collision_layer = 8
 collision_mask = 0
-isLocked = true
+
+[node name="Item" parent="MapObjectController/Chest2" instance=ExtResource( 4 )]
+visible = false
 
 [node name="Chest3" parent="MapObjectController" instance=ExtResource( 9 )]
 position = Vector2( 152, 120 )
 collision_layer = 8
 collision_mask = 0
-isLocked = true
+
+[node name="Weapon" parent="MapObjectController/Chest3" instance=ExtResource( 3 )]
+visible = false
 
 [node name="Bookcase" parent="MapObjectController" instance=ExtResource( 8 )]
 position = Vector2( 24, 40 )
