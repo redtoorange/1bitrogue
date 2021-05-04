@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Prefabs/UI/Inventory/Weapons/MainHandSlot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/UI/Inventory/Armor/LegSlot.tscn" type="PackedScene" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://Scripts/UI/Inventory/PlayerInventoryUiManager.cs" type="Script" id=12]
 [ext_resource path="res://Scripts/UI/Inventory/InventoryDragController.cs" type="Script" id=13]
 [ext_resource path="res://Prefabs/UI/Inventory/Armor/HandSlot.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Prefabs/UI/Menus/ContextMenu.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Prefabs/UI/Inventory/Trinkets/Necklace.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Prefabs/UI/Inventory/Trinkets/RingSlot.tscn" type="PackedScene" id=17]
 
@@ -44,6 +43,7 @@ itemInventoryTilePrefab = ExtResource( 10 )
 modulate = Color( 1, 1, 1, 0.94902 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 texture = ExtResource( 8 )
 expand = true
 __meta__ = {
@@ -308,6 +308,3 @@ script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="ContextMenu" parent="." instance=ExtResource( 15 )]
-visible = false

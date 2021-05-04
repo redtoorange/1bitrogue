@@ -90,10 +90,12 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.ContextMenu
 
         private void SelectButtons()
         {
+            int buttons = 2;
             if (currentItem is IEquipable)
             {
                 equipButton.Visible = true;
                 UpdateEquipText();
+                buttons++;
             }
             else
             {
@@ -104,11 +106,16 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.ContextMenu
             {
                 consumeButton.Visible = true;
                 UpdateConsumeText();
+                buttons++;
             }
             else
             {
                 consumeButton.Visible = false;
             }
+
+            Vector2 size = buttonContainer.RectSize;
+            size.y = buttons * 16;
+            buttonContainer.RectSize = size;
         }
 
         private void UpdateEquipText()

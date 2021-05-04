@@ -72,13 +72,14 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
         {
             if (!IsVisibleInTree()) return;
 
-            if (hovered && @event is InputEventMouseButton mb)
-            {
-                HandleDragging(mb);
-            }
-            else if (@event is InputEventMouseMotion mm)
+            if (@event is InputEventMouseMotion mm)
             {
                 HandleHovering();
+            }
+
+            if (hovered && @event is InputEventMouseButton mb)
+            {
+                HandleClicks(mb);
             }
         }
 
@@ -107,7 +108,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
             }
         }
 
-        private void HandleDragging(InputEventMouseButton mb)
+        private void HandleClicks(InputEventMouseButton mb)
         {
             if (mb.IsActionPressed("LeftClick") && currentTile != null)
             {
@@ -120,8 +121,10 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
                 DragStopPayload payload = new DragStopPayload(this);
                 OnDragEnded?.Invoke(payload);
             }
-            if (mb.IsActionPressed("RightClick") && currentTile != null)
+
+            if (mb.IsActionPressed("RightClick"))
             {
+                GetTree().SetInputAsHandled();
                 OnShowContextMenu?.Invoke(this);
             }
         }
@@ -157,7 +160,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
         }
 
         public bool IsOccupied() => currentTile != null;
-        
+
         public ItemInventoryTile GetItemTile() => currentTile;
     }
 }

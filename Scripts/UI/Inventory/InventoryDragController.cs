@@ -11,6 +11,7 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
         private DragStartPayload currentStartPayload = null;
         private bool canDrop = false;
         private Control preview = null;
+        private ItemSlot hoveredSlot = null;
 
         public void Init(EquipmentSlotsManager equipmentSlotsManager, BackPackSlotManager backPackSlotManager)
         {
@@ -44,6 +45,11 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
 
         private void CreatePreview()
         {
+            if (preview != null)
+            {
+                preview.QueueFree();
+            }
+            
             preview = new Control();
 
             TextureRect image = new TextureRect();
@@ -68,26 +74,40 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
         {
             preview.SetGlobalPosition(GetGlobalMousePosition());
         }
+        
+        public override void _Input(InputEvent @event)
+        {
+            if (IsDragging() && hoveredSlot == null && @event is InputEventMouseButton imb)
+            {
+                if (imb.IsActionReleased("LeftClick"))
+                {
+                    GD.Print("Release Drag");
+                    HandleOnDragEnded(null);
+                }
+            }
+        }
 
         private void HandleOnHoverStarted(ItemSlot slot)
         {
+            GD.Print("HoverStarted on " + slot.Name);
+            hoveredSlot = slot;
+
             if (IsDragging())
             {
                 canDrop = slot.CanDropDnDItem(currentStartPayload.draggedTile);
             }
         }
 
-        public override void _Input(InputEvent @event)
-        {
-            if (IsDragging() && @event is InputEventMouseMotion mm)
-            {
-                // NOP
-            }
-        }
+        
 
         private void HandleOnHoverEnded(ItemSlot slot)
         {
-            // NOP
+            GD.Print("HoverEnded on " + slot.Name);
+            if (slot == hoveredSlot)
+            {
+                GD.Print("Cleared Hovered ");
+                hoveredSlot = null;
+            }
         }
 
         private void HandleOnDragStarted(DragStartPayload payload)
@@ -100,11 +120,11 @@ namespace GameboyRoguelike.Scripts.UI.Inventory
         {
             if (!IsDragging()) return;
 
-            ItemSlot destination = payload.destinationSlot;
             ItemSlot origin = currentStartPayload.originatingSlot;
             ItemInventoryTile tile = currentStartPayload.draggedTile;
+            ItemSlot destination = payload?.destinationSlot;
 
-            if (destination != origin && canDrop)
+            if (payload != null && destination != origin && canDrop)
             {
                 if (destination.IsOccupied())
                 {
