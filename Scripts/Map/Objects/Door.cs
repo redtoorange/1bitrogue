@@ -11,24 +11,27 @@ namespace GameboyRoguelike.Scripts.Map.Objects
 
     public class Door : StaticBody2D, IInteractable
     {
-        [Export]
-        private DoorState currentState = DoorState.CLOSED;
-        [Export]
-        private NodePath animationPlayerPath = null;
-        private AnimationPlayer animationPlayer = null;
+        [Export] private DoorState currentState = DoorState.CLOSED;
 
+        [Export] private NodePath animationPlayerPath = null;
+        [Export] private NodePath lightOccluder2DPath = null;
+        [Export] private NodePath collisionShape2DPath = null;
+        [Export] private NodePath openSpritePath = null;
+        [Export] private NodePath closedSpritePath = null;
+
+        private AnimationPlayer animationPlayer = null;
+        private LightOccluder2D lightOccluder2D = null;
         private CollisionShape2D collisionShape2D = null;
         private Sprite openSprite = null;
         private Sprite closedSprite = null;
 
         public override void _Ready()
         {
-            collisionShape2D = GetNode<CollisionShape2D>("CollisionShape2D");
-
-            openSprite = GetNode<Sprite>("OpenSprite");
-            closedSprite = GetNode<Sprite>("ClosedSprite");
-
             animationPlayer = GetNode<AnimationPlayer>(animationPlayerPath);
+            lightOccluder2D = GetNode<LightOccluder2D>(lightOccluder2DPath);
+            collisionShape2D = GetNode<CollisionShape2D>(collisionShape2DPath);
+            openSprite = GetNode<Sprite>(openSpritePath);
+            closedSprite = GetNode<Sprite>(closedSpritePath);
         }
 
         public void OpenDoor()
@@ -37,6 +40,7 @@ namespace GameboyRoguelike.Scripts.Map.Objects
             collisionShape2D.Disabled = true;
             openSprite.Visible = true;
             closedSprite.Visible = false;
+            lightOccluder2D.Visible = false;
         }
 
         public void CloseDoor()
@@ -45,6 +49,7 @@ namespace GameboyRoguelike.Scripts.Map.Objects
             collisionShape2D.Disabled = false;
             openSprite.Visible = false;
             closedSprite.Visible = true;
+            lightOccluder2D.Visible = true;
         }
 
         public void Interact()

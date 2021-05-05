@@ -1,12 +1,29 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/MainMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MainGame.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Main.cs" type="Script" id=3]
+[ext_resource path="res://UI/Fonts/Kenney_Pixel_12.tres" type="DynamicFont" id=4]
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
 mainMenuPath = NodePath("MainMenu")
 mainGameScene = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -18.0
+margin_right = 7.0
+margin_bottom = 10.0
+rect_rotation = 44.9999
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "DEBUG"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MainMenu" parent="." instance=ExtResource( 1 )]

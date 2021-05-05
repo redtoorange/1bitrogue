@@ -37,9 +37,9 @@ __meta__ = {
 }
 
 [node name="EquipmentSlotsManager" parent="." instance=ExtResource( 1 )]
-visible = false
 
 [node name="LootChestMenu" parent="." instance=ExtResource( 15 )]
+visible = false
 
 [node name="BackPackSlotsManager" parent="." instance=ExtResource( 2 )]
 

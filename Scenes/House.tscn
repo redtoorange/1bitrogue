@@ -1,15 +1,26 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Sprites/TileSheets/1bit/Tiles/1BitTileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Prefabs/Items/Armor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Prefabs/Items/Weapon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/Items/Item.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/WhiteSquare.png" type="Texture" id=5]
 [ext_resource path="res://Prefabs/Map/Objects/Bed.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/Map/Objects/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Prefabs/Map/Objects/Bookcase.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Prefabs/Map/Objects/Chest.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Prefabs/Map/Objects/Lamp.tscn" type="PackedScene" id=10]
 
 [node name="House" type="Node2D"]
+
+[node name="background" type="Sprite" parent="."]
+self_modulate = Color( 0.2, 0.156863, 0.211765, 1 )
+position = Vector2( 116, 112 )
+scale = Vector2( 31.5, 22 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Walls" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -31,7 +42,7 @@ cell_size = Vector2( 16, 16 )
 show_collision = true
 collision_layer = 2
 format = 1
-tile_data = PoolIntArray( 327684, 0, 983044, 327686, 0, 983044, 458753, 0, 524289, 458760, 0, 524304, 524289, 0, 524304, 524290, 0, 524289, 524296, 0, 589840, 589825, 0, 655376, 589826, 0, 524289, 589832, 0, 655377, 655361, 0, 524289, 786436, 0, 65536, 786438, 0, 65536 )
+tile_data = PoolIntArray( 458753, 0, 524289, 458760, 0, 524304, 524289, 0, 524304, 524290, 0, 524289, 524296, 0, 589840, 589825, 0, 655376, 589826, 0, 524289, 589832, 0, 655377, 655361, 0, 524289, 786436, 0, 65536, 786438, 0, 65536 )
 
 [node name="MapObjectController" type="Node2D" parent="."]
 
@@ -95,3 +106,17 @@ collision_mask = 0
 position = Vector2( 152, 40 )
 collision_layer = 8
 collision_mask = 0
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="Lamp" parent="Lights" instance=ExtResource( 10 )]
+position = Vector2( 72, 88 )
+
+[node name="Lamp2" parent="Lights" instance=ExtResource( 10 )]
+position = Vector2( 104, 88 )
+
+[node name="Lamp3" parent="Lights" instance=ExtResource( 10 )]
+position = Vector2( 72, 168 )
+
+[node name="Lamp4" parent="Lights" instance=ExtResource( 10 )]
+position = Vector2( 104, 168 )
