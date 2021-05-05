@@ -4,6 +4,7 @@ using System;
 public class MainMenu : Control
 {
     public Action OnStartClicked;
+    public Action OnSettingsClicked;
     
     [Export] private NodePath startButtonPath;
     [Export] private NodePath settingsButtonPath;
@@ -31,7 +32,7 @@ public class MainMenu : Control
 
     private void OnSettingsPressed()
     {
-        
+        OnSettingsClicked?.Invoke();
     }
 
     private void OnQuitPressed()
