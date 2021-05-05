@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Map/Objects/LootChest.cs" type="Script" id=1]
 [ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=2]
 [ext_resource path="res://UI/Fonts/Kenney_Pixel.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Materials/unlit_material.tres" type="Material" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -97,13 +98,20 @@ texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 144, 96, 16, 16 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/LockedText = SubResource( 2 )
+anims/UnlockedText = SubResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
 [node name="LockedText" type="Label" parent="."]
 visible = false
-modulate = Color( 1, 1, 1, 0 )
+light_mask = 0
+material = ExtResource( 4 )
 margin_left = -24.0
-margin_top = -32.0
+margin_top = -8.0
 margin_right = 27.0
-margin_bottom = -18.0
+margin_bottom = 6.0
 custom_fonts/font = ExtResource( 3 )
 text = "Locked"
 align = 1
@@ -114,6 +122,8 @@ __meta__ = {
 
 [node name="UnlockedText" type="Label" parent="."]
 visible = false
+light_mask = 0
+material = ExtResource( 4 )
 margin_left = -32.0
 margin_top = -8.0
 margin_right = 28.0
@@ -125,7 +135,3 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/LockedText = SubResource( 2 )
-anims/UnlockedText = SubResource( 3 )

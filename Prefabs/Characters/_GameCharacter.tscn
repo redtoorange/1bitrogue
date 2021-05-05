@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Characters/GameCharacter.cs" type="Script" id=2]
 [ext_resource path="res://Scripts/Characters/Controllers/ArmorController.cs" type="Script" id=3]
@@ -87,10 +87,8 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -8 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="OccluderPolygon2D" id=7]
-polygon = PoolVector2Array( 3, 3, 1, 8, 3, 13, 8, 15, 13, 13, 15, 8, 13, 3, 8, 1 )
-
 [node name="GameCharacter" type="KinematicBody2D"]
+light_mask = 4
 collision_layer = 16
 script = ExtResource( 2 )
 __meta__ = {
@@ -138,6 +136,3 @@ script = ExtResource( 3 )
 
 [node name="MovementController" type="Node" parent="Controllers"]
 script = ExtResource( 7 )
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource( 7 )

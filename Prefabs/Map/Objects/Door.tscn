@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Map/Objects/Door.cs" type="Script" id=2]
 [ext_resource path="res://UI/Fonts/Kenney_Pixel.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Materials/unlit_material.tres" type="Material" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -69,9 +70,16 @@ texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 128, 144, 16, 16 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/DoorText = SubResource( 2 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 3 )
+
 [node name="LockedText" type="Label" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0 )
+material = ExtResource( 4 )
 margin_left = -24.0
 margin_top = -32.0
 margin_right = 27.0
@@ -83,9 +91,3 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/DoorText = SubResource( 2 )
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource( 3 )

@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="1BitRoguelike"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/MainGame.tscn"
 boot_splash/image="res://Sprites/noodles.png"
 config/icon="res://Sprites/noodles.png"
 config/windows_native_icon="res://Sprites/icon.ico"
@@ -162,8 +162,5 @@ common/enable_pause_aware_picking=true
 quality/intended_usage/framebuffer_allocation=0
 quality/intended_usage/framebuffer_allocation.mobile=1
 2d/snapping/use_gpu_pixel_snap=true
-quality/shadows/filter_mode=0
 batching/precision/uv_contract=true
-environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"
-quality/dynamic_fonts/use_oversampling=false

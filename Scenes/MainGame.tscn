@@ -40,12 +40,16 @@ script = ExtResource( 14 )
 playerPath = NodePath("CharacterController/Player")
 playerUIController = NodePath("UI/PlayerUIController")
 
+[node name="Shader" type="CanvasModulate" parent="."]
+modulate = Color( 0, 0, 0, 0.901961 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="House" parent="." instance=ExtResource( 6 )]
+
 [node name="GameRoundManager" type="Node" parent="."]
 script = ExtResource( 10 )
 currentTimingState = 1
 playerTurnCooldown = 0.1
-
-[node name="House" parent="." instance=ExtResource( 6 )]
 
 [node name="WorldItemsManager" type="Node2D" parent="."]
 script = ExtResource( 13 )
@@ -65,18 +69,22 @@ position = Vector2( 64, 32 )
 script = ExtResource( 11 )
 
 [node name="NPC" parent="CharacterController/NPCManager" instance=ExtResource( 5 )]
+light_mask = 1
 position = Vector2( 64, 48 )
 characterSprite = SubResource( 1 )
 
 [node name="NPC2" parent="CharacterController/NPCManager" instance=ExtResource( 5 )]
+light_mask = 1
 position = Vector2( 112, 128 )
 characterSprite = SubResource( 2 )
 
 [node name="NPC3" parent="CharacterController/NPCManager" instance=ExtResource( 5 )]
+light_mask = 1
 position = Vector2( 32, 128 )
 characterSprite = SubResource( 3 )
 
 [node name="NPC4" parent="CharacterController/NPCManager" instance=ExtResource( 5 )]
+light_mask = 1
 position = Vector2( 16, 112 )
 characterSprite = SubResource( 4 )
 
@@ -84,15 +92,19 @@ characterSprite = SubResource( 4 )
 script = ExtResource( 12 )
 
 [node name="Goblin" parent="CharacterController/EnemyManager" instance=ExtResource( 8 )]
+light_mask = 1
 position = Vector2( 80, 208 )
 
 [node name="Goblin2" parent="CharacterController/EnemyManager" instance=ExtResource( 8 )]
+light_mask = 1
 position = Vector2( 64, 208 )
 
 [node name="Goblin3" parent="CharacterController/EnemyManager" instance=ExtResource( 8 )]
+light_mask = 1
 position = Vector2( 96, 208 )
 
 [node name="Player" parent="CharacterController" instance=ExtResource( 7 )]
+light_mask = 1
 position = Vector2( 32, 48 )
 
 [node name="UI" type="CanvasLayer" parent="."]
