@@ -1,15 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Sprites/TileSheets/1bit/Tiles/1BitTileSet.tres" type="TileSet" id=1]
-[ext_resource path="res://Prefabs/Items/Armor.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Prefabs/Items/Weapon.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Prefabs/Items/Item.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Prefabs/Items/Equipment/Armor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/Items/Equipment/Weapon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/Items/Consumable/Scroll.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sprites/WhiteSquare.png" type="Texture" id=5]
 [ext_resource path="res://Prefabs/Map/Objects/Bed.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/Map/Objects/Door.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Prefabs/Map/Objects/Bookcase.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Prefabs/Map/Objects/Chest.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Prefabs/Map/Objects/Lamp.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Prefabs/Items/Equipment/Trinket.tscn" type="PackedScene" id=11]
 
 [node name="House" type="Node2D"]
 
@@ -82,17 +83,19 @@ collision_mask = 0
 position = Vector2( 40, 88 )
 collision_layer = 8
 collision_mask = 0
-isLocked = true
 
 [node name="Armor" parent="MapObjectController/Chest" instance=ExtResource( 2 )]
 visible = false
+
+[node name="Trinket" parent="MapObjectController/Chest" instance=ExtResource( 11 )]
+position = Vector2( 112, 32 )
 
 [node name="Chest2" parent="MapObjectController" instance=ExtResource( 9 )]
 position = Vector2( 136, 88 )
 collision_layer = 8
 collision_mask = 0
 
-[node name="Item" parent="MapObjectController/Chest2" instance=ExtResource( 4 )]
+[node name="Scroll" parent="MapObjectController/Chest2" instance=ExtResource( 4 )]
 visible = false
 
 [node name="Chest3" parent="MapObjectController" instance=ExtResource( 9 )]

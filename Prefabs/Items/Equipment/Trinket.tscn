@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Prefabs/Items/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Data/Items/Equipment/Trinkets/TestRing.tres" type="Resource" id=2]
+[ext_resource path="res://Scripts/Items/Equipment/Trinket.cs" type="Script" id=3]
+[ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 4 )
+region = Rect2( 688, 96, 16, 16 )
+
+[node name="Trinket" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+stats = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+texture = SubResource( 1 )

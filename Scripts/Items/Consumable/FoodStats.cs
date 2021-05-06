@@ -1,6 +1,5 @@
-namespace BitRoguelike.Scripts.Items.Consumable
+using BitRoguelike.Scripts.Items;
+
+public class FoodStats : ItemStats
 {
-    public class FoodStats : ItemStats
-    {
-    }
 }
