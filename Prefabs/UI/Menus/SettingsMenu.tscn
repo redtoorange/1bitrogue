@@ -20,8 +20,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 fullScreenBoxPath = NodePath("FullScreenCheckbox")
-applyButtonPath = NodePath("ApplyButton")
-backButtonPath = NodePath("BackButton")
+applyButtonPath = NodePath("Control/ApplyButton")
+backButtonPath = NodePath("Control/BackButton")
 
 [node name="ScreenDimBackground" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -33,10 +33,12 @@ __meta__ = {
 }
 
 [node name="FullScreenCheckbox" type="CheckBox" parent="."]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 144.0
-margin_bottom = 32.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -68.0
+margin_top = 32.0
+margin_right = 68.0
+margin_bottom = 56.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0.4, 0.4, 0.4, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
@@ -45,12 +47,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackButton" type="Button" parent="."]
+[node name="Control" type="Control" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 66.0
+margin_top = -32.0
+margin_right = -65.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="Control"]
 modulate = Color( 1, 0.670588, 0.670588, 1 )
-margin_left = 8.0
-margin_top = 112.0
-margin_right = 56.0
-margin_bottom = 128.0
+margin_right = 48.0
+margin_bottom = 18.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource( 1 )
@@ -60,11 +71,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ApplyButton" type="Button" parent="."]
-margin_left = 104.0
-margin_top = 112.0
-margin_right = 152.0
-margin_bottom = 128.0
+[node name="ApplyButton" type="Button" parent="Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -48.0
+margin_bottom = 18.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource( 1 )
@@ -73,10 +84,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-margin_top = 132.0
-margin_right = 158.0
-margin_bottom = 144.0
+[node name="Label" type="Label" parent="Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -79.0
+margin_top = -12.0
+margin_right = 79.0
 text = "* Unsaved Changes Will Be Lost"
 __meta__ = {
 "_edit_use_anchors_": false
