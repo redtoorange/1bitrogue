@@ -1,11 +1,7 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Items/Consumable/FoodStats.cs" type="Script" id=1]
-[ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=2]
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 2 )
-region = Rect2( 528, 256, 16, 16 )
+[ext_resource path="res://Sprites/TileSheets/1bit/Atlas/Items/Consumable/Ham.tres" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
@@ -13,5 +9,5 @@ name = "Ham?"
 description = "Some Description"
 weight = 0.0
 value = 0.0
-inventoryIcon = SubResource( 1 )
-worldSprite = SubResource( 1 )
+inventoryIcon = ExtResource( 2 )
+worldSprite = ExtResource( 2 )

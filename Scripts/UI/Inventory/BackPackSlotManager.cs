@@ -40,6 +40,7 @@ namespace BitRoguelike.Scripts.UI.Inventory
 
         public bool AddItemTileToBackpack(ItemInventoryTile itemTile)
         {
+            GD.Print("BackPackSlotManager - AddItemTileToBackpack");
             BackPackSlot slot = GetEmptySlot();
             
             // There aren't any open slots :'(
@@ -51,7 +52,7 @@ namespace BitRoguelike.Scripts.UI.Inventory
 
         public void RemoveItemTileFromBackpack(ItemInventoryTile itemTile)
         {
-            
+            GD.Print("BackPackSlotManager - RemoveItemTileFromBackpack");
         }
 
         /// <summary>
@@ -88,11 +89,13 @@ namespace BitRoguelike.Scripts.UI.Inventory
         /// <param name="tile"></param>
         public virtual void HandleOnDropItemOnGround(ItemInventoryTile tile)
         {
+            GD.Print("BackPackSlotManager - HandleOnDropItemOnGround");
             OnDropItemOnGround?.Invoke(tile);
         }
         
         private void HandleOnShowContextMenu(ItemSlot slot)
         {
+            GD.Print("BackPackSlotManager - HandleOnShowContextMenu");
             OnShowContextMenu?.Invoke(slot);
         }
     }

@@ -1,15 +1,17 @@
-﻿using BitRoguelike.Scripts.Items;
+﻿using BitRoguelike.Scripts.Characters.Controllers;
+using BitRoguelike.Scripts.Items;
 using BitRoguelike.Scripts.Items.Equipment;
 using Godot;
 
 namespace BitRoguelike.Scripts.UI.Inventory.Slots
 {
-    public class TrinketSlot : ItemSlot
+    public class TrinketSlot : EquipmentSlot
     {
         [Export] private TrinketSlotType trinketSlotType = TrinketSlotType.LEFT_RING;
 
         public override bool CanDropDnDItem(ItemInventoryTile tile)
         {
+            GD.Print("TrinketSlot - CanDropDnDItem");
             Item item = tile.GetParentItem();
             // Cast to Armor and get stats
             if (item is IEquipable && item is Trinket t)
@@ -27,15 +29,20 @@ namespace BitRoguelike.Scripts.UI.Inventory.Slots
             // Failed the conversion tree, so the item is not the right type for this slot
             return false;
         }
-        
-        public override void AddItemTile(ItemInventoryTile tile)
-        {
-            base.AddItemTile(tile);
-        }
 
-        public override void RemoveItemTile()
+        protected override EquipPayload GetPayload()
         {
-            base.RemoveItemTile();
+            GD.Print("TrinketSlot - GetPayload");
+            IEquipable equipable = currentTile.GetParentItem() as IEquipable;
+            if (equipable != null)
+            {
+                return new TrinketEquipPayload(
+                    equipable,
+                    trinketSlotType
+                );
+            }
+
+            return null;
         }
     }
 }

@@ -1,15 +1,17 @@
+using BitRoguelike.Scripts.Characters.Controllers;
 using BitRoguelike.Scripts.Items;
 using BitRoguelike.Scripts.Items.Equipment;
 using Godot;
 
 namespace BitRoguelike.Scripts.UI.Inventory.Slots
 {
-    public class ArmorSlot : ItemSlot
+    public class ArmorSlot : EquipmentSlot
     {
         [Export] private ArmorSlotType armorSlotType = ArmorSlotType.HEAD;
 
         public override bool CanDropDnDItem(ItemInventoryTile tile)
         {
+            GD.Print("ArmorSlot - CanDropDnDItem");
             Item item = tile.GetParentItem();
             // Cast to Armor and get stats
             if (item is IEquipable && item is Armor a)
@@ -26,15 +28,20 @@ namespace BitRoguelike.Scripts.UI.Inventory.Slots
             // Failed the conversion tree, so the item is not the right type for this slot
             return false;
         }
-
-        public override void AddItemTile(ItemInventoryTile tile)
+        
+        protected override EquipPayload GetPayload()
         {
-            base.AddItemTile(tile);
-        }
+            GD.Print("ArmorSlot - GetPayload");
+            IEquipable equipable = currentTile.GetParentItem() as IEquipable;
+            if (equipable != null)
+            {
+                return new ArmorEquipPayload(
+                    equipable,
+                    armorSlotType
+                );
+            }
 
-        public override void RemoveItemTile()
-        {
-            base.RemoveItemTile();
+            return null;
         }
     }
 }

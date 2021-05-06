@@ -15,7 +15,7 @@ namespace BitRoguelike.Scripts.Items.Equipment
         RANGED
     }
 
-    public enum WeaponSlot
+    public enum WeaponSlotType
     {
         MAIN_HAND,
         OFF_HAND
@@ -49,5 +49,10 @@ namespace BitRoguelike.Scripts.Items.Equipment
         public WeaponStats GetStats() => weaponStats;
 
         public int GetDamage() => weaponStats.maxDamage;
+
+        public WeaponEquipType GetEquipType()
+        {
+            return weaponStats.weaponEquipType;
+        }
     }
 }

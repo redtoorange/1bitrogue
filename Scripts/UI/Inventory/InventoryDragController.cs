@@ -81,7 +81,7 @@ namespace BitRoguelike.Scripts.UI.Inventory
             {
                 if (imb.IsActionReleased("LeftClick"))
                 {
-                    GD.Print("Release Drag");
+                    // GD.Print("Release Drag");
                     HandleOnDragEnded(null);
                 }
             }
@@ -89,7 +89,7 @@ namespace BitRoguelike.Scripts.UI.Inventory
 
         private void HandleOnHoverStarted(ItemSlot slot)
         {
-            GD.Print("HoverStarted on " + slot.Name);
+            // GD.Print("HoverStarted on " + slot.Name);
             hoveredSlot = slot;
 
             if (IsDragging())
@@ -102,10 +102,10 @@ namespace BitRoguelike.Scripts.UI.Inventory
 
         private void HandleOnHoverEnded(ItemSlot slot)
         {
-            GD.Print("HoverEnded on " + slot.Name);
+            // GD.Print("HoverEnded on " + slot.Name);
             if (slot == hoveredSlot)
             {
-                GD.Print("Cleared Hovered ");
+                // GD.Print("Cleared Hovered ");
                 hoveredSlot = null;
             }
         }

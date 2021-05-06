@@ -44,6 +44,7 @@ namespace BitRoguelike.Scripts.UI.Inventory.Slots
         /// </summary>
         public virtual bool CanDropDnDItem(ItemInventoryTile tile)
         {
+            GD.Print("ItemSlot - CanDropDnDItem");
             return true;
         }
 
@@ -53,6 +54,7 @@ namespace BitRoguelike.Scripts.UI.Inventory.Slots
         /// </summary>
         public virtual void DropDnDItem(ItemInventoryTile tile)
         {
+            GD.Print("ItemSlot - DropDnDItem");
             AddItemTile(tile);
             tile.Visible = true;
         }
@@ -62,6 +64,7 @@ namespace BitRoguelike.Scripts.UI.Inventory.Slots
         /// </summary>
         public virtual void CancelDnD()
         {
+            GD.Print("ItemSlot - CancelDnD");
             if (currentTile != null)
             {
                 currentTile.Visible = true;
@@ -134,6 +137,7 @@ namespace BitRoguelike.Scripts.UI.Inventory.Slots
         /// </summary>
         public virtual void AddItemTile(ItemInventoryTile tile)
         {
+            GD.Print("ItemSlot - AddItemTile");
             tile.SetSlot(this);
             currentTile = tile;
 
@@ -145,6 +149,7 @@ namespace BitRoguelike.Scripts.UI.Inventory.Slots
         /// </summary>
         public virtual void RemoveItemTile()
         {
+            GD.Print("ItemSlot - RemoveItemTile");
             RemoveChild(currentTile);
             currentTile = null;
         }
@@ -154,6 +159,7 @@ namespace BitRoguelike.Scripts.UI.Inventory.Slots
         /// </summary>
         public virtual void ContextMenuNotifyDrop()
         {
+            GD.Print("ItemSlot - ContextMenuNotifyDrop");
             ItemInventoryTile tempTile = currentTile;
             RemoveItemTile();
             OnDropItemOnGround?.Invoke(tempTile);

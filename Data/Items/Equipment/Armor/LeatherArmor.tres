@@ -1,11 +1,11 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://Sprites/TileSheets/1bit/Atlas/Items/Equipment/Helmet.tres" type="Texture" id=1]
+[ext_resource path="res://Sprites/TileSheets/1bit/Atlas/Items/Equipment/LeatherArmor.tres" type="Texture" id=1]
 [ext_resource path="res://Scripts/Items/Equipment/ArmorStats.cs" type="Script" id=2]
 
 [resource]
 script = ExtResource( 2 )
-name = "Trash"
+name = "Leather Armor"
 description = "Some Description"
 weight = 0.0
 value = 0.0

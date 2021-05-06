@@ -1,15 +1,17 @@
+using BitRoguelike.Scripts.Characters.Controllers;
 using BitRoguelike.Scripts.Items;
 using BitRoguelike.Scripts.Items.Equipment;
 using Godot;
 
 namespace BitRoguelike.Scripts.UI.Inventory.Slots
 {
-    public class WeaponSlot : ItemSlot
+    public class WeaponSlot : EquipmentSlot
     {
-        [Export] private Items.Equipment.WeaponSlot weaponSlotType = Items.Equipment.WeaponSlot.MAIN_HAND;
+        [Export] private WeaponSlotType weaponSlotTypeType = WeaponSlotType.MAIN_HAND;
 
         public override bool CanDropDnDItem(ItemInventoryTile tile)
         {
+            GD.Print("WeaponSlot - CanDropDnDItem");
             Item item = tile.GetParentItem();
 
             // Cast to Armor and get stats
@@ -17,11 +19,11 @@ namespace BitRoguelike.Scripts.UI.Inventory.Slots
             {
                 WeaponStats stats = w.GetStats();
                 // Verify matching slot types
-                if (weaponSlotType == Items.Equipment.WeaponSlot.MAIN_HAND)
+                if (weaponSlotTypeType == WeaponSlotType.MAIN_HAND)
                 {
                     return stats.weaponEquipType != WeaponEquipType.OFF_HAND;
                 }
-                else if (weaponSlotType == Items.Equipment.WeaponSlot.OFF_HAND)
+                else if (weaponSlotTypeType == WeaponSlotType.OFF_HAND)
                 {
                     return stats.weaponEquipType != WeaponEquipType.MAIN_HAND;
                 }
@@ -30,15 +32,20 @@ namespace BitRoguelike.Scripts.UI.Inventory.Slots
             // Failed the conversion tree, so the item is not the right type for this slot
             return false;
         }
-        
-        public override void AddItemTile(ItemInventoryTile tile)
-        {
-            base.AddItemTile(tile);
-        }
 
-        public override void RemoveItemTile()
+        protected override EquipPayload GetPayload()
         {
-            base.RemoveItemTile();
+            GD.Print("WeaponSlot - GetPayload");
+            IEquipable equipable = currentTile.GetParentItem() as IEquipable;
+            if (equipable != null)
+            {
+                return new WeaponEquipPayload(
+                    equipable,
+                    weaponSlotTypeType
+                );
+            }
+
+            return null;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using BitRoguelike.Scripts.Items;
+﻿using System;
+using BitRoguelike.Scripts.Items;
 using BitRoguelike.Scripts.Items.Consumable;
 using BitRoguelike.Scripts.Items.Equipment;
 using BitRoguelike.Scripts.UI.Inventory.Slots;
@@ -8,6 +9,8 @@ namespace BitRoguelike.Scripts.UI.Inventory.ContextMenu
 {
     public class ContextMenuController : Control
     {
+        public Action<ItemSlot, ItemUseType> OnItemUsed;
+        
         [Export] private NodePath buttonContainerPath = null;
         [Export] private NodePath backDropMaskPath = null;
         [Export] private NodePath equipButtonPath = null;
@@ -25,6 +28,8 @@ namespace BitRoguelike.Scripts.UI.Inventory.ContextMenu
         private ItemSlot currentSlot;
         private ItemInventoryTile currentTile;
         private Item currentItem;
+
+        private ItemUseType currentUseType = ItemUseType.EQUIP;
 
         public override void _Ready()
         {
@@ -124,10 +129,12 @@ namespace BitRoguelike.Scripts.UI.Inventory.ContextMenu
             if (currentSlot is BackPackSlot)
             {
                 equipButton.Text = "Equip";
+                currentUseType = ItemUseType.EQUIP;
             }
             else
             {
                 equipButton.Text = "Remove";
+                currentUseType = ItemUseType.UNEQUIP;
             }
         }
 
@@ -135,6 +142,7 @@ namespace BitRoguelike.Scripts.UI.Inventory.ContextMenu
         {
             IConsumable consumable = currentItem as IConsumable;
             consumeButton.Text = consumable.GetConsumeText();
+            currentUseType = ItemUseType.CONSUME;
         }
 
         private void PositionContainer()
@@ -174,11 +182,15 @@ namespace BitRoguelike.Scripts.UI.Inventory.ContextMenu
         private void OnEquipPressed()
         {
             GD.Print("Context Menu Equip Pressed");
+            OnItemUsed?.Invoke(currentSlot, currentUseType);
+            HideMenu();
         }
         
         private void OnConsumePressed()
         {
             GD.Print("Context Menu Consume Pressed");
+            OnItemUsed?.Invoke(currentSlot, currentUseType);
+            HideMenu();
         }
         
         private void OnInspectPressed()

@@ -50,7 +50,7 @@ namespace BitRoguelike.Scripts.UI.Inventory
 
         private void StartDragging()
         {
-            GD.Print("Started Dragging");
+            // GD.Print("Started Dragging");
             dragging = true;
 
             MouseFilter = MouseFilterEnum.Ignore;                
@@ -61,7 +61,7 @@ namespace BitRoguelike.Scripts.UI.Inventory
 
         private void EndDragging()
         {
-            GD.Print("Stopped Dragging");
+            // GD.Print("Stopped Dragging");
             dragging = false;
             
             MouseFilter = MouseFilterEnum.Stop;      

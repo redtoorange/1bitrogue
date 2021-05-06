@@ -29,5 +29,15 @@ namespace BitRoguelike.Scripts.Items.Equipment
         }
 
         public ArmorStats GetStats() => armorStats;
+
+        public int GetDefenseBonus()
+        {
+            return armorStats.armorBonus;
+        }
+        
+        public ArmorSlotType GetArmorSlotType()
+        {
+            return armorStats.slotType;
+        }
     }
 }

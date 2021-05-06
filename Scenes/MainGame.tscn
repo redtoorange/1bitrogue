@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Prefabs/Items/Consumable/Food.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Items/Equipment/Armor.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Scripts/Managers/ItemManager.cs" type="Script" id=13]
 [ext_resource path="res://Scripts/MainGame.cs" type="Script" id=14]
 [ext_resource path="res://Prefabs/Items/Consumable/Potion.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Data/Items/Equipment/Weapons/MorningStar.tres" type="Resource" id=16]
 
 [sub_resource type="AtlasTexture" id=1]
 resource_local_to_scene = true
@@ -71,6 +72,10 @@ position = Vector2( 112, 32 )
 [node name="Food" parent="WorldItemsManager" instance=ExtResource( 1 )]
 position = Vector2( 96, 32 )
 
+[node name="Weapon2" parent="WorldItemsManager" instance=ExtResource( 3 )]
+position = Vector2( 48, 48 )
+stats = ExtResource( 16 )
+
 [node name="CharacterController" type="Node2D" parent="."]
 
 [node name="NPCManager" type="Node2D" parent="CharacterController"]
@@ -106,7 +111,7 @@ script = ExtResource( 12 )
 
 [node name="Goblin" parent="CharacterController/EnemyManager" instance=ExtResource( 8 )]
 light_mask = 1
-position = Vector2( 80, 208 )
+position = Vector2( 80, 160 )
 
 [node name="Goblin2" parent="CharacterController/EnemyManager" instance=ExtResource( 8 )]
 light_mask = 1
