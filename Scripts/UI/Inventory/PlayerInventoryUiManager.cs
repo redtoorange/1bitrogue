@@ -12,12 +12,12 @@ namespace BitRoguelike.Scripts.UI.Inventory
     {
         // public static PlayerInventoryUiManager S;
         
-        [Export] private NodePath equipmentSlotsManagerPath;
-        [Export] private NodePath backPackSlotManagerPath;
-        [Export] private NodePath inventoryDragControllerPath;
-        [Export] private NodePath chestMenuControllerPath;
-
-        [Export] private PackedScene itemInventoryTilePrefab;
+        [Export] private NodePath equipmentSlotsManagerPath = null;
+        [Export] private NodePath backPackSlotManagerPath = null;
+        [Export] private NodePath inventoryDragControllerPath = null;
+        [Export] private NodePath chestMenuControllerPath = null;
+        
+        [Export] private PackedScene itemInventoryTilePrefab = null;
 
         // Children
         private EquipmentSlotsManager equipmentSlotsManager;

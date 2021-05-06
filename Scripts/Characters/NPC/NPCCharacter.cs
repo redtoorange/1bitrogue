@@ -5,7 +5,7 @@ namespace BitRoguelike.Scripts.Characters.NPC
     [Tool]
     public class NPCCharacter : GameCharacter
     {
-        [Export] private Texture characterSprite;
+        [Export] private Texture characterSprite = null;
         public override void _Ready()
         {
             if (!Engine.EditorHint)

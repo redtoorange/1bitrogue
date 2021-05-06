@@ -22,9 +22,9 @@ namespace BitRoguelike.Scripts.UI
     {
         public Action OnSettingsMenuBackPressed;
         
-        [Export] private NodePath fullScreenBoxPath;
-        [Export] private NodePath applyButtonPath;
-        [Export] private NodePath backButtonPath;
+        [Export] private NodePath fullScreenBoxPath = null;
+        [Export] private NodePath applyButtonPath = null;
+        [Export] private NodePath backButtonPath = null;
 
         private CheckBox fullscreenBox;
         private Button applyButton;

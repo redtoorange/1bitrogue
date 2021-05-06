@@ -8,9 +8,9 @@ namespace BitRoguelike.Scripts.UI.MainMenu
         public Action OnStartClicked;
         public Action OnSettingsClicked;
     
-        [Export] private NodePath startButtonPath;
-        [Export] private NodePath settingsButtonPath;
-        [Export] private NodePath quitButtonPath;
+        [Export] private NodePath startButtonPath = null;
+        [Export] private NodePath settingsButtonPath = null;
+        [Export] private NodePath quitButtonPath = null;
 
         private Button startButton;
         private Button settingsButton;

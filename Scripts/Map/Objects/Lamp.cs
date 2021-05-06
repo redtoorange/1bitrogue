@@ -11,10 +11,9 @@ namespace BitRoguelike.Scripts.Map.Objects
         [Export(PropertyHint.Range, "1, 10")] private float maxEnergy = 1.5f;
     
     
-        [Export] private NodePath lightPath;
+        [Export] private NodePath lightPath = null;
         private Light2D light;
 
-        private float lastFlicker = 0;
         private float currentEnergy = 0;
         private bool increasing = false;
 

@@ -5,8 +5,8 @@ namespace BitRoguelike.Scripts.UI
 {
     public class PlayerResourceDisplayController : Node
     {
-        [Export] private NodePath healthBarPath;
-        [Export] private NodePath manaBarPath;
+        [Export] private NodePath healthBarPath = null;
+        [Export] private NodePath manaBarPath = null;
 
         private ResourceBar healthBar;
         private ResourceBar manaBar;

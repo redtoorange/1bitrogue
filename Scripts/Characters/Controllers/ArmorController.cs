@@ -5,9 +5,10 @@ namespace BitRoguelike.Scripts.Characters.Controllers
 {
     public class ArmorController : Node
     {
-        private Armor headArmor;
-        private Armor chestArmor;
-        private Armor legArmor;
+        [Export] private Armor headArmor = null;
+        [Export] private Armor chestArmor = null;
+        [Export] private Armor legArmor = null;
+        [Export] private Armor handArmor = null;
         
         public void EquipArmor(Armor armor)
         {

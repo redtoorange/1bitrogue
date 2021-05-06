@@ -9,8 +9,6 @@ namespace BitRoguelike.Scripts.UI
         [Export] private Color gainColor = Colors.Green;
         [Export] private Color loseColor = Colors.Yellow;
 
-        [Export] private float tweenSpeed = 0.25f;
-
         private ResourceController resourceController;
 
         private TextureProgress baseLayer;

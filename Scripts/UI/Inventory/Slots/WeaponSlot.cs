@@ -6,7 +6,7 @@ namespace BitRoguelike.Scripts.UI.Inventory.Slots
 {
     public class WeaponSlot : ItemSlot
     {
-        [Export] private Items.Equipment.WeaponSlot weaponSlotType;
+        [Export] private Items.Equipment.WeaponSlot weaponSlotType = Items.Equipment.WeaponSlot.MAIN_HAND;
 
         public override bool CanDropDnDItem(ItemInventoryTile tile)
         {

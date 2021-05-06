@@ -10,19 +10,19 @@ namespace BitRoguelike.Scripts.UI.Inventory
         public Action<ItemSlot> OnShowContextMenu;
         
         // Armor
-        [Export] private NodePath headSlotPath;
-        [Export] private NodePath chestSlotPath;
-        [Export] private NodePath legsSlotPath;
-        [Export] private NodePath handsSlotPath;
+        [Export] private NodePath headSlotPath = null;
+        [Export] private NodePath chestSlotPath = null;
+        [Export] private NodePath legsSlotPath = null;
+        [Export] private NodePath handsSlotPath = null;
         
         // Weapons
-        [Export] private NodePath mainHandSlotPath;
-        [Export] private NodePath offHandSlotPath;
-    
+        [Export] private NodePath mainHandSlotPath = null;
+        [Export] private NodePath offHandSlotPath = null;
+
         // Trinkets
-        [Export] private NodePath leftRingSlotPath;
-        [Export] private NodePath necklaceSlotPath;
-        [Export] private NodePath rightRingSlotPath;
+        [Export] private NodePath leftRingSlotPath = null;
+        [Export] private NodePath necklaceSlotPath = null;
+        [Export] private NodePath rightRingSlotPath = null;
         
         private ArmorSlot headSlot;
         private ArmorSlot chestSlot;

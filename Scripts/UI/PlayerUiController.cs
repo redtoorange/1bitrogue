@@ -19,10 +19,10 @@ namespace BitRoguelike.Scripts.UI
 
     public class PlayerUiController : Node
     {
-        [Export] private NodePath playerHudPath;
-        [Export] private NodePath playerInventoryUiPath;
-        [Export] private NodePath pauseMenuPath;
-        [Export] private NodePath contextMenuPath;
+        [Export] private NodePath playerHudPath = null;
+        [Export] private NodePath playerInventoryUiPath = null;
+        [Export] private NodePath pauseMenuPath = null;
+        [Export] private NodePath contextMenuPath = null;
 
         private PlayerResourceDisplayController playerResourceDisplayController;
         private PlayerInventoryUiManager playerInventoryUiController;

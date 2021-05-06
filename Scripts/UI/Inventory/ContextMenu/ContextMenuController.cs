@@ -8,12 +8,12 @@ namespace BitRoguelike.Scripts.UI.Inventory.ContextMenu
 {
     public class ContextMenuController : Control
     {
-        [Export] private NodePath buttonContainerPath;
-        [Export] private NodePath backDropMaskPath;
-        [Export] private NodePath equipButtonPath;
-        [Export] private NodePath consumeButtonPath;
-        [Export] private NodePath inspectButtonPath;
-        [Export] private NodePath dropButtonPath;
+        [Export] private NodePath buttonContainerPath = null;
+        [Export] private NodePath backDropMaskPath = null;
+        [Export] private NodePath equipButtonPath = null;
+        [Export] private NodePath consumeButtonPath = null;
+        [Export] private NodePath inspectButtonPath = null;
+        [Export] private NodePath dropButtonPath = null;
 
         private VBoxContainer buttonContainer;
         private MaskingBackdropHandler backDropMask;

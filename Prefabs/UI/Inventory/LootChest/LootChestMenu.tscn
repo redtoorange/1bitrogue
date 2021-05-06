@@ -15,6 +15,7 @@ __meta__ = {
 "_edit_use_anchors_": false,
 "_edit_vertical_guides_": [ 80.0 ]
 }
+rowContainerPath = NodePath("Panel/Container/Rows")
 lootAllButtonPath = NodePath("LootAllButton")
 
 [node name="Panel" type="PanelContainer" parent="."]

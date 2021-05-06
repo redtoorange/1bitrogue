@@ -6,7 +6,7 @@ namespace BitRoguelike.Scripts.UI.Inventory.Slots
 {
     public class TrinketSlot : ItemSlot
     {
-        [Export] private TrinketSlotType trinketSlotType;
+        [Export] private TrinketSlotType trinketSlotType = TrinketSlotType.LEFT_RING;
 
         public override bool CanDropDnDItem(ItemInventoryTile tile)
         {

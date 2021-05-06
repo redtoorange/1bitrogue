@@ -7,7 +7,8 @@ namespace BitRoguelike.Scripts.UI.Inventory.Chest
 {
     public class LootChestMenuController : Control
     {
-        [Export] private NodePath lootAllButtonPath;
+        [Export] private NodePath rowContainerPath = null;
+        [Export] private NodePath lootAllButtonPath = null;
         private Button lootAllButton;
 
         private BackPackSlotManager backPackSlotManager;
@@ -106,11 +107,12 @@ namespace BitRoguelike.Scripts.UI.Inventory.Chest
         /// </summary>
         private void RegisterSlots()
         {
+            Node rowContainer = GetNode(rowContainerPath);
             for (int row = 0; row < 4; row++)
             {
                 for (int col = 0; col < 2; col++)
                 {
-                    LootChestSlot slot = GetNode<LootChestSlot>($"Panel/Container/Rows/{row}/{col}");
+                    LootChestSlot slot = rowContainer.GetNode<LootChestSlot>($"{row}/{col}");
                     chestInventorySlots[row, col] = slot;
                 }
             }

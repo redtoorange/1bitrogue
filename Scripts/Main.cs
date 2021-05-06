@@ -6,9 +6,9 @@ namespace BitRoguelike.Scripts
 {
     public class Main : Node
     {
-        [Export] private NodePath mainMenuPath;
-        [Export] private NodePath settingsMenuPath;
-        [Export] private PackedScene mainGameScene;
+        [Export] private NodePath mainMenuPath = null;
+        [Export] private NodePath settingsMenuPath = null;
+        [Export] private PackedScene mainGameScene = null;
 
         private MainMenu mainMenu;
         private SettingsMenuController settingsMenuController;
