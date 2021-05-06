@@ -47,13 +47,13 @@ namespace BitRoguelike.Scripts.Items
             Visible = enabled;
         }
 
-        public void OnPickedUp()
+        public void PickUpItem()
         {
             SetEnabled(false);
             ItemManager.S.RemoveChild(this);
         }
 
-        public void OnDropped(Vector2 dropLocation)
+        public void DropItem(Vector2 dropLocation)
         {
             ItemManager.S.AddChild(this);
             GlobalPosition = dropLocation;

@@ -56,7 +56,7 @@ namespace BitRoguelike.Scripts.Characters.Player
 
                 if (inventoryController.CanPickup(item))
                 {
-                    item.OnPickedUp();
+                    item.PickUpItem();
                     inventoryController.AddItem(item, true);
                 }
             }
@@ -64,7 +64,7 @@ namespace BitRoguelike.Scripts.Characters.Player
         
         public void DropItemOnGround(Item item)
         {
-            item.OnDropped(player.Position);
+            item.DropItem(player.Position);
         }
     }
 }

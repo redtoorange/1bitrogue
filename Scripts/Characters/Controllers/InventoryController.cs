@@ -77,6 +77,7 @@ namespace BitRoguelike.Scripts.Characters.Controllers
             {
                 if (GetChild(i) is Item item)
                 {
+                    GD.Print("InventoryController - AddItem");
                     managedItems.Add(item);
                     playerInventoryUiManager.AddItemToUi(item);
                     item.SetEnabled(false);
@@ -91,6 +92,7 @@ namespace BitRoguelike.Scripts.Characters.Controllers
         /// <returns>true if item was added, false otherwise</returns>
         public bool AddItem(Item itemToAdd, bool addToUi)
         {
+            GD.Print("InventoryController - AddItem");
             if (!managedItems.Contains(itemToAdd))
             {
                 AddChild(itemToAdd);
@@ -113,6 +115,7 @@ namespace BitRoguelike.Scripts.Characters.Controllers
 
         public void RemoveItem(Item itemToRemove)
         {
+            GD.Print("InventoryController - RemoveItem");
             if (managedItems.Contains(itemToRemove))
             {
                 managedItems.Remove(itemToRemove);

@@ -108,6 +108,7 @@ cast_to = Vector2( 0, 16 )
 collision_mask = 31
 
 [node name="Sprite" type="Sprite" parent="."]
+light_mask = 4
 centered = false
 region_rect = Rect2( 384, 16, 16, 16 )
 

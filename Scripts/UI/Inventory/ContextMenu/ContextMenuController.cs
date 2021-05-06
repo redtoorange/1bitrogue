@@ -2,6 +2,7 @@
 using BitRoguelike.Scripts.Items;
 using BitRoguelike.Scripts.Items.Consumable;
 using BitRoguelike.Scripts.Items.Equipment;
+using BitRoguelike.Scripts.UI.Inventory.Chest;
 using BitRoguelike.Scripts.UI.Inventory.Slots;
 using Godot;
 
@@ -96,7 +97,18 @@ namespace BitRoguelike.Scripts.UI.Inventory.ContextMenu
 
         private void SelectButtons()
         {
-            int buttons = 2;
+            int buttons = 1;
+
+            if (!(currentSlot is LootChestSlot))
+            {
+                dropButton.Visible = true;
+                buttons++;
+            }
+            else
+            {
+                dropButton.Visible = false;
+            }
+            
             if (currentItem is IEquipable)
             {
                 equipButton.Visible = true;
@@ -179,6 +191,9 @@ namespace BitRoguelike.Scripts.UI.Inventory.ContextMenu
             dropButton.Connect("pressed", this, nameof(OnDropPressed));
         }
 
+        /// <summary>
+        /// Only available on Equipables
+        /// </summary>
         private void OnEquipPressed()
         {
             GD.Print("Context Menu Equip Pressed");
@@ -186,6 +201,9 @@ namespace BitRoguelike.Scripts.UI.Inventory.ContextMenu
             HideMenu();
         }
         
+        /// <summary>
+        /// Only available on consumables
+        /// </summary>
         private void OnConsumePressed()
         {
             GD.Print("Context Menu Consume Pressed");
@@ -196,11 +214,15 @@ namespace BitRoguelike.Scripts.UI.Inventory.ContextMenu
         private void OnInspectPressed()
         {
             GD.Print("Context Menu Inspect Pressed");
+            // TODO Implement
         }
         
+        /// <summary>
+        /// This should not be available on LooChest Slots
+        /// </summary>
         private void OnDropPressed()
         {
-            currentSlot.ContextMenuNotifyDrop();
+            currentSlot.DropItem();
             HideMenu();
         }
     }

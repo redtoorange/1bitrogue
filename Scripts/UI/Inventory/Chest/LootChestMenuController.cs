@@ -38,12 +38,12 @@ namespace BitRoguelike.Scripts.UI.Inventory.Chest
 
         public override void _EnterTree()
         {
-            LootChestSlot.OnLootChestItemRemoved += HandleOnChestItemRemoved;
+            LootChestSlot.OnLootChestItemTaken += HandleOnChestItemTaken;
         }
 
         public override void _ExitTree()
         {
-            LootChestSlot.OnLootChestItemRemoved -= HandleOnChestItemRemoved;
+            LootChestSlot.OnLootChestItemTaken -= HandleOnChestItemTaken;
         }
 
         private void HandleOnLootAllPressed()
@@ -53,11 +53,15 @@ namespace BitRoguelike.Scripts.UI.Inventory.Chest
                 for (int col = 0; col < 2; col++)
                 {
                     LootChestSlot slot = chestInventorySlots[row, col];
-                    if (slot.IsOccupied())
+                    if (slot.IsOccupied() && backPackSlotManager.HasEmptySlots())
                     {
+                        // Take ItemTile from Chest
                         ItemInventoryTile tile = slot.GetItemTile();
                         slot.RemoveItemTile();
-                        tile.QueueFree();
+
+                        // Add to the Backpack and to the inventory
+                        backPackSlotManager.AddItemTileToBackpack(tile);
+                        inventoryController.AddItem(tile.GetParentItem(), false);
                     }
                 }
             }
@@ -75,6 +79,9 @@ namespace BitRoguelike.Scripts.UI.Inventory.Chest
             }
         }
 
+        /// <summary>
+        /// Unload the ItemInventoryTiles in the LootChestMenu, this should NOT remove the item from the original chest
+        /// </summary>
         public void UnloadChest()
         {
             // Dispose of chest tiles
@@ -86,7 +93,7 @@ namespace BitRoguelike.Scripts.UI.Inventory.Chest
                     if (slot.IsOccupied())
                     {
                         ItemInventoryTile tile = slot.GetItemTile();
-                        slot.RemoveItemTile();
+                        slot.RemoveItemTileNoPropagate();   // Do not remove the Item from the Chest!!
                         tile.QueueFree();
                     }
                 }
@@ -134,7 +141,11 @@ namespace BitRoguelike.Scripts.UI.Inventory.Chest
             return null;
         }
 
-        private void HandleOnChestItemRemoved(ItemInventoryTile tile)
+        /// <summary>
+        /// This adds the item directly to the player's inventory without adding it to the UI.  It assumes the player
+        /// dragged the Item into their inventory.
+        /// </summary>
+        private void HandleOnChestItemTaken(ItemInventoryTile tile)
         {
             Item item = tile.GetParentItem();
             currentChest.RemoveItem(item);

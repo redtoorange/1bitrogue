@@ -157,9 +157,9 @@ namespace BitRoguelike.Scripts.UI.Inventory.Slots
         /// <summary>
         /// Just process and forward the event.  Equipment tiles should override this to handle unequipping
         /// </summary>
-        public virtual void ContextMenuNotifyDrop()
+        public virtual void DropItem()
         {
-            GD.Print("ItemSlot - ContextMenuNotifyDrop");
+            GD.Print("ItemSlot - DropItem");
             ItemInventoryTile tempTile = currentTile;
             RemoveItemTile();
             OnDropItemOnGround?.Invoke(tempTile);
