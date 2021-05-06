@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/Items/Stats/ItemStats.cs" type="Script" id=1]
+[ext_resource path="res://Scripts/Items/ItemStats.cs" type="Script" id=1]
 [ext_resource path="res://Sprites/TileSheets/1bit/Atlas/Items/Potion.tres" type="Texture" id=2]
 
 [resource]

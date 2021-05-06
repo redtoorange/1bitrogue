@@ -1,4 +1,4 @@
-﻿using GameboyRoguelike.Scripts.Items.Stats;
+using GameboyRoguelike.Scripts.Items.Stats;
 using Godot;
 
 namespace GameboyRoguelike.Scripts.Items
