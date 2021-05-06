@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
+namespace BitRoguelike.Scripts.UI.Inventory.Slots
 {
     public class DragStartPayload
     {

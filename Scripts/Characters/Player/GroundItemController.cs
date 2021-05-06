@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using GameboyRoguelike.Scripts.Characters.Controllers;
-using GameboyRoguelike.Scripts.Items;
+using BitRoguelike.Scripts.Characters.Controllers;
+using BitRoguelike.Scripts.Items;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.Characters.Player
+namespace BitRoguelike.Scripts.Characters.Player
 {
     public class GroundItemController : Node2D
     {

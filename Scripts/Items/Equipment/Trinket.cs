@@ -1,7 +1,6 @@
-﻿using GameboyRoguelike.Scripts.Items.Stats;
-using Godot;
+﻿using Godot;
 
-namespace GameboyRoguelike.Scripts.Items
+namespace BitRoguelike.Scripts.Items.Equipment
 {
     public enum TrinketSlotType
     {

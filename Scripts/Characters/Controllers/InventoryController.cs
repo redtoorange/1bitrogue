@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using GameboyRoguelike.Scripts.Characters.Player;
-using GameboyRoguelike.Scripts.Items;
-using GameboyRoguelike.Scripts.UI.Inventory;
+using BitRoguelike.Scripts.Characters.Player;
+using BitRoguelike.Scripts.Items;
+using BitRoguelike.Scripts.UI.Inventory;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.Characters.Controllers
+namespace BitRoguelike.Scripts.Characters.Controllers
 {
     public class InventoryController : Node
     {

@@ -1,4 +1,4 @@
-﻿namespace GameboyRoguelike.Scripts
+﻿namespace BitRoguelike.Scripts.Util
 {
     public enum Direction
     {

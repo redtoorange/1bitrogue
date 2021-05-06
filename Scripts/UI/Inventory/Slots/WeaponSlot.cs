@@ -1,12 +1,12 @@
-using GameboyRoguelike.Scripts.Items;
-using GameboyRoguelike.Scripts.Items.Stats;
+using BitRoguelike.Scripts.Items;
+using BitRoguelike.Scripts.Items.Equipment;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
+namespace BitRoguelike.Scripts.UI.Inventory.Slots
 {
     public class WeaponSlot : ItemSlot
     {
-        [Export] private Items.WeaponSlot weaponSlotType;
+        [Export] private Items.Equipment.WeaponSlot weaponSlotType;
 
         public override bool CanDropDnDItem(ItemInventoryTile tile)
         {
@@ -17,11 +17,11 @@ namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
             {
                 WeaponStats stats = w.GetStats();
                 // Verify matching slot types
-                if (weaponSlotType == Items.WeaponSlot.MAIN_HAND)
+                if (weaponSlotType == Items.Equipment.WeaponSlot.MAIN_HAND)
                 {
                     return stats.weaponEquipType != WeaponEquipType.OFF_HAND;
                 }
-                else if (weaponSlotType == Items.WeaponSlot.OFF_HAND)
+                else if (weaponSlotType == Items.Equipment.WeaponSlot.OFF_HAND)
                 {
                     return stats.weaponEquipType != WeaponEquipType.MAIN_HAND;
                 }

@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace GameboyRoguelike.Scripts.Characters.NPC
+namespace BitRoguelike.Scripts.Characters.NPC
 {
     [Tool]
     public class NPCCharacter : GameCharacter

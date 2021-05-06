@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using GameboyRoguelike.Scripts.Items;
+using BitRoguelike.Scripts.Items;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.Map.Objects
+namespace BitRoguelike.Scripts.Map.Objects
 {
     public enum ChestState
     {

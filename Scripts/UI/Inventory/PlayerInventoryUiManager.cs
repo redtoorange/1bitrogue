@@ -1,13 +1,12 @@
-using BitRoguelike.Scripts.UI.Chest;
-using GameboyRoguelike.Scripts.Characters.Controllers;
-using GameboyRoguelike.Scripts.Characters.Player;
-using GameboyRoguelike.Scripts.Items;
-using GameboyRoguelike.Scripts.Map.Objects;
-using GameboyRoguelike.Scripts.UI.Inventory.ContextMenu;
-using GameboyRoguelike.Scripts.UI.Inventory.Slots;
+using BitRoguelike.Scripts.Characters.Controllers;
+using BitRoguelike.Scripts.Items;
+using BitRoguelike.Scripts.Map.Objects;
+using BitRoguelike.Scripts.UI.Inventory.Chest;
+using BitRoguelike.Scripts.UI.Inventory.ContextMenu;
+using BitRoguelike.Scripts.UI.Inventory.Slots;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.UI.Inventory
+namespace BitRoguelike.Scripts.UI.Inventory
 {
     public class PlayerInventoryUiManager : Control
     {

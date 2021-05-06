@@ -1,8 +1,8 @@
-using GameboyRoguelike.Scripts.Items;
-using GameboyRoguelike.Scripts.UI.Inventory.Slots;
+using BitRoguelike.Scripts.Items;
+using BitRoguelike.Scripts.UI.Inventory.Slots;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.UI.Inventory
+namespace BitRoguelike.Scripts.UI.Inventory
 {
     public class ItemInventoryTile : TextureRect
     {

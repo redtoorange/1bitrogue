@@ -1,8 +1,8 @@
-using GameboyRoguelike.Scripts.Characters.Player;
-using GameboyRoguelike.Scripts.UI;
+using BitRoguelike.Scripts.Characters.Player;
+using BitRoguelike.Scripts.UI;
 using Godot;
 
-namespace GameboyRoguelike.Scripts
+namespace BitRoguelike.Scripts
 {
     public class MainGame : Node
     {

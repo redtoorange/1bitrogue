@@ -1,8 +1,8 @@
-﻿using GameboyRoguelike.Scripts.Items;
-using GameboyRoguelike.Scripts.Items.Stats;
+﻿using BitRoguelike.Scripts.Items;
+using BitRoguelike.Scripts.Items.Equipment;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.UI.Inventory.Slots
+namespace BitRoguelike.Scripts.UI.Inventory.Slots
 {
     public class TrinketSlot : ItemSlot
     {

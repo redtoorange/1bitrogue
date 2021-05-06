@@ -1,4 +1,4 @@
-﻿namespace GameboyRoguelike.Scripts.Characters
+﻿namespace BitRoguelike.Scripts.Characters
 {
     public enum TurnTakerState
     {

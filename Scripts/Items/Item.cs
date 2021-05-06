@@ -1,9 +1,8 @@
-﻿using GameboyRoguelike.Scripts.Characters.Player;
-using GameboyRoguelike.Scripts.Items.Stats;
-using GameboyRoguelike.Scripts.Managers;
+﻿using BitRoguelike.Scripts.Characters.Player;
+using BitRoguelike.Scripts.Managers;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.Items
+namespace BitRoguelike.Scripts.Items
 {
     public class Item : Node2D
     {

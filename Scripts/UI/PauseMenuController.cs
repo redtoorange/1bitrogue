@@ -1,7 +1,7 @@
 ﻿using System;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.UI.Inventory
+namespace BitRoguelike.Scripts.UI
 {
     public class PauseMenuController : Control
     {

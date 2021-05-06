@@ -1,8 +1,7 @@
-using GameboyRoguelike.Scripts.Characters.Controllers;
-using GameboyRoguelike.Scripts.Characters.Player;
+using BitRoguelike.Scripts.Characters.Controllers;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.UI
+namespace BitRoguelike.Scripts.UI
 {
     public class PlayerResourceDisplayController : Node
     {

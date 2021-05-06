@@ -1,5 +1,6 @@
-using GameboyRoguelike.Scripts.Items.Stats;
-
-public class ScrollStats : ItemStats
+namespace BitRoguelike.Scripts.Items.Consumable
 {
+    public class ScrollStats : ItemStats
+    {
+    }
 }

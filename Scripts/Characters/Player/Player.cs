@@ -1,9 +1,8 @@
 using System;
-using GameboyRoguelike.Scripts.Characters.Controllers;
-using GameboyRoguelike.Scripts.UI;
-using Godot;
+using BitRoguelike.Scripts.Characters.Controllers;
+using BitRoguelike.Scripts.UI;
 
-namespace GameboyRoguelike.Scripts.Characters.Player
+namespace BitRoguelike.Scripts.Characters.Player
 {
     public class Player : GameCharacter, IDefender, IAttacker
     {

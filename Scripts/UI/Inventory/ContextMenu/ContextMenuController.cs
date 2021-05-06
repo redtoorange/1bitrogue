@@ -1,9 +1,10 @@
-﻿using GameboyRoguelike.Scripts.Items;
-using GameboyRoguelike.Scripts.UI.Inventory.Slots;
+﻿using BitRoguelike.Scripts.Items;
+using BitRoguelike.Scripts.Items.Consumable;
+using BitRoguelike.Scripts.Items.Equipment;
+using BitRoguelike.Scripts.UI.Inventory.Slots;
 using Godot;
-using WeaponSlot = GameboyRoguelike.Scripts.UI.Inventory.Slots.WeaponSlot;
 
-namespace GameboyRoguelike.Scripts.UI.Inventory.ContextMenu
+namespace BitRoguelike.Scripts.UI.Inventory.ContextMenu
 {
     public class ContextMenuController : Control
     {

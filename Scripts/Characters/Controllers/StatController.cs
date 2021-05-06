@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace GameboyRoguelike.Scripts.Characters.Controllers
+namespace BitRoguelike.Scripts.Characters.Controllers
 {
     public enum StatType
     {

@@ -1,8 +1,9 @@
 using System;
-using GameboyRoguelike.Scripts.Map.Objects;
+using BitRoguelike.Scripts.Map.Objects;
+using BitRoguelike.Scripts.Systems;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.Characters.Controllers
+namespace BitRoguelike.Scripts.Characters.Controllers
 {
     public class MovementController : Node
     {

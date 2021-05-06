@@ -1,8 +1,7 @@
 ﻿using System;
-using GameboyRoguelike.Scripts.UI.Inventory;
-using GameboyRoguelike.Scripts.UI.Inventory.Slots;
+using BitRoguelike.Scripts.UI.Inventory.Slots;
 
-namespace BitRoguelike.Scripts.UI.Chest
+namespace BitRoguelike.Scripts.UI.Inventory.Chest
 {
     public class LootChestSlot : ItemSlot
     {

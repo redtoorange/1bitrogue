@@ -1,8 +1,7 @@
-using System;
-using GameboyRoguelike.Scripts.Characters.Controllers;
+using BitRoguelike.Scripts.Characters.Controllers;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.Characters
+namespace BitRoguelike.Scripts.Characters
 {
     public enum CharacterType
     {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using GameboyRoguelike.Scripts.Characters;
-using GameboyRoguelike.Scripts.Characters.Player;
+using BitRoguelike.Scripts.Characters;
+using BitRoguelike.Scripts.Characters.Player;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.Managers
+namespace BitRoguelike.Scripts.Managers
 {
     public enum GameTimingState
     {

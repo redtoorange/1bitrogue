@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GameboyRoguelike.Scripts.Items.Stats
+namespace BitRoguelike.Scripts.Items
 {
     public class ItemStats : Resource
     {

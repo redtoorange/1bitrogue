@@ -1,9 +1,9 @@
-using GameboyRoguelike.Scripts.Characters.Controllers;
-using GameboyRoguelike.Scripts.Managers;
-using GameboyRoguelike.Scripts.UI;
+using BitRoguelike.Scripts.Characters.Controllers;
+using BitRoguelike.Scripts.Managers;
+using BitRoguelike.Scripts.UI;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.Characters.Enemies
+namespace BitRoguelike.Scripts.Characters.Enemies
 {
     public class Enemy : GameCharacter, IDefender, IAttacker, ITurnTaker
     {

@@ -1,11 +1,11 @@
-using GameboyRoguelike.Scripts.Characters.Player;
-using GameboyRoguelike.Scripts.Managers;
-using GameboyRoguelike.Scripts.Map.Objects;
-using GameboyRoguelike.Scripts.UI.Inventory;
-using GameboyRoguelike.Scripts.UI.Inventory.ContextMenu;
+using BitRoguelike.Scripts.Characters.Player;
+using BitRoguelike.Scripts.Managers;
+using BitRoguelike.Scripts.Map.Objects;
+using BitRoguelike.Scripts.UI.Inventory;
+using BitRoguelike.Scripts.UI.Inventory.ContextMenu;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.UI
+namespace BitRoguelike.Scripts.UI
 {
     public enum PlayerUiState
     {

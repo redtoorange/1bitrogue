@@ -1,4 +1,4 @@
-﻿namespace GameboyRoguelike.Scripts.Items
+﻿namespace BitRoguelike.Scripts.Items.Consumable
 {
     public interface IConsumable
     {

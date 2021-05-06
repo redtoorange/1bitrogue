@@ -1,7 +1,7 @@
-using GameboyRoguelike.Scripts.Characters;
+using BitRoguelike.Scripts.Characters;
 using Godot;
 
-namespace GameboyRoguelike.Scripts
+namespace BitRoguelike.Scripts.Systems
 {
     public class AttackSystem : Node
     {

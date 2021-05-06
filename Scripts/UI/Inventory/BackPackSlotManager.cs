@@ -1,8 +1,8 @@
 using System;
-using GameboyRoguelike.Scripts.UI.Inventory.Slots;
+using BitRoguelike.Scripts.UI.Inventory.Slots;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.UI.Inventory
+namespace BitRoguelike.Scripts.UI.Inventory
 {
     public class BackPackSlotManager : PanelContainer
     {

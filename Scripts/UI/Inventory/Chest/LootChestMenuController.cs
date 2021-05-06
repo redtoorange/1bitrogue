@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using GameboyRoguelike.Scripts.Characters.Controllers;
-using GameboyRoguelike.Scripts.Items;
-using GameboyRoguelike.Scripts.Map.Objects;
-using GameboyRoguelike.Scripts.UI.Inventory;
+﻿using BitRoguelike.Scripts.Characters.Controllers;
+using BitRoguelike.Scripts.Items;
+using BitRoguelike.Scripts.Map.Objects;
 using Godot;
 
-namespace BitRoguelike.Scripts.UI.Chest
+namespace BitRoguelike.Scripts.UI.Inventory.Chest
 {
     public class LootChestMenuController : Control
     {

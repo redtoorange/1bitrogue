@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GameboyRoguelike.Scripts.Map.Objects
+namespace BitRoguelike.Scripts.Map.Objects
 {
     public enum DoorState
     {

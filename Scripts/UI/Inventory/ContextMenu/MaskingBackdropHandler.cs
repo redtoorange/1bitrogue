@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace GameboyRoguelike.Scripts.UI.Inventory.ContextMenu
+namespace BitRoguelike.Scripts.UI.Inventory.ContextMenu
 {
     public class MaskingBackdropHandler : ColorRect
     {

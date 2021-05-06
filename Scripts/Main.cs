@@ -1,55 +1,56 @@
-using Godot;
-using System;
 using BitRoguelike.Scripts.UI;
-using GameboyRoguelike.Scripts;
-using GameboyRoguelike.Scripts.UI.Inventory;
+using BitRoguelike.Scripts.UI.MainMenu;
+using Godot;
 
-public class Main : Node
+namespace BitRoguelike.Scripts
 {
-    [Export] private NodePath mainMenuPath;
-    [Export] private NodePath settingsMenuPath;
-    [Export] private PackedScene mainGameScene;
+    public class Main : Node
+    {
+        [Export] private NodePath mainMenuPath;
+        [Export] private NodePath settingsMenuPath;
+        [Export] private PackedScene mainGameScene;
 
-    private MainMenu mainMenu;
-    private SettingsMenuController settingsMenuController;
-    private MainGame mainGame;
+        private MainMenu mainMenu;
+        private SettingsMenuController settingsMenuController;
+        private MainGame mainGame;
     
-    public override void _Ready()
-    {
-        mainMenu = GetNode<MainMenu>(mainMenuPath);
-        settingsMenuController = GetNode<SettingsMenuController>(settingsMenuPath);
+        public override void _Ready()
+        {
+            mainMenu = GetNode<MainMenu>(mainMenuPath);
+            settingsMenuController = GetNode<SettingsMenuController>(settingsMenuPath);
 
-        mainMenu.OnStartClicked += HandleOnStartPressed;
-        mainMenu.OnSettingsClicked += HandleOnSettingsPressed;
+            mainMenu.OnStartClicked += HandleOnStartPressed;
+            mainMenu.OnSettingsClicked += HandleOnSettingsPressed;
 
-        settingsMenuController.OnSettingsMenuBackPressed += HandleOnSettingsBackPressed;
+            settingsMenuController.OnSettingsMenuBackPressed += HandleOnSettingsBackPressed;
         
-        PauseMenuController.OnQuitToMainMenu += HandleOnQuitToMainMenu;
-    }
+            PauseMenuController.OnQuitToMainMenu += HandleOnQuitToMainMenu;
+        }
 
-    private void HandleOnStartPressed()
-    {
-        mainMenu.Visible = false;
+        private void HandleOnStartPressed()
+        {
+            mainMenu.Visible = false;
         
-        mainGame = mainGameScene.Instance<MainGame>();
-        AddChild(mainGame);
-    }
+            mainGame = mainGameScene.Instance<MainGame>();
+            AddChild(mainGame);
+        }
     
-    private void HandleOnSettingsPressed()
-    {
-        settingsMenuController.Visible = true;
-    }
+        private void HandleOnSettingsPressed()
+        {
+            settingsMenuController.Visible = true;
+        }
 
-    private void HandleOnSettingsBackPressed()
-    {
-        settingsMenuController.Visible = false;
-    }
+        private void HandleOnSettingsBackPressed()
+        {
+            settingsMenuController.Visible = false;
+        }
 
-    private void HandleOnQuitToMainMenu()
-    {
-        RemoveChild(mainGame);
-        mainGame.QueueFree();
+        private void HandleOnQuitToMainMenu()
+        {
+            RemoveChild(mainGame);
+            mainGame.QueueFree();
         
-        mainMenu.Visible = true;
+            mainMenu.Visible = true;
+        }
     }
 }

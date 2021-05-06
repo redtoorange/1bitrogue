@@ -1,7 +1,7 @@
-﻿using GameboyRoguelike.Scripts.Items;
+﻿using BitRoguelike.Scripts.Items.Equipment;
 using Godot;
 
-namespace GameboyRoguelike.Scripts.Characters.Controllers
+namespace BitRoguelike.Scripts.Characters.Controllers
 {
     public class ArmorController : Node
     {

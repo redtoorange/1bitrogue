@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace GameboyRoguelike.Scripts.Managers
+namespace BitRoguelike.Scripts.Managers
 {
     public class ItemManager : Node2D
     {
