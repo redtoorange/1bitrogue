@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using BitRoguelike.Scripts.Characters.Controllers;
 using BitRoguelike.Scripts.UI.Inventory.Slots;
 using Godot;
@@ -80,16 +81,19 @@ namespace BitRoguelike.Scripts.UI.Inventory
             }
         }
 
-        public void AddItemTileToEquipment(ItemInventoryTile tile)
+        public List<EquipmentSlot> FindCompatibleSlot(ItemInventoryTile tile)
         {
+            List<EquipmentSlot> compatibleSlots = new List<EquipmentSlot>();
+            
             foreach (EquipmentSlot slot in slots)
             {
                 if (slot.CanDropDnDItem(tile))
                 {
-                    slot.DropDnDItem(tile);
-                    return;
+                    compatibleSlots.Add(slot);
                 }
             }
+
+            return compatibleSlots;
         }
 
         public void HandleOnEquip(EquipPayload payload)

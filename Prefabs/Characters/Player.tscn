@@ -60,7 +60,6 @@ script = ExtResource( 7 )
 
 [node name="Light2D" type="Light2D" parent="." index="7"]
 position = Vector2( 8, 8 )
-z_index = 1
 texture = ExtResource( 12 )
 texture_scale = 0.5
 color = Color( 1, 0.815686, 0.596078, 1 )

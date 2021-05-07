@@ -1,13 +1,10 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Prefabs/Items/Consumable/Food.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Items/Equipment/Armor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Prefabs/Items/Equipment/Weapon.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Sprites/TileSheets/1bit/colored_transparent_packed.png" type="Texture" id=4]
-[ext_resource path="res://Prefabs/Characters/NPC.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/House.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/TestDungeon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/Characters/Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Prefabs/Characters/Goblin.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Prefabs/UI/PlayerUi.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/Managers/GameRoundManager.cs" type="Script" id=10]
 [ext_resource path="res://Scripts/Managers/NPCManager.cs" type="Script" id=11]
@@ -16,30 +13,7 @@
 [ext_resource path="res://Scripts/MainGame.cs" type="Script" id=14]
 [ext_resource path="res://Prefabs/Items/Consumable/Potion.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Data/Items/Equipment/Weapons/MorningStar.tres" type="Resource" id=16]
-
-[sub_resource type="AtlasTexture" id=1]
-resource_local_to_scene = true
-atlas = ExtResource( 4 )
-region = Rect2( 400, 144, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 4 )
-region = Rect2( 496, 16, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=3]
-resource_local_to_scene = true
-atlas = ExtResource( 4 )
-region = Rect2( 416, 16, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=4]
-resource_local_to_scene = true
-atlas = ExtResource( 4 )
-region = Rect2( 496, 32, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=5]
-resource_local_to_scene = true
-atlas = ExtResource( 4 )
-region = Rect2( 496, 32, 16, 16 )
+[ext_resource path="res://Prefabs/Items/Equipment/Trinket.tscn" type="PackedScene" id=17]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 14 )
@@ -50,14 +24,15 @@ playerUIController = NodePath("UI/PlayerUIController")
 modulate = Color( 0, 0, 0, 0.901961 )
 color = Color( 0, 0, 0, 1 )
 
-[node name="House" parent="." instance=ExtResource( 6 )]
-
 [node name="GameRoundManager" type="Node" parent="."]
 script = ExtResource( 10 )
 currentTimingState = 1
 playerTurnCooldown = 0.1
 
+[node name="TestDungeon" parent="." instance=ExtResource( 4 )]
+
 [node name="WorldItemsManager" type="Node2D" parent="."]
+visible = false
 script = ExtResource( 13 )
 
 [node name="Armor" parent="WorldItemsManager" instance=ExtResource( 2 )]
@@ -76,54 +51,22 @@ position = Vector2( 96, 32 )
 position = Vector2( 48, 48 )
 stats = ExtResource( 16 )
 
+[node name="Trinket" parent="WorldItemsManager" instance=ExtResource( 17 )]
+position = Vector2( 80, 112 )
+
 [node name="CharacterController" type="Node2D" parent="."]
 
 [node name="NPCManager" type="Node2D" parent="CharacterController"]
+visible = false
 script = ExtResource( 11 )
 
-[node name="NPC" parent="CharacterController/NPCManager" instance=ExtResource( 5 )]
-light_mask = 1
-position = Vector2( 64, 32 )
-characterSprite = SubResource( 1 )
-
-[node name="NPC5" parent="CharacterController/NPCManager" instance=ExtResource( 5 )]
-light_mask = 1
-position = Vector2( 128, 32 )
-characterSprite = SubResource( 2 )
-
-[node name="NPC2" parent="CharacterController/NPCManager" instance=ExtResource( 5 )]
-light_mask = 1
-position = Vector2( 112, 128 )
-characterSprite = SubResource( 3 )
-
-[node name="NPC3" parent="CharacterController/NPCManager" instance=ExtResource( 5 )]
-light_mask = 1
-position = Vector2( 32, 128 )
-characterSprite = SubResource( 4 )
-
-[node name="NPC4" parent="CharacterController/NPCManager" instance=ExtResource( 5 )]
-light_mask = 1
-position = Vector2( 16, 112 )
-characterSprite = SubResource( 5 )
-
 [node name="EnemyManager" type="Node2D" parent="CharacterController"]
+visible = false
 script = ExtResource( 12 )
-
-[node name="Goblin" parent="CharacterController/EnemyManager" instance=ExtResource( 8 )]
-light_mask = 1
-position = Vector2( 80, 160 )
-
-[node name="Goblin2" parent="CharacterController/EnemyManager" instance=ExtResource( 8 )]
-light_mask = 1
-position = Vector2( 64, 208 )
-
-[node name="Goblin3" parent="CharacterController/EnemyManager" instance=ExtResource( 8 )]
-light_mask = 1
-position = Vector2( 96, 208 )
 
 [node name="Player" parent="CharacterController" instance=ExtResource( 7 )]
 light_mask = 1
-position = Vector2( 32, 64 )
+position = Vector2( 16, 32 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 3

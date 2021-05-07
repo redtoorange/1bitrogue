@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using BitRoguelike.Scripts.Characters.Controllers;
 using BitRoguelike.Scripts.Items;
 using BitRoguelike.Scripts.Map.Objects;
@@ -14,15 +15,16 @@ namespace BitRoguelike.Scripts.UI.Inventory
         UNEQUIP,
         CONSUME
     }
+
     public class PlayerInventoryUiManager : Control
     {
         // public static PlayerInventoryUiManager S;
-        
+
         [Export] private NodePath equipmentSlotsManagerPath = null;
         [Export] private NodePath backPackSlotManagerPath = null;
         [Export] private NodePath inventoryDragControllerPath = null;
         [Export] private NodePath chestMenuControllerPath = null;
-        
+
         [Export] private PackedScene itemInventoryTilePrefab = null;
 
         // Children
@@ -31,7 +33,7 @@ namespace BitRoguelike.Scripts.UI.Inventory
         private InventoryDragController inventoryDragController;
         private ContextMenuController contextMenuController;
         private LootChestMenuController lootChestMenuController;
-        
+
         // Injected
         private InventoryController inventoryController;
 
@@ -53,9 +55,9 @@ namespace BitRoguelike.Scripts.UI.Inventory
         {
             this.inventoryController = inventoryController;
             this.contextMenuController = contextMenuController;
-            
+
             contextMenuController.OnItemUsed += HandleOnItemUse;
-            
+
             inventoryDragController.Init(equipmentSlotsManager, backPackSlotManager);
             equipmentSlotsManager.Init(inventoryController);
             lootChestMenuController.Init(itemInventoryTilePrefab, this.inventoryController, backPackSlotManager);
@@ -66,7 +68,7 @@ namespace BitRoguelike.Scripts.UI.Inventory
             GD.Print("PlayerInventoryUiManager - AddItemToUi");
             ItemInventoryTile tile = itemInventoryTilePrefab.Instance<ItemInventoryTile>();
             tile.Init(item);
-            
+
             backPackSlotManager.AddItemTileToBackpack(tile);
         }
 
@@ -100,29 +102,60 @@ namespace BitRoguelike.Scripts.UI.Inventory
             lootChestMenuController.Visible = false;
         }
 
-        public void HandleOnItemUse(ItemSlot slot, ItemUseType useType)
+        public void HandleOnItemUse(ItemSlot sourceSlot, ItemUseType useType)
         {
+            ItemInventoryTile usedItem = sourceSlot.GetItemTile();
+
             if (useType == ItemUseType.CONSUME)
             {
                 // TODO
             }
-            else if(useType == ItemUseType.EQUIP)
+            else if (useType == ItemUseType.EQUIP)
             {
-                // TODO need to handle swapping
-                ItemInventoryTile tile = slot.GetItemTile();
-                slot.RemoveItemTile();
-
-                equipmentSlotsManager.AddItemTileToEquipment(tile);
+                HandleUseEquip(sourceSlot, usedItem);
             }
             else if (useType == ItemUseType.UNEQUIP)
             {
-                // TODO need to handle full bag
-                
-                // The tile being removed will trigger the unequip, so just add it to the backpack
-                ItemInventoryTile tile = slot.GetItemTile();
-                slot.RemoveItemTile();
+                HandleUseUnEquip(sourceSlot, usedItem);
+            }
+        }
 
-                backPackSlotManager.AddItemTileToBackpack(tile);
+        private void HandleUseUnEquip(ItemSlot sourceSlot, ItemInventoryTile usedItem)
+        {
+            if (backPackSlotManager.HasEmptySlots())
+            {
+                sourceSlot.RemoveItemTile();
+                backPackSlotManager.AddItemTileToBackpack(usedItem);
+            }
+        }
+
+        private void HandleUseEquip(ItemSlot sourceSlot, ItemInventoryTile usedItem)
+        {
+            List<EquipmentSlot> compatibleSlots = equipmentSlotsManager.FindCompatibleSlot(usedItem);
+            if (compatibleSlots.Count > 0)
+            {
+                // Place item in empty space
+                foreach (EquipmentSlot equipmentSlot in compatibleSlots)
+                {
+                    // Found empty slot, sweet, we done
+                    if (!equipmentSlot.IsOccupied())
+                    {
+                        sourceSlot.RemoveItemTile();
+                        equipmentSlot.DropDnDItem(usedItem);
+                        return;
+                    }
+                }
+
+                
+                // Swap item
+                sourceSlot.RemoveItemTile();
+                
+                EquipmentSlot targetSlot = compatibleSlots[0];
+                ItemInventoryTile tempTile = targetSlot.GetItemTile();
+                targetSlot.RemoveItemTile();
+                
+                sourceSlot.DropDnDItem(tempTile);
+                targetSlot.DropDnDItem(usedItem);
             }
         }
     }
