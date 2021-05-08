@@ -1,6 +1,7 @@
 using System;
 using BitRoguelike.Scripts.Characters.Controllers;
 using BitRoguelike.Scripts.UI;
+using Godot;
 
 namespace BitRoguelike.Scripts.Characters.Player
 {

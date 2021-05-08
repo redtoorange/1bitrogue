@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Sprites/TileSheets/1bit/Tiles/1BitTileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Prefabs/Items/Equipment/Armor.tscn" type="PackedScene" id=2]
@@ -11,8 +11,13 @@
 [ext_resource path="res://Prefabs/Map/Objects/Chest.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Prefabs/Map/Objects/Lamp.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Prefabs/Items/Equipment/Trinket.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/Map/MapController.cs" type="Script" id=12]
 
 [node name="House" type="Node2D"]
+script = ExtResource( 12 )
+wallTileMapPath = NodePath("Walls")
+floorTileMapPath = NodePath("Floor")
+doodadTileMapPath = NodePath("Doodads")
 
 [node name="background" type="Sprite" parent="."]
 self_modulate = Color( 0.2, 0.156863, 0.211765, 1 )
@@ -23,6 +28,14 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Floor" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+collision_layer = 0
+occluder_light_mask = 0
+format = 1
+tile_data = PoolIntArray( 327683, 0, 2, 327687, 0, 2, 458755, 0, 2, 458759, 0, 2, 655365, 0, 2, 786437, 0, 2 )
+
 [node name="Walls" type="TileMap" parent="."]
 light_mask = 2
 tile_set = ExtResource( 1 )
@@ -31,14 +44,6 @@ show_collision = true
 occluder_light_mask = 2
 format = 1
 tile_data = PoolIntArray( 65536, 0, 1114122, 65537, 0, 1114122, 65538, 0, 1114124, 65539, 0, 1114122, 65540, 0, 1114122, 65541, 0, 1114122, 65542, 0, 1114122, 65543, 0, 1114122, 65544, 0, 1114124, 65545, 0, 1114122, 65546, 0, 1114122, 131072, 0, 1114122, 131077, 0, 1114122, 131082, 0, 1114122, 196608, 0, 1114124, 196613, 0, 1114122, 196618, 0, 1114124, 262144, 0, 1114122, 262149, 0, 1114122, 262154, 0, 1114122, 327680, 0, 1114122, 327685, 0, 1114122, 327690, 0, 1114122, 393216, 0, 1114122, 393217, 0, 1114122, 393218, 0, 1114122, 393220, 0, 1114122, 393221, 0, 1114122, 393222, 0, 1114122, 393224, 0, 1114122, 393225, 0, 1114122, 393226, 0, 1114122, 458752, 0, 1114122, 458762, 0, 1114122, 524288, 0, 1114122, 524298, 0, 1114122, 589824, 0, 1114122, 589834, 0, 1114122, 655360, 0, 1114122, 655370, 0, 1114122, 720896, 0, 1114122, 720897, 0, 1114122, 720898, 0, 1114122, 720899, 0, 1114124, 720900, 0, 1114122, 720902, 0, 1114122, 720903, 0, 1114124, 720904, 0, 1114122, 720905, 0, 1114122, 720906, 0, 1114122 )
-
-[node name="Floor" type="TileMap" parent="."]
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 16, 16 )
-collision_layer = 0
-occluder_light_mask = 0
-format = 1
-tile_data = PoolIntArray( 327683, 0, 2, 327687, 0, 2, 458755, 0, 2, 458759, 0, 2, 655365, 0, 2, 786437, 0, 2 )
 
 [node name="Doodads" type="TileMap" parent="."]
 light_mask = 2

@@ -30,7 +30,14 @@ namespace BitRoguelike.Scripts.UI
 
         private void OnMainMenuClicked()
         {
-            OnQuitToMainMenu?.Invoke();
+            if (OnQuitToMainMenu == null)
+            {
+                GetTree().Quit();
+            }
+            else
+            {
+                OnQuitToMainMenu.Invoke();
+            }
         }
     }
 }
