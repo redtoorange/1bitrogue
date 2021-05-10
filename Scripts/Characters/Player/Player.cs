@@ -39,7 +39,7 @@ namespace BitRoguelike.Scripts.Characters.Player
             playerInputController = GetInputController() as PlayerInputController;
         }
 
-        public void Init(PlayerUiController playerUiController)
+        public void Init(PlayerUiController playerUiController, VisionController visionController)
         {
             this.playerUiController = playerUiController;
             
@@ -47,7 +47,7 @@ namespace BitRoguelike.Scripts.Characters.Player
             GetMovementController().OnMoveCompleted += HandleActionFinished;
             healthController.OnDie += PlayerDied;
 
-            playerInputController.Init(GetMovementController());
+            playerInputController.Init(GetMovementController(), visionController);
             inventoryController.Init(
                 GetArmorController(),
                 GetWeaponController(),

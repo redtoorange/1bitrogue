@@ -19,12 +19,16 @@ namespace BitRoguelike.Scripts.Characters.Player
         private Vector2 moveRightVector = new Vector2(16, 0);
 
         private MovementController movementController;
+        private VisionController visionController;
         
         
-        public void Init(MovementController movementController)
+        public void Init(MovementController movementController, VisionController visionController)
         {
             this.movementController = movementController;
+            this.visionController = visionController;
         }
+
+        
         
         public override void _Process(float delta)
         {
@@ -36,22 +40,30 @@ namespace BitRoguelike.Scripts.Characters.Player
 
         private void HandleInput()
         {
+            bool moved = false;
+            
             if (Input.IsActionPressed(MOVE_UP))
             {
-                movementController.AttemptMove(moveUpVector);
+                moved = movementController.AttemptMove(moveUpVector);
             }
             else if (Input.IsActionPressed(MOVE_DOWN))
             {
-                movementController.AttemptMove(moveDownVector);
+                moved = movementController.AttemptMove(moveDownVector);
             }
             else if (Input.IsActionPressed(MOVE_LEFT))
             {
-                movementController.AttemptMove(moveLeftVector);
+                moved = movementController.AttemptMove(moveLeftVector);
             }
             else if (Input.IsActionPressed(MOVE_RIGHT))
             {
-                movementController.AttemptMove(moveRightVector);
+                moved = movementController.AttemptMove(moveRightVector);
             }
+
+            if (moved)
+            {
+                visionController.UpdateFov(movementController.GetDestination());
+            }
+            
         }
     }
 }

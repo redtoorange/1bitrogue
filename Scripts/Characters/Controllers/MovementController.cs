@@ -15,9 +15,10 @@ namespace BitRoguelike.Scripts.Characters.Controllers
         protected AnimationPlayer animationPlayer = null;
         protected Tween tween = null;
         protected RayCast2D rayCast2D = null;
-        
+
         protected bool isTweening = false;
         protected Timer timer = null;
+        private Vector2 destination;
 
         public override void _Ready()
         {
@@ -40,22 +41,26 @@ namespace BitRoguelike.Scripts.Characters.Controllers
             isTweening = false;
         }
 
-        public void AttemptMove(Vector2 destination)
+        public bool AttemptMove(Vector2 delta)
         {
-            if (tween.IsActive()) return;
-            
-            Node blocker = CanMoveTo(destination);
+            bool moved = false;
+
+            if (tween.IsActive()) return moved;
+
+            Node blocker = CanMoveTo(delta);
             if (blocker == null)
             {
+                destination = gameCharacter.Position + delta;
                 tween.InterpolateProperty(gameCharacter,
                     "position",
                     gameCharacter.Position,
-                    gameCharacter.Position + destination,
+                    destination,
                     movementSpeed,
                     Tween.TransitionType.Cubic);
                 animationPlayer.Play("Hop");
                 tween.Start();
                 isTweening = true;
+                moved = true;
             }
             else
             {
@@ -68,10 +73,17 @@ namespace BitRoguelike.Scripts.Characters.Controllers
                     AttackSystem.S.ResolveAttack(attacker, target);
                 }
 
-                PlayLungeAnimation(destination);
+                PlayLungeAnimation(delta);
             }
-            
+
             Timeout(1);
+
+            return moved;
+        }
+
+        public Vector2 GetDestination()
+        {
+            return destination;
         }
 
         private Node CanMoveTo(Vector2 destination)

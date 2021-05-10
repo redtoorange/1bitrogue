@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Prefabs/Items/Consumable/Food.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Items/Equipment/Armor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Prefabs/Items/Equipment/Weapon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/TestDungeon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/Characters/Goblin.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Prefabs/Controllers/VisionController.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/Characters/Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Prefabs/UI/PlayerUi.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/Managers/GameRoundManager.cs" type="Script" id=10]
@@ -19,9 +20,12 @@
 [node name="Main" type="Node2D"]
 script = ExtResource( 14 )
 playerPath = NodePath("CharacterController/Player")
-playerUIController = NodePath("UI/PlayerUIController")
+playerUiControllerPath = NodePath("UI/PlayerUIController")
+visionControllerPath = NodePath("VisionController")
+mapControllerPath = NodePath("TestDungeon")
 
 [node name="Shader" type="CanvasModulate" parent="."]
+visible = false
 color = Color( 0, 0, 0, 1 )
 
 [node name="GameRoundManager" type="Node" parent="."]
@@ -74,3 +78,5 @@ position = Vector2( 272, 304 )
 layer = 3
 
 [node name="PlayerUIController" parent="UI" instance=ExtResource( 9 )]
+
+[node name="VisionController" parent="." instance=ExtResource( 6 )]

@@ -33,7 +33,7 @@ namespace BitRoguelike.Scripts
         
         private void Init()
         {
-            player.Init(playerUiController);
+            player.Init(playerUiController, visionController);
             playerUiController.Init(player);
             visionController.Init(player, mapController);
         }

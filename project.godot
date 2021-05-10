@@ -151,6 +151,7 @@ Heal={
 [mono]
 
 profiler/enabled=true
+export/export_assemblies_inside_pck=false
 export/i18n_codesets=0
 
 [physics]

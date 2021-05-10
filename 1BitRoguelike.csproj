@@ -1,9 +1,18 @@
 <Project Sdk="Godot.NET.Sdk/3.3.0">
-  <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
-    <RootNamespace>BitRoguelike</RootNamespace>
-  </PropertyGroup>
-  <ItemGroup>
-    <Content Include="README.md" />
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <RootNamespace>BitRoguelike</RootNamespace>
+        <LangVersion>8</LangVersion>
+        <Nullable>disable</Nullable>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    </PropertyGroup>
+    <ItemGroup>
+        <Content Include="README.md" />
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="GoRogue" Version="3.0.0-alpha02-debug" />
+        <PackageReference Include="OptimizedPriorityQueue" Version="5.1.0" />
+        <PackageReference Include="TheSadRogue.Primitives" Version="1.0.0" />
+        <PackageReference Include="Troschuetz.Random" Version="5.0.1" />
+    </ItemGroup>
 </Project>
