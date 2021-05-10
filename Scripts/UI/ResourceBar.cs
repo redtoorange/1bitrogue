@@ -5,6 +5,7 @@ namespace BitRoguelike.Scripts.UI
 {
     public class ResourceBar : Control
     {
+        [Export] private bool hideWhenFull = false;
         [Export] private Color baseColor = Colors.Red;
         [Export] private Color gainColor = Colors.Green;
         [Export] private Color loseColor = Colors.Yellow;
@@ -39,6 +40,11 @@ namespace BitRoguelike.Scripts.UI
             baseLayer.Value = this.resourceController.GetPercentValue() * 100;
             loseLayer.Value = 0;
             gainLayer.Value = 0;
+
+            if (hideWhenFull && baseLayer.Value == 100)
+            {
+                Hide();
+            }
         }
 
         private void HandleValueChange(ResourceChangeData data)
@@ -46,6 +52,11 @@ namespace BitRoguelike.Scripts.UI
             float value = (data.newValue / (float) data.maxValue) * 100;
             if (data.changeType == ResourceChangeType.LOSE)
             {
+                if (hideWhenFull && value > 0)
+                {
+                    Show();
+                }
+
                 AnimateLoss(value);
             }
             else
@@ -68,6 +79,11 @@ namespace BitRoguelike.Scripts.UI
         {
             loseLayer.Value = 0;
             gainLayer.Value = 0;
+
+            if (hideWhenFull && baseLayer.Value == 100)
+            {
+                Hide();
+            }
         }
 
         private void AnimateGain(float to)

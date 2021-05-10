@@ -439,7 +439,7 @@ public class VisionController : Node2D
 
     private bool IsOpen(int x, int y)
     {
-        return wallTileMap.GetCell(x, y) == -1;
+        return wallTileMap.GetCell(x, y) == -1 && !mapController.HasClosedDoor(x, y);
     }
 
     private int GetStartX()

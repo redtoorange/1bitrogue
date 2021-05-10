@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Prefabs/Items/Consumable/Food.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Items/Equipment/Armor.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Prefabs/Characters/Goblin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/Controllers/VisionController.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/Characters/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Characters/Player/PlayerCamera.cs" type="Script" id=8]
 [ext_resource path="res://Prefabs/UI/PlayerUi.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/Managers/GameRoundManager.cs" type="Script" id=10]
 [ext_resource path="res://Scripts/Managers/NPCManager.cs" type="Script" id=11]
@@ -24,9 +25,11 @@ playerUiControllerPath = NodePath("UI/PlayerUIController")
 visionControllerPath = NodePath("VisionController")
 mapControllerPath = NodePath("TestDungeon")
 
-[node name="Shader" type="CanvasModulate" parent="."]
-visible = false
-color = Color( 0, 0, 0, 1 )
+[node name="PlayerCamera" type="Camera2D" parent="."]
+current = true
+smoothing_enabled = true
+script = ExtResource( 8 )
+playerPath = NodePath("../CharacterController/Player")
 
 [node name="GameRoundManager" type="Node" parent="."]
 script = ExtResource( 10 )
@@ -62,7 +65,7 @@ position = Vector2( 80, 112 )
 
 [node name="Player" parent="CharacterController" instance=ExtResource( 7 )]
 light_mask = 1
-position = Vector2( 288, 336 )
+position = Vector2( 256, 160 )
 
 [node name="NPCManager" type="Node2D" parent="CharacterController"]
 visible = false
@@ -80,3 +83,4 @@ layer = 3
 [node name="PlayerUIController" parent="UI" instance=ExtResource( 9 )]
 
 [node name="VisionController" parent="." instance=ExtResource( 6 )]
+z_index = 6

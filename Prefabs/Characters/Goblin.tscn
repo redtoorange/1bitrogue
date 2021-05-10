@@ -39,12 +39,13 @@ stats = ExtResource( 10 )
 
 [node name="HealthController" type="Node" parent="Controllers" index="5"]
 script = ExtResource( 2 )
-maxHealth = 5
+maxHealth = 30
 
 [node name="HealthBarPositioner" type="Node2D" parent="." index="6"]
 z_index = 2
 
 [node name="HealthBar" parent="HealthBarPositioner" index="0" instance=ExtResource( 5 )]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -53,3 +54,4 @@ margin_left = 1.43051e-06
 margin_top = -2.0
 margin_right = 16.0
 margin_bottom = -9.53674e-07
+hideWhenFull = true

@@ -14,7 +14,7 @@ extents = Vector2( 8, 8 )
 [sub_resource type="Gradient" id=3]
 colors = PoolColorArray( 1, 0.679688, 0, 1, 0.0980392, 0.0705882, 0.0705882, 0.470588 )
 
-[sub_resource type="GradientTexture" id=6]
+[sub_resource type="GradientTexture" id=4]
 gradient = SubResource( 3 )
 
 [sub_resource type="ParticlesMaterial" id=5]
@@ -32,7 +32,7 @@ angle = 212.3
 angle_random = 1.0
 scale = 2.0
 scale_random = 1.0
-color_ramp = SubResource( 6 )
+color_ramp = SubResource( 4 )
 hue_variation = -0.05
 hue_variation_random = 0.11
 
@@ -81,7 +81,7 @@ shape = SubResource( 2 )
 [node name="Particles2D" type="Particles2D" parent="."]
 show_behind_parent = true
 position = Vector2( 0, -4 )
-z_index = 1000
+z_index = 2
 amount = 32
 lifetime = 1.5
 preprocess = 51.53

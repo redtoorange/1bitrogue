@@ -64,6 +64,8 @@ namespace BitRoguelike.Scripts.Characters.Controllers
             }
             else
             {
+                destination = gameCharacter.Position;
+                
                 if (blocker is IInteractable interactable)
                 {
                     interactable.Interact();
@@ -74,6 +76,7 @@ namespace BitRoguelike.Scripts.Characters.Controllers
                 }
 
                 PlayLungeAnimation(delta);
+                moved = true;
             }
 
             Timeout(1);

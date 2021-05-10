@@ -6,6 +6,7 @@
 [node name="VisionController" type="Node2D"]
 script = ExtResource( 2 )
 visionTileMapPath = NodePath("VisionController")
+visualRange = 5
 
 [node name="VisionController" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )

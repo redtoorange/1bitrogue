@@ -6,7 +6,7 @@ namespace BitRoguelike.Scripts.Characters.Controllers
     public class HealthController : ResourceController
     {
         public Action<HealthController> OnDie;
-        
+
         [Export] private int maxHealth = 100;
         private int currentHealth;
 

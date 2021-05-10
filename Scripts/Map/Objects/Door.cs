@@ -63,5 +63,10 @@ namespace BitRoguelike.Scripts.Map.Objects
                 animationPlayer.Play("DoorText");
             }
         }
+
+        public DoorState GetDoorState()
+        {
+            return currentState;
+        }
     }
 }
