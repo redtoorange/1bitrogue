@@ -7,7 +7,7 @@
 [ext_resource path="res://Prefabs/Characters/Goblin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Prefabs/Controllers/VisionController.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/Characters/Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scripts/Characters/Player/PlayerCamera.cs" type="Script" id=8]
+[ext_resource path="res://Prefabs/PlayerCamera.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Prefabs/UI/PlayerUi.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/Managers/GameRoundManager.cs" type="Script" id=10]
 [ext_resource path="res://Scripts/Managers/NPCManager.cs" type="Script" id=11]
@@ -25,11 +25,7 @@ playerUiControllerPath = NodePath("UI/PlayerUIController")
 visionControllerPath = NodePath("VisionController")
 mapControllerPath = NodePath("TestDungeon")
 
-[node name="PlayerCamera" type="Camera2D" parent="."]
-current = true
-smoothing_enabled = true
-script = ExtResource( 8 )
-playerPath = NodePath("../CharacterController/Player")
+[node name="PlayerCamera" parent="." instance=ExtResource( 8 )]
 
 [node name="GameRoundManager" type="Node" parent="."]
 script = ExtResource( 10 )

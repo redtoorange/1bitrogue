@@ -18,6 +18,7 @@ script = ExtResource( 12 )
 wallTileMapPath = NodePath("Walls")
 floorTileMapPath = NodePath("Floor")
 doodadTileMapPath = NodePath("Doodads")
+doorContainerPath = NodePath("MapObjectController/Doors")
 
 [node name="background" type="Sprite" parent="."]
 self_modulate = Color( 0.2, 0.156863, 0.211765, 1 )
@@ -56,22 +57,6 @@ format = 1
 tile_data = PoolIntArray( 458753, 0, 524289, 458760, 0, 524304, 524289, 0, 524304, 524290, 0, 524289, 524296, 0, 589840, 589825, 0, 655376, 589826, 0, 524289, 589832, 0, 655377, 655361, 0, 524289, 786436, 0, 65536, 786438, 0, 65536 )
 
 [node name="MapObjectController" type="Node2D" parent="."]
-
-[node name="Door" parent="MapObjectController" instance=ExtResource( 7 )]
-position = Vector2( 56, 104 )
-collision_layer = 12
-collision_mask = 0
-
-[node name="Door2" parent="MapObjectController" instance=ExtResource( 7 )]
-position = Vector2( 120, 104 )
-collision_layer = 12
-collision_mask = 0
-
-[node name="Door3" parent="MapObjectController" instance=ExtResource( 7 )]
-position = Vector2( 88, 184 )
-collision_layer = 12
-collision_mask = 0
-currentState = 2
 
 [node name="Bed" parent="MapObjectController" instance=ExtResource( 6 )]
 position = Vector2( 24, 88 )
@@ -120,6 +105,24 @@ collision_mask = 0
 position = Vector2( 152, 40 )
 collision_layer = 8
 collision_mask = 0
+
+[node name="Doors" type="Node2D" parent="MapObjectController"]
+
+[node name="Door" parent="MapObjectController/Doors" instance=ExtResource( 7 )]
+position = Vector2( 56, 104 )
+collision_layer = 12
+collision_mask = 0
+
+[node name="Door2" parent="MapObjectController/Doors" instance=ExtResource( 7 )]
+position = Vector2( 120, 104 )
+collision_layer = 12
+collision_mask = 0
+
+[node name="Door3" parent="MapObjectController/Doors" instance=ExtResource( 7 )]
+position = Vector2( 88, 184 )
+collision_layer = 12
+collision_mask = 0
+currentState = 2
 
 [node name="Lights" type="Node2D" parent="."]
 
