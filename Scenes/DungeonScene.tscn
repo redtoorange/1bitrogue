@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Prefabs/Items/Consumable/Food.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Prefabs/Items/Equipment/Armor.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Prefabs/Items/Consumable/Potion.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Data/Items/Equipment/Weapons/MorningStar.tres" type="Resource" id=16]
 [ext_resource path="res://Prefabs/Items/Equipment/Trinket.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scripts/Systems/PathFinding/AStartPathTester.cs" type="Script" id=18]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 14 )
@@ -80,3 +81,7 @@ layer = 3
 
 [node name="VisionController" parent="." instance=ExtResource( 6 )]
 z_index = 6
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource( 18 )
+mapControllerPath = NodePath("../TestDungeon")

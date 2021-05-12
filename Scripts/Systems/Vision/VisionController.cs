@@ -50,13 +50,18 @@ public class VisionController : Node2D
         this.mapController = mapController;
         wallTileMap = mapController.GetWallTileMap();
 
-        FillMapHiddenTiles();
-        UpdateFov(player.GlobalPosition);
+        ResetVision();
     }
 
     public void UpdateFov(Vector2 atPosition)
     {
         UpdateShroudedCells(GetVisibleCells(atPosition));
+    }
+
+    public void ResetVision()
+    {
+        FillMapHiddenTiles();
+        UpdateFov(player.GlobalPosition);
     }
 
 

@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using BitRoguelike.Scripts.Map.Objects;
+using BitRoguelike.Scripts.Systems.PathFinding;
 using BitRoguelike.Scripts.Util;
 using Godot;
+using GraphNode = Godot.GraphNode;
 
 public class MapController : Node2D
 {
@@ -16,6 +18,8 @@ public class MapController : Node2D
     private Node doorContainer;
 
     private Dictionary<Vector2I, Door> doorMapping;
+    
+    private TileMapGraph tileMapGraph;
 
     public override void _Ready()
     {
@@ -25,6 +29,8 @@ public class MapController : Node2D
         doorContainer = GetNode(doorContainerPath);
         
         MapDoors();
+
+        tileMapGraph = new TileMapGraph(this);
     }
 
     private void MapDoors()
@@ -55,14 +61,36 @@ public class MapController : Node2D
         return doodadTileMap;
     }
 
-    public bool HasClosedDoor(int x, int y)
+    public bool HasClosedDoor(int cellPosX, int cellPosY)
     {
-        Vector2I key = new Vector2I(x, y);
+        Vector2I key = new Vector2I(cellPosX, cellPosY);
         if (doorMapping.ContainsKey(key))
         {
             return doorMapping[key].GetDoorState() != DoorState.OPENED;
         }
 
         return false;
+    }
+
+    public List<Vector2> GeneratePath(Vector2 start, Vector2 end)
+    {
+        uint nodeConversion = OS.GetTicksMsec();
+        TileMapGraphNode startNode = tileMapGraph.GetGraphNodeFromWorldPos(start);
+        TileMapGraphNode endNode = tileMapGraph.GetGraphNodeFromWorldPos(end);
+        GD.Print("Node Conversion: " + (OS.GetTicksMsec() - nodeConversion) + "ms");
+        
+        uint astarSearch = OS.GetTicksMsec();
+        List<TileMapGraphNode> graphNodePath = AStarSearch.GeneratePath(tileMapGraph, startNode, endNode);
+        GD.Print("AStarSearch.GeneratePath: " + (OS.GetTicksMsec() - astarSearch) + "ms");
+        
+        List<Vector2> path = new List<Vector2>();
+        if (graphNodePath != null)
+        {
+            for (int i = 0; i < graphNodePath.Count; i++)
+            {
+                path.Add(graphNodePath[i].GetWorldPosition());
+            }
+        }
+        return path;
     }
 }

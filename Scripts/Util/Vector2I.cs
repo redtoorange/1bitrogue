@@ -16,5 +16,10 @@ namespace BitRoguelike.Scripts.Util
         public Vector2I(Vector2 other) : this((int) other.x, (int) other.y)
         {
         }
+
+        public Vector2 AsVector2()
+        {
+            return new Vector2(x, y);
+        }
     }
 }
